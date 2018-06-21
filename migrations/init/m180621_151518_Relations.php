@@ -41,12 +41,12 @@ class m180621_151518_Relations extends Migration
          );
         $this->addForeignKey('fk_company_created_by',
             '{{%company}}','created_by',
-            '{{%old_auth_user___}}','id',
+            '{{%user}}','id',
             'RESTRICT','RESTRICT'
          );
         $this->addForeignKey('fk_company_updated_by',
             '{{%company}}','updated_by',
-            '{{%old_auth_user___}}','id',
+            '{{%user}}','id',
             'RESTRICT','RESTRICT'
          );
         $this->addForeignKey('fk_company_workplace_company_id',
