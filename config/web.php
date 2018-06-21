@@ -11,6 +11,9 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'layout' => '@app/views/layouts/red.php',
+    'language'=>'pl',
+    'sourceLanguage' => 'en',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -18,10 +21,6 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -40,9 +39,59 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => 'yii\log\DbTarget',
+                    'categories' => ['trace\*'],
+                    'levels' => ['info'],
+                    'logVars' => [],
+                    'prefix' => function ($message) {
+                        $ip = Yii::$app->getRequest()->getUserIP();
+                        return "IP[$ip]";
+                    }
+                ],
             ],
         ],
         'db' => $db,
+        'i18n' => [
+            'translations' => [
+               'app*' => [
+                   'class' => 'yii\i18n\PhpMessageSource',
+                   'basePath' => '@app/messages/AppicationTranslations',
+                   'sourceLanguage' => 'en',
+                   'fileMap' => [
+                       'app' => 'app.php',
+                   ],
+               ],
+               'db*' => [
+                   'class' => 'yii\i18n\PhpMessageSource',
+                   'basePath' => '@app/messages/DbLabelTranslations',
+                   'sourceLanguage' => 'en',
+                   'fileMap' => [
+                       'db/company' => 'company.php',
+                       'db/member' => 'member.php',
+                       'db/workplace' => 'workplace.php',
+                       'db/authuser' => 'authuser.php',
+                       'db/document' => 'document.php',
+                       'db/category' => 'category.php',
+                   ],
+               ],
+            ],
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
+        'CustomUtil' => [
+            'class' => 'app\components\CustomUtil'
+        ],
+        'user' => [
+            'identityClass' => 'dektrium\user\models\User',
+            'on '.\yii\web\User::EVENT_AFTER_LOGIN => ['app\components\EventHandler', 'AfterLogin'],
+            'on '.\yii\web\User::EVENT_AFTER_LOGOUT => ['app\components\EventHandler', 'AfterLogout'],
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -52,8 +101,38 @@ $config = [
         ],
         */
     ],
+    'controllerMap' => [
+        'file' => 'mdm\\upload\\FileController', // use to show or download file
+    ],
+    'modules' => [
+        'docmgm' => [
+            'class' => 'app\modules\docmgm\DocmgmModule',
+        ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+        ],
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableRegistration' => false,
+            'enableConfirmation' => false,
+            'rememberFor' => '3600', // 1 hour
+            'admins' => ['root'],
+            'controllerMap' => [
+                'security' => 'app\controllers\user\SecurityController',
+                'recovery' => 'app\controllers\user\RecoveryController',
+            ],
+            'modelMap' => [
+                'Profile' => 'app\models\user\Profile',
+            ],
+        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+    ],
     'params' => $params,
 ];
+
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
