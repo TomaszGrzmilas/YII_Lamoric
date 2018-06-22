@@ -73,6 +73,7 @@ $config = [
                        'db/authuser' => 'authuser.php',
                        'db/document' => 'document.php',
                        'db/category' => 'category.php',
+                       'db/log' => 'log.php',
                    ],
                ],
             ],
@@ -92,6 +93,13 @@ $config = [
             'on '.\yii\web\User::EVENT_AFTER_LOGIN => ['app\components\EventHandler', 'AfterLogin'],
             'on '.\yii\web\User::EVENT_AFTER_LOGOUT => ['app\components\EventHandler', 'AfterLogout'],
         ],
+        'formatter' => [
+            'dateFormat' => 'dd.MM.yyyy',
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'PLN',
+       ],
+
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

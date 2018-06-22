@@ -4,14 +4,16 @@ use kartik\tree\TreeView;
 use app\models\Category;
 use app\assets\TableAsset;
 
-TableAsset::register($this); 
+$item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
+
+$this->title = Yii::t('db/category', 'Categories');
+$this->params['breadcrumbs'][] = $this->title;
 
 echo TreeView::widget([
-    // single query fetch to render the tree
     'query'             => Category::find()->addOrderBy('root, lft'), 
     'headingOptions'    => ['label' => Yii::t('db/category', 'Categories')],
-    'fontAwesome' => true,     // optional'
-    'isAdmin'           => true,                       // optional (toggle to enable admin mode)
+    'fontAwesome' => true,     
+    'isAdmin'           => false,                       // optional (toggle to enable admin mode)
     'showFormButtons' => false,
     'iconEditSettings'=> [
         'show' => 'list',

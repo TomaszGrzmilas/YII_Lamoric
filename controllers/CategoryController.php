@@ -7,7 +7,7 @@ class CategoryController extends \yii\web\Controller
 {
     public function actionAdmin()
     {
-        return $this->render('index');
+        return $this->render('admin');
     }
 
     public function actionOverviewArticle()
