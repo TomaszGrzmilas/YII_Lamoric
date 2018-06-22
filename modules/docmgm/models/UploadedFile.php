@@ -64,13 +64,21 @@ class UploadedFile extends \yii\db\ActiveRecord
 
     public function getFileLink()
     {
-        return Html::a($this->name, FileHelper::normalizePath(Url::base().'/'.substr($this->filename, strlen(Yii::getAlias('@app').'\web'))), ['target' => '_blank', 'data-pjax'=>'0']);
+        return Html::a($this->name, FileHelper::normalizePath(substr($this->filename, strlen(Yii::getAlias('@app').'\web'))), ['target' => '_blank', 'data-pjax'=>'0']);
     }
 
     public function getImg($width = '175px', $height = '100%')
     {
         if(stripos($this->type,'image') !== false){
-            return Html::img(FileHelper::normalizePath(Url::base().'/'.substr($this->filename, strlen(Yii::getAlias('@app').'\web'))), ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
+            return Html::img(FileHelper::normalizePath(substr($this->filename, strlen(Yii::getAlias('@app').'\web'))), ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
+        }
+        return false; 
+    }
+
+    public function getImg2($width = '175px', $height = '100%')
+    {
+        if(stripos($this->type,'image') !== false){
+            return Html::img(['/file','id'=>$this->id], ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
         }
         return false; 
     }

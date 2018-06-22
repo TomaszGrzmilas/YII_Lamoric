@@ -10,6 +10,7 @@ $this->title = Yii::t('db/workplace', 'Create Workplace');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('db/workplace', 'Workplaces'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="workplace-create">
 
     <h1><?= Html::encode($this->title) ?></h1>

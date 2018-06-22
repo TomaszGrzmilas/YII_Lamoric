@@ -4,18 +4,16 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Workplace;
+use app\models\WorkplaceSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
 /**
  * WorkplaceController implements the CRUD actions for Workplace model.
  */
 class WorkplaceController extends Controller
 {
-    public $menuItem;
-
     /*
     public function behaviors()
     {
@@ -29,21 +27,22 @@ class WorkplaceController extends Controller
         ];
     }
 */
-    /**
-     * Lists all Workplace models.
-     * @return mixed
-     */
+
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Workplace::find(),
-        ]);
+        $model = new Workplace();
 
-        $this->menuItem = 'workplace-index';
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model = new Workplace();
+        }
 
+        $searchModel = new WorkplaceSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'menuItem' =>  $this->menuItem,
+            'model' => $model,
         ]);
     }
 

@@ -16,8 +16,6 @@ Url::remember();
 <div class="company-view">
     <div class="row">
         <div class="col-xs-8">
-            <h1><?= Html::encode($this->title) ?></h1>
-
             <p>
                 <?= Html::a(Yii::t('app', 'Back'), ['company/index'], ['class' => 'btn btn-gray']) ?>            
                 <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->company_id], ['class' => 'btn btn-primary']) ?>

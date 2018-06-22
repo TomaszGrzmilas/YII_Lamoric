@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 use Yii;
 
 /**
- * This is the model class for table "company_workplace".
+ * This is the model class for table "{{%company_workplace}}".
  *
  * @property int $company_id
  * @property int $workplace_id
@@ -16,6 +16,7 @@ use Yii;
  * @property int $updated_at
  *
  * @property Company $company
+ * @property Member[] $members 
  */
 class Workplace extends \yii\db\ActiveRecord
 {
@@ -24,7 +25,7 @@ class Workplace extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'company_workplace';
+        return '{{%company_workplace}}';
     }
 
     public function behaviors()
@@ -55,12 +56,19 @@ class Workplace extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
+    public function getMembers()
+    {
+        return $this->hasMany(Member::className(), ['company_id' => 'company_id', 'workplace_id' => 'workplace_id']);
+    }
+
     public function getCompany()
     {
         return $this->hasOne(Company::className(), ['company_id' => 'company_id']);
+    }
+
+    public static function find()
+    {
+       return new WorkplaceQuery(get_called_class());
     }
 
     public static function getCompanyList() 

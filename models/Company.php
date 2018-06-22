@@ -12,6 +12,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\BlameableBehavior;
 use app\modules\docmgm\models\UploadedFile;
+use dektrium\user\models\User;
 
 /**
  * This is the model class for table "{{%company}}".
@@ -24,10 +25,10 @@ use app\modules\docmgm\models\UploadedFile;
  * @property int $updated_by
  * @property int $updated_at
  *
- * @property AuthUser[] $authUsers
+ * @property User[] $authUsers
  * @property UploadedFile $uploadedfile
- * @property AuthUser $createdBy
- * @property AuthUser $updatedBy
+ * @property User $createdBy
+ * @property User $updatedBy
  * @property CompanyWorkplace[] $companyWorkplaces
  * @property Member[] $members
  */
@@ -64,8 +65,8 @@ class Company extends \yii\db\ActiveRecord
             [['name'], 'unique'],
             [['name'], 'string', 'max' => 200],
             [['logo'], 'exist', 'skipOnError' => true, 'targetClass' => UploadedFile::className(), 'targetAttribute' => ['logo' => 'id']],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => AuthUser::className(), 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => AuthUser::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
