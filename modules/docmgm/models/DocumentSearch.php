@@ -18,14 +18,11 @@ class DocumentSearch extends Document
     public function rules()
     {
         return [
-            [['doc_id', 'created_at', 'updated_at'], 'integer'],
+            [['doc_id'], 'integer'],
             [['title', 'text', 'tag', 'file', 'category_id'], 'safe'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -69,7 +66,7 @@ class DocumentSearch extends Document
             ->andFilterWhere(['like', 'text', $this->text])
             ->andFilterWhere(['like', 'tag', $this->tag])
             ->andFilterWhere(['like', 'file', $this->file])
-            ->andFilterWhere(['like', 'doc_category.name', $this->category_id]);
+            ->andFilterWhere(['like', 'category.name', $this->category_id]);
 
         return $dataProvider;
     }

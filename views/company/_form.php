@@ -5,9 +5,6 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Company */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="row">

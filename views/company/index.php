@@ -5,8 +5,6 @@ use yii\widgets\Pjax;
 use kartik\grid\GridView;
 use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 
 $this->title = Yii::t('db/company', 'Companies');
@@ -59,6 +57,7 @@ Url::remember();
                 'export' => [
                     'fontAwesome' => true
                 ],
+                'responsive' => false,
                 'panel' => [
                     'type' => GridView::TYPE_PRIMARY,
                     'heading' => $this->title,

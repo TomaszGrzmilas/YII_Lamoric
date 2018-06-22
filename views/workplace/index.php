@@ -59,6 +59,7 @@ Url::remember();
                 'export' => [
                     'fontAwesome' => true
                 ],
+                'responsive' => false,
                 'panel' => [
                     'type' => GridView::TYPE_PRIMARY,
                     'heading' => $this->title,

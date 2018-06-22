@@ -13,7 +13,9 @@ use app\assets\BaseAsset;
 use app\assets\Base2Asset;
 use yii\web\View;
 
-$baseAsset = ['lamonic-company*', 'user*', 'rbac*', 'docmgm-document-index'];
+$appId = Yii::$app->id;
+
+$baseAsset = [$appId.'-company*', $appId.'-workplace*', 'user*', 'rbac*', 'docmgm-document-index'];
 
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 ?>
