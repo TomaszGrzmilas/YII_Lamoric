@@ -23,7 +23,7 @@ $appId = Yii::$app->id;
                 ['label' => Yii::t('db/log', 'Logs'), 'icon' => 'list', 'url' =>  Url::toRoute('/log/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-log*'] ,$item ))],
             ]],
 
-            ['label' => Yii::t('app', 'Members'), 'icon' => 'users', 'url' => Yii::$app->homeUrl, 'active' => (false)],
+            ['label' => Yii::t('app', 'Members'), 'icon' => 'users', 'url' =>  Url::toRoute('/member/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-member*'] ,$item ))],
             ['label' => Yii::t('app', 'Payments'), 'icon' => 'money', 'url' => Yii::$app->homeUrl, 'active' => (false)],            
             ['label' => Yii::t('app', 'Law'), 'icon' => 'balance-scale', 'url' => Url::toRoute('/articlemgm/article-category/overview-law'), 'active' => (false)],
             ['label' => Yii::t('app', 'Articles'), 'icon' => 'newspaper-o', 'url' => Url::toRoute('/articlemgm/article-category/overview-article'), 'active' => (false)],

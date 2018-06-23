@@ -97,4 +97,9 @@ class Member extends \yii\db\ActiveRecord
     { 
         return Workplace::getWorkplaceList();
     }
+
+    public static function find()
+    {
+        return new MemberQuery(get_called_class());
+    }
 }

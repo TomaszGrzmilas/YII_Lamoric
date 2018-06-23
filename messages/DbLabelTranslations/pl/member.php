@@ -4,14 +4,15 @@ return array(
 	'Create Member'=>'Dodaj członka',
 	'Name' => 'Imię',
 	'Surname' => 'Nazwisko',
-	'Zip code' => 'Kod pocztowy',
+	'Zip Code' => 'Kod pocztowy',
 	'City' => 'Miejscowość',
 	'Street' => 'Ulica',
 	'Building' => 'Budynek',
 	'Local' => 'Lokal',
 	'Phone' => 'Telefon',
-	'Company ID' => 'ID firmy',
-	'Workplace ID'=>'ID miejsca pracy',
+	'Company ID' => 'Firma',
+	'Workplace ID'=>'Miejsce pracy',
 	'Notes' => 'Uwagi',
+	'Create Member' => 'Dodaj członka',
 );
 ?>

@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Member;
-use yii\data\ActiveDataProvider;
+use app\models\MemberSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,26 +26,17 @@ class MemberController extends Controller
         ];
     }
 
-    /**
-     * Lists all Member models.
-     * @return mixed
-     */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Member::find(),
-        ]);
+        $searchModel = new MemberSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
+            'searchModel' => $searchModel, 
             'dataProvider' => $dataProvider,
         ]);
     }
 
-    /**
-     * Displays a single Member model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -118,6 +109,6 @@ class MemberController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('member', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('db/member', 'The requested page does not exist.'));
     }
 }
