@@ -3,7 +3,7 @@
 namespace app\modules\docmgm\controllers;
 
 use Yii;
-use app\modules\docmgm\models\DocCategory;
+use app\models\Category;
 use app\modules\docmgm\models\Document;
 use app\modules\docmgm\models\DocCategorySearch;
 use yii\web\Controller;
@@ -20,7 +20,7 @@ class DocumentOvwController extends Controller
             'query' => $model->find(),
         ]);
 
-        $categories = DocCategory::getMainCategories();
+        $categories = Category::getSubCategories(10);
    
         return $this->render('index', [
             'documents' => $documents,

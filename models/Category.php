@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use creocoder\nestedsets\NestedSetsBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%category}}".
@@ -106,4 +107,11 @@ class Category extends \kartik\tree\models\Tree
       //  }
         return parent::isReadonly();
     }
+
+    public function getSubCategories($id)
+    {
+        $Categories = Category::find()->select(['id','name'])->where(['root' =>$id])->addOrderBy('root, lft')->asArray()->all();
+        return ArrayHelper::map($Categories, 'id', 'name');
+    }
+
 }
