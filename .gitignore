@@ -35,5 +35,6 @@ tests/_support/_generated
 
 web/index.php
 web/media
+web/images
 config/db.php
 
