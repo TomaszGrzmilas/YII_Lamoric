@@ -8,12 +8,19 @@ use app\models\CompanySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use ruskid\csvimporter\CSVImporter;
+use ruskid\csvimporter\CSVReader;
+use ruskid\csvimporter\ARImportStrategy;
+use yii\web\UploadedFile;
+
+
 
 /**
  * CompanyController implements the CRUD actions for Company model.
  */
 class CompanyController extends Controller
 {
+
     public function behaviors()
     {
         return [
@@ -82,6 +89,44 @@ class CompanyController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionImport()
+    {
+        $model = new Company();
+
+        if (Yii::$app->request->isPost) {
+
+            $model->importfile = UploadedFile::getInstance($model, 'importfile');
+
+            
+                $importer = new CSVImporter;
+
+                $importer->setData(new CSVReader([
+                    'filename' => $model->importfile->tempName,
+                    'fgetcsvOptions' => [
+                        'delimiter' => ';'
+                    ]
+                ]));
+
+                $numberRowsAffected = $importer->import(new ARImportStrategy([
+                    'className' => Company::className(),
+                    'configs' => [
+                        [
+                            'attribute' => 'name',
+                            'value' => function($line) {
+                                return $line[0];
+                            },
+                           'unique' => true, 
+                        ]
+                    ],
+                ]));
+                return $this->actionIndex();
+        }
+
+        return $this->render('_import_form', [
+            'model' => $model,
+        ]);
     }
 
     protected function findModel($id)

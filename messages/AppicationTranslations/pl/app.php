@@ -33,5 +33,6 @@ return array(
 	'Add'=>'Dodaj',
 	'Are you sure you want to delete this item?'=>'Czy na pewno chcesz usunąć ten element?',
 	'Profile'=>'Profil',
+	'File' => 'Plik',
 );
 ?>

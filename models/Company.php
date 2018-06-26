@@ -34,9 +34,8 @@ use dektrium\user\models\User;
  */
 class Company extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    public $importfile;
+
     public static function tableName()
     {
         return '{{%company}}';
@@ -64,6 +63,7 @@ class Company extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['name'], 'unique'],
             [['name'], 'string', 'max' => 200],
+            [['importfile'], 'file', 'skipOnEmpty' => true, 'extensions'=> 'csv'],
             [['logo'], 'exist', 'skipOnError' => true, 'targetClass' => UploadedFile::className(), 'targetAttribute' => ['logo' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
@@ -80,6 +80,7 @@ class Company extends \yii\db\ActiveRecord
             'created_at' => Yii::t('db/company', 'Created At'),
             'updated_by' => Yii::t('db/company', 'Updated By'),
             'updated_at' => Yii::t('db/company', 'Updated At'),
+            'importfile' => Yii::t('app', 'File'),
         ];
     }
 

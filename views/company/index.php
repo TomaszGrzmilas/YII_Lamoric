@@ -47,7 +47,7 @@ Url::remember();
                 'pjax' => true, 
                 'toolbar' =>  [
                     ['content' => 
-                        //Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type' => 'button', 'title' => $addButtonTitle, 'class' => 'btn btn-success', 'data-toggle'=>'modal', 'data-target' => Url::toRoute('company/create')]) . ' '.
+                        Html::button('<i class="fa fa-file-o"></i>', ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
                         Html::a('<i class="fa fa-plus"></i>', ['company/create'], ['data-pjax' => 0, 'class' => 'btn btn-success', 'title' => $addButtonTitle]) . ' '.
                         Html::a('<i class="fa fa-retweet"></i>', ['company/index'], ['class' => 'btn btn-warning', 'title' => Yii::t('app', 'Reset Grid')])
                     ],
@@ -73,3 +73,9 @@ Url::remember();
         </div>
     </div>
 </div>
+
+
+<?= $this->render('_modal_import_form', [
+    'model' => $model,
+    'title' => Yii::t('app', 'Import')
+]) ?>
