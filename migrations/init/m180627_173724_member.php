@@ -16,6 +16,8 @@ class m180627_173724_member extends Migration
     {
         $tableOptions = 'ENGINE=InnoDB';
 
+        $this->safeDown();
+
         $this->createTable(
             '{{%member}}',
             [

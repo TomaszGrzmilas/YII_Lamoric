@@ -14,6 +14,8 @@ class m180621_151518_Relations extends Migration
 
     public function safeUp()
     {
+        $this->safeDown();
+        
         $this->addForeignKey('fk_auth_assignment_item_name',
             '{{%auth_assignment}}','item_name',
             '{{%auth_item}}','name',
