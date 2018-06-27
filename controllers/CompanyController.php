@@ -98,7 +98,6 @@ class CompanyController extends Controller
         if (Yii::$app->request->isPost) {
 
             $model->importfile = UploadedFile::getInstance($model, 'importfile');
-
             
                 $importer = new CSVImporter;
 
@@ -121,9 +120,10 @@ class CompanyController extends Controller
                         ]
                     ],
                 ]));
-                return $this->actionIndex();
+                
+                return $this->redirect(['index']);
         }
-
+        
         return $this->render('_import_form', [
             'model' => $model,
         ]);

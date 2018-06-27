@@ -16,6 +16,10 @@ Url::remember();
 
 ?>
 
+ <?= Yii::$app->session->getFlash('error'); ?>
+
+ <?= Yii::$app->session->getFlash('success'); ?>
+
 <div class="<?=$item?>-index">
     <div class="row">
         <div class="col-xs-10">
@@ -55,6 +59,7 @@ Url::remember();
                 'pjax' => true, 
                 'toolbar' =>  [
                     ['content' => 
+                        Html::button('<i class="fa fa-file-o"></i>', ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
                         Html::a('<i class="fa fa-plus"></i>', ['member/create'], ['data-pjax' => 0, 'class' => 'btn btn-success', 'title' => $addButtonTitle]) . ' '.
                         Html::a('<i class="fa fa-retweet"></i>', ['member/index'], ['class' => 'btn btn-warning', 'title' => Yii::t('app', 'Reset Grid')])
                     ],
@@ -80,3 +85,9 @@ Url::remember();
         </div>
     </div>
 </div>
+
+
+<?= $this->render('_modal_import_form', [
+    'model' => $model,
+    'title' => Yii::t('app', 'Import')
+]) ?>

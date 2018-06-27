@@ -39,7 +39,7 @@ class Workplace extends \yii\db\ActiveRecord
     {
         return [
             [['company_id', 'name'], 'required'],
-            [['company_id'], 'integer'],
+            [['company_id', 'workplace_id'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'company_id']],
         ];
@@ -52,6 +52,7 @@ class Workplace extends \yii\db\ActiveRecord
     {
         return [
             'company_id' => Yii::t('db/company', 'Company'),
+            'workplace_id' => Yii::t('db/workplace', 'Workplace'),
             'name' => Yii::t('db/workplace', 'Name'),
         ];
     }

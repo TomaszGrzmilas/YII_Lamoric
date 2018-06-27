@@ -15,7 +15,7 @@ use yii\web\View;
 
 $appId = Yii::$app->id;
 
-$baseAsset = [$appId.'-member-index', $appId.'-category*', $appId.'-log*', $appId.'-company-index', $appId.'-workplace-index', 'user*', 'rbac*', 'docmgm-document-index', 'docmgm-document-create'];
+$baseAsset = [$appId.'-member-index',$appId.'-member-import', $appId.'-category*', $appId.'-log*', $appId.'-company-index', $appId.'-workplace-index', 'user*', 'rbac*', 'docmgm-document-index', 'docmgm-document-create'];
 
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 ?>

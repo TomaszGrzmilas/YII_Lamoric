@@ -30,6 +30,9 @@ use yii\behaviors\TimestampBehavior;
 class Member extends \yii\db\ActiveRecord
 {
 
+    public $importfile;
+    public $importLine; 
+
     public static function tableName()
     {
         return '{{%member}}';
@@ -48,11 +51,13 @@ class Member extends \yii\db\ActiveRecord
             [['name', 'surname', 'pesel', 'zip_code', 'city', 'street', 'building', 'company_id'], 'required'],
             [['pesel', 'phone', 'company_id', 'workplace_id'], 'integer'],
             [['name', 'surname', 'city', 'street', 'email'], 'string', 'max' => 100],
+            [['email'], 'email'],
             [['zip_code'], 'string', 'max' => 6],
             [['building', 'local'], 'string', 'max' => 5],
             [['notes'], 'string', 'max' => 2000],
-            [['company_id', 'workplace_id'], 'exist', 'skipOnError' => true, 'targetClass' => Workplace::className(), 'targetAttribute' => ['company_id' => 'company_id', 'workplace_id' => 'workplace_id']], 
+            [['importfile'], 'file', 'skipOnEmpty' => true, 'extensions'=> 'csv'],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'company_id']], 
+            [['workplace_id'], 'exist', 'skipOnError' => false, 'targetClass' => Workplace::className(), 'targetAttribute' => ['company_id' => 'company_id', 'workplace_id' => 'workplace_id']], 
         ];
     }
 
@@ -75,6 +80,7 @@ class Member extends \yii\db\ActiveRecord
             'company_id' => Yii::t('db/member', 'Company ID'),
             'workplace_id' => Yii::t('db/member', 'Workplace ID'),
             'notes' => Yii::t('db/member', 'Notes'),
+            'importfile' => Yii::t('app', 'File'),
         ];
     }
     
