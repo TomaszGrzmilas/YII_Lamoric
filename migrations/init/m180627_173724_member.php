@@ -16,7 +16,11 @@ class m180627_173724_member extends Migration
     {
         $tableOptions = 'ENGINE=InnoDB';
 
-        $this->safeDown();
+        $this->dropIndex('id', '{{%member}}');
+        $this->dropIndex('company_id', '{{%member}}');
+        $this->dropIndex('created_by', '{{%member}}');
+        $this->dropIndex('updated_by', '{{%member}}');
+        $this->dropTable('{{%member}}');
 
         $this->createTable(
             '{{%member}}',

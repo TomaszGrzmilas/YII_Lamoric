@@ -14,7 +14,24 @@ class m180621_151518_Relations extends Migration
 
     public function safeUp()
     {
-        $this->safeDown();
+        $this->dropForeignKey('fk_auth_assignment_item_name', '{{%auth_assignment}}');
+        $this->dropForeignKey('fk_auth_item_rule_name', '{{%auth_item}}');
+        $this->dropForeignKey('fk_auth_item_child_parent', '{{%auth_item_child}}');
+        $this->dropForeignKey('fk_auth_item_child_child', '{{%auth_item_child}}');
+        $this->dropForeignKey('fk_company_logo', '{{%company}}');
+        $this->dropForeignKey('fk_company_created_by', '{{%company}}');
+        $this->dropForeignKey('fk_company_updated_by', '{{%company}}');
+        $this->dropForeignKey('fk_company_workplace_company_id', '{{%company_workplace}}');
+        $this->dropForeignKey('fk_document_file', '{{%document}}');
+        $this->dropForeignKey('fk_document_category_id', '{{%document}}');
+        $this->dropForeignKey('fk_member_workplace_id', '{{%member}}');
+        $this->dropForeignKey('fk_member_company_id', '{{%member}}');
+        $this->dropForeignKey('fk_member_created_by', '{{%member}}');
+        $this->dropForeignKey('fk_member_updated_by', '{{%member}}');
+        $this->dropForeignKey('fk_profile_user_id', '{{%profile}}');
+        $this->dropForeignKey('fk_profile_company_id', '{{%profile}}');
+        $this->dropForeignKey('fk_social_account_user_id', '{{%social_account}}');
+        $this->dropForeignKey('fk_token_user_id', '{{%token}}');
         
         $this->addForeignKey('fk_auth_assignment_item_name',
             '{{%auth_assignment}}','item_name',
