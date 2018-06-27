@@ -64,16 +64,26 @@ class m180621_151518_Relations extends Migration
             '{{%category}}','id',
             'RESTRICT','RESTRICT'
          );
-        $this->addForeignKey('fk_member_workplace_id',
-            '{{%member}}','workplace_id',
-            '{{%company_workplace}}','workplace_id',
-            'RESTRICT','RESTRICT'
-         );
+         $this->addForeignKey('fk_member_workplace_id',
+         '{{%member}}','workplace_id',
+         '{{%company_workplace}}','workplace_id',
+         'RESTRICT','RESTRICT'
+        );
         $this->addForeignKey('fk_member_company_id',
             '{{%member}}','company_id',
             '{{%company}}','company_id',
             'RESTRICT','RESTRICT'
-         );
+        );
+        $this->addForeignKey('fk_member_created_by',
+            '{{%member}}','created_by',
+            '{{%user}}','id',
+            'RESTRICT','RESTRICT'
+        );
+        $this->addForeignKey('fk_member_updated_by',
+            '{{%member}}','updated_by',
+            '{{%user}}','id',
+            'RESTRICT','RESTRICT'
+        );
         $this->addForeignKey('fk_profile_user_id',
             '{{%profile}}','user_id',
             '{{%user}}','id',
@@ -110,6 +120,8 @@ class m180621_151518_Relations extends Migration
         $this->dropForeignKey('fk_document_category_id', '{{%document}}');
         $this->dropForeignKey('fk_member_workplace_id', '{{%member}}');
         $this->dropForeignKey('fk_member_company_id', '{{%member}}');
+        $this->dropForeignKey('fk_member_created_by', '{{%member}}');
+        $this->dropForeignKey('fk_member_updated_by', '{{%member}}');
         $this->dropForeignKey('fk_profile_user_id', '{{%profile}}');
         $this->dropForeignKey('fk_profile_company_id', '{{%profile}}');
         $this->dropForeignKey('fk_social_account_user_id', '{{%social_account}}');
