@@ -7,15 +7,7 @@ class BaseAsset extends AssetBundle
 {
     public $basePath = '@webroot/ace_assets';
     public $baseUrl = '@web/ace_assets';
-    public $css = [
-      //  'css/bootstrap.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css',
-        'css/ace.css',
-        'css/fonts.googleapis.com.css',
-      
-    //   'css/ace-skins.min.css',
-    //   'css/ace-rtl.min.css'
-    ];
+
     public $js = [
      //    'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',
    //     'js/popper.min.js',

@@ -58,7 +58,7 @@ Url::remember();
                 ],
                 'responsive' => false,
                 'panel' => [
-                    'type' => GridView::TYPE_PRIMARY,
+                    'type' => GridView::TYPE_DANGER ,
                     'heading' => $this->title,
                 ],
                 'showFooter'=>false,

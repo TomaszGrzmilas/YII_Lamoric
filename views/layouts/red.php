@@ -10,8 +10,11 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\BaseAsset;
+use app\assets\RedAsset;
 use app\assets\Base2Asset;
 use yii\web\View;
+
+RedAsset::register($this); 
 
 $appId = Yii::$app->id;
 
