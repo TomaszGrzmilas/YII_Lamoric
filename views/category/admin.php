@@ -2,7 +2,6 @@
 
 use kartik\tree\TreeView;
 use app\models\Category;
-use app\assets\TableAsset;
 
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 
@@ -14,7 +13,7 @@ echo TreeView::widget([
     'headingOptions'    => ['label' => Yii::t('db/category', 'Categories')],
     'fontAwesome' => true,     
     'isAdmin'           => false,                       // optional (toggle to enable admin mode)
-    'showFormButtons' => false,
+    'showFormButtons' => true,
     'iconEditSettings'=> [
         'show' => 'list',
         'type' => TreeView::ICON_CSS,

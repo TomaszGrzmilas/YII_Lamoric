@@ -33,12 +33,11 @@ use app\components\LogBehavior;
  * @property int $removable_all Whether the node is removable along with descendants
  * @property int $created_at
  * @property int $updated_at
+ * @property int $child_allowed
  */
 class Category extends \kartik\tree\models\Tree
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return '{{%category}}';
@@ -91,6 +90,7 @@ class Category extends \kartik\tree\models\Tree
             'removable_all' => Yii::t('db/articlemgm', 'Removable All'),
             'created_at' => Yii::t('db/articlemgm', 'Created At'),
             'updated_at' => Yii::t('db/articlemgm', 'Updated At'),
+            'child_allowed' => Yii::t('db/articlemgm', 'Child allowed'),
         ];
     }
 

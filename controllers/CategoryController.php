@@ -12,7 +12,6 @@ class CategoryController extends \yii\web\Controller
 
     public function actionOverviewArticle()
     {
-
         $root = Category::find()->select('id')->where(['name'=>'Artykuły'])->asArray()->All();
         $root = $root[0];
 
@@ -24,7 +23,6 @@ class CategoryController extends \yii\web\Controller
 
     public function actionOverviewLaw()
     {
-
         $root = Category::find()->select('id')->where(['name'=>'Prawo'])->asArray()->All();
         $root = $root[0];
 
