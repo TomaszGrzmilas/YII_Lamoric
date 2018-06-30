@@ -2,41 +2,48 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
-/* @var $this yii\web\View */
-/* @var $model app\modules\docmgm\models\Document */
+use yii\helpers\Url;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('db/docmgm', 'Documents'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+Url::remember();
 ?>
 <div class="document-view">
+    <div class="row">
+        <div class="col-xs-8">
+            <p>
+                <?= Html::a(Yii::t('app', 'Back'), ['/docmgm/document/index'], ['class' => 'btn btn-gray']) ?>            
+                <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->doc_id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->doc_id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                        'method' => 'POST',
+                    ],
+                ]) ?>
+            </p>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'doc_id',
+                    'title',
+                    'text:ntext',
+                    'tag',
+                    [
+                        'attribute' => 'file',
+                        'value' => isset($model->uploadedFile->name) ? $model->uploadedFile->name : 'Brak',
+                    ],
+                    [
+                        'attribute' => 'category_id',
+                        'value' => isset($model->category->name) ? $model->category->name : 'Brak',
+                    ],
+                ],
+            ]) ?>
 
-    <p>
-        <?= Html::a(Yii::t('db/docmgm', 'Update'), ['update', 'id' => $model->doc_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('db/docmgm', 'Delete'), ['delete', 'id' => $model->doc_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('db/docmgm', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'doc_id',
-            'title',
-            'text:ntext',
-            'tag',
-            'file',
-            'category.name',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
-
+        </div>
+    </div>
 </div>
+
