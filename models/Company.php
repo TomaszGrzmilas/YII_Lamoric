@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
 use yii\behaviors\BlameableBehavior;
 use app\modules\docmgm\models\UploadedFile;
 use dektrium\user\models\User;
+use dektrium\user\models\Profile;
 use app\components\LogBehavior;
 
 /**
@@ -21,6 +22,12 @@ use app\components\LogBehavior;
  * @property int $company_id
  * @property string $name
  * @property int $logo
+ * @property string $zip_code 
+ * @property string $city 
+ * @property string $street 
+ * @property string $building 
+ * @property string $local 
+ * @property string $notes 
  * @property int $created_by
  * @property int $created_at
  * @property int $updated_by
@@ -32,6 +39,7 @@ use app\components\LogBehavior;
  * @property User $updatedBy
  * @property CompanyWorkplace[] $companyWorkplaces
  * @property Member[] $members
+ * @property Profile[] $profiles 
  */
 class Company extends \yii\db\ActiveRecord
 {
@@ -69,6 +77,10 @@ class Company extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['name'], 'unique'],
             [['name'], 'string', 'max' => 200],
+            [['zip_code'], 'string', 'max' => 6], 
+            [['city', 'street'], 'string', 'max' => 100], 
+            [['building', 'local'], 'string', 'max' => 5], 
+            [['notes'], 'string', 'max' => 2000], 
             [['importfile'], 'file', 'skipOnEmpty' => true, 'extensions'=> 'csv'],
             [['logo'], 'exist', 'skipOnError' => true, 'targetClass' => UploadedFile::className(), 'targetAttribute' => ['logo' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -82,6 +94,12 @@ class Company extends \yii\db\ActiveRecord
             'company_id' => Yii::t('db/company', 'Company ID'),
             'name' => Yii::t('db/company', 'Name'),
             'logo' => Yii::t('db/company', 'Logo'),
+            'zip_code' => Yii::t('db/company', 'Zip Code'),
+            'city' => Yii::t('db/company', 'City'),
+            'street' => Yii::t('db/company', 'Street'),
+            'building' => Yii::t('db/company', 'Building'),
+            'local' => Yii::t('db/company', 'Local'),
+            'notes' => Yii::t('db/company', 'Notes'),
             'created_by' => Yii::t('db/company', 'Created By'),
             'created_at' => Yii::t('db/company', 'Created At'),
             'updated_by' => Yii::t('db/company', 'Updated By'),
@@ -93,7 +111,7 @@ class Company extends \yii\db\ActiveRecord
 
     public function getAuthUsers()
     {
-        return $this->hasMany(AuthUser::className(), ['company_id' => 'company_id']);
+        return $this->hasMany(User::className(), ['company_id' => 'company_id']);
     }
 
     public function getUploadedFile()
@@ -103,12 +121,12 @@ class Company extends \yii\db\ActiveRecord
 
     public function getCreatedBy()
     {
-        return $this->hasOne(AuthUser::className(), ['id' => 'created_by']);
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 
     public function getUpdatedBy()
     {
-        return $this->hasOne(AuthUser::className(), ['id' => 'updated_by']);
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 
     public function getCompanyWorkplaces()
@@ -120,6 +138,11 @@ class Company extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Member::className(), ['company_id' => 'company_id']);
     }
+
+    public function getProfiles() 
+    { 
+        return $this->hasMany(Profile::className(), ['company_id' => 'company_id']); 
+    } 
 
     public static function find()
     {

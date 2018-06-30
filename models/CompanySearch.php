@@ -12,13 +12,15 @@ use app\models\Company;
  */
 class CompanySearch extends Company
 {
-    /**
-     * {@inheritdoc}
-     */
+    
     public function rules()
     {
         return [
             [['name'], 'safe'],
+            [['zip_code'], 'string', 'max' => 6], 
+            [['city', 'street'], 'string', 'max' => 100], 
+            [['building', 'local'], 'string', 'max' => 5], 
+            [['notes'], 'string', 'max' => 2000], 
         ];
     }
 
@@ -59,15 +61,16 @@ class CompanySearch extends Company
         // grid filtering conditions
         $query->andFilterWhere([
             'company_id' => $this->company_id,
-            'logo' => $this->logo,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
+
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
-
+        $query->andFilterWhere(['like', 'name', $this->name])
+              ->andFilterWhere(['like', 'zip_code', $this->zip_code])
+              ->andFilterWhere(['like', 'city', $this->city])
+              ->andFilterWhere(['like', 'street', $this->street])
+              ->andFilterWhere(['like', 'building', $this->building])
+              ->andFilterWhere(['like', 'local', $this->local])
+              ->andFilterWhere(['like', 'notes', $this->notes]);
         return $dataProvider;
     }
 }

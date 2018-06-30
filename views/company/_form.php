@@ -1,38 +1,140 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\web\View;
 
+$img = isset($model->uploadedFile->img) ? $model->uploadedFile->img : '<img src="" alt="Logo Firmy">';
 ?>
 
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-10">
         <div class="company-form">
 
-            <?php $form = ActiveForm::begin(); ?>
+             <?php $form = ActiveForm::begin([
+                    'layout' => 'horizontal',
+                    'fieldConfig' => [
+                        'horizontalCssClasses' => [
+                            'label' => 'col-xs-4',
+                            'offset' => 'col-sm-offset-8',
+                            'wrapper' => 'col-xs-8 inputGroupContainer',
+                            'error' => '',
+                            'hint' => '',
+                        ],
+                    ],
+                    'options'=> ['class'=>'form-horizontal',
+                                'style' => 'padding-top:20px;']]); ?>
+ <div class="col-xs-6">
+                <?= $form->field($model, 'name', [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('name'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'zip_code',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('zip_code'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'logo')->fileInput(['accept'=> 'image/*', 'id'=>'fileinput']) ?>
+                <?= $form->field($model, 'city',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('city'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
 
+                <?= $form->field($model, 'street',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('street'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
 
-            <div id="list" style="border: 1px solid #000; margin-bottom: 10px">
-                <span>
-                    <?= isset($model->uploadedFile->img) ? $model->uploadedFile->img : '<img src="" alt="Logo Firmy">'; ?>
-                </span> 
-            </div>
+                <?= $form->field($model, 'building',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('building'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($model, 'local',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('local'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($model, 'logo',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('local'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-picture\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                        <div id=\"list\" style=\"border: 1px solid #000; margin-bottom: 10px\">
+                                            <span>" .
+                                            $img 
+                                            . "</span> 
+                                        </div>
+                                    {endWrapper}",
+                ])->fileInput(['accept'=> 'image/*', 'id'=>'fileinput']) ?>
 
 
             <div class="form-group">
-                <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-gray']) ?>            
-                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                <div class="col-xs-4">&nbsp;</div>
+                    <div class="col-xs-8 inputGroupContainer">
+                        <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-gray']) ?>            
+                        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                    </div>
+                </div>
             </div>
 
             <?php ActiveForm::end(); ?>
           
-        </div>
+        
     </div>
 </div>
 

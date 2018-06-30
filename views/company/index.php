@@ -28,6 +28,12 @@ Url::remember();
                 'tableOptions' => ['style' => 'margin-bottom: 0px'],
                 'columns' =>  [
                     'name',
+                    'zip_code',
+                    'city',
+                    'street',
+                    'building',
+                    'local',
+                    'notes',
                     'logo' => [
                         'attribute' => 'logo',
                         'value'=> 'uploadedFile.Img',

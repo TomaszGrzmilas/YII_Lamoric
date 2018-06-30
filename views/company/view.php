@@ -29,6 +29,12 @@ Url::remember();
                 'model' => $model,
                 'attributes' => [
                     'name',
+                    'zip_code',
+                    'city',
+                    'street',
+                    'building',
+                    'local',
+                    'notes',
                     'logo'=>[
                         'attribute' => 'logo',
                         'value' => isset($model->uploadedFile->img) ? $model->uploadedFile->img : 'Brak',
