@@ -7,16 +7,16 @@ class m180630_183627_company extends Migration
 {
     public $tableName = '{{%company}}';
     public $columns = [
-        'zip_code' => Schema::TYPE_STRING."(6) NULL DEFAULT NULL",
-        'city' =>  Schema::TYPE_STRING."(100) NULL DEFAULT NULL",
-        'street' =>  Schema::TYPE_STRING."(100) NULL DEFAULT NULL",
-        'building'=> Schema::TYPE_STRING."(5) NULL DEFAULT NULL",
-        'local'=> Schema::TYPE_STRING."(5) NULL DEFAULT NULL",
-        'notes'=> Schema::TYPE_STRING."(2000) NULL DEFAULT NULL",
-        'created_by'=> Schema::TYPE_INTEGER."(11) NULL DEFAULT NULL",
-        'created_at'=> Schema::TYPE_INTEGER."(11) NULL DEFAULT NULL",
-        'updated_by'=> Schema::TYPE_INTEGER."(11) NULL DEFAULT NULL",
-        'updated_at'=> Schema::TYPE_INTEGER."(11) NULL DEFAULT NULL",
+        'zip_code' => Schema::TYPE_STRING ."(6) NULL DEFAULT NULL",
+        'city' =>  Schema::TYPE_STRING ."(100) NULL DEFAULT NULL",
+        'street' =>  Schema::TYPE_STRING ."(100) NULL DEFAULT NULL",
+        'building'=> Schema::TYPE_STRING ."(5) NULL DEFAULT NULL",
+        'local'=> Schema::TYPE_STRING ."(5) NULL DEFAULT NULL",
+        'notes'=> Schema::TYPE_STRING ."(2000) NULL DEFAULT NULL",
+        'created_by'=> Schema::TYPE_INTEGER ."(11) NULL DEFAULT NULL",
+        'created_at'=> Schema::TYPE_INTEGER ."(11) NULL DEFAULT NULL",
+        'updated_by'=> Schema::TYPE_INTEGER ."(11) NULL DEFAULT NULL",
+        'updated_at'=> Schema::TYPE_INTEGER ."(11) NULL DEFAULT NULL",
     ];
 
     public function init()

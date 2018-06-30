@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m180630_154248_auth_itemDataInsert extends Migration
+class m180630_194248_auth_itemDataInsert extends Migration
 {
 
     public function init()
