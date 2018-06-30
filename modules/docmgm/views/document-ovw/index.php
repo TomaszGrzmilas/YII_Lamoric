@@ -32,5 +32,3 @@ foreach ($categories as $key =>$doc) {
             <?php endforeach; ?>
         </div><!-- /.col -->
     </div>
-
-
