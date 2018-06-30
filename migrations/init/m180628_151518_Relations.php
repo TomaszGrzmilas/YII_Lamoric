@@ -4,9 +4,9 @@ use yii\db\Schema;
 use yii\db\Migration;
 
 /**
- * Class m180627_151518_Relations
+ * Class m180628_151518_Relations
  */
-class m180627_151518_Relations extends Migration
+class m180628_151518_Relations extends Migration
 {
 
     public function init()
