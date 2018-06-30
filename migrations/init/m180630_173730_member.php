@@ -37,6 +37,7 @@ class m180630_173730_member extends Migration
             $this->createIndex('updated_by', $this->tableName,   ['updated_by'],false);    
             $this->addForeignKey('fk_member_updated_by',
             $this->tableName,   
+            'updated_by',
             '{{%user}}','id',
             'RESTRICT','RESTRICT'
         );     
