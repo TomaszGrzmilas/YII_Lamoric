@@ -116,7 +116,7 @@ class Category extends \kartik\tree\models\Tree
 
     public function getSubCategories($id)
     {
-        $Categories = Category::find()->select(['id','name'])->where(['root' =>$id])->addOrderBy('root, lft')->asArray()->all();
+        $Categories = Category::find()->select(['id','name'])->where(['root' => $id])->andWhere(['!=','id', 10])->addOrderBy('root, lft')->asArray()->all();
         return ArrayHelper::map($Categories, 'id', 'name');
     }
 

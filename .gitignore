@@ -38,3 +38,4 @@ web/media
 web/images
 config/db.php
 
+composer.lock

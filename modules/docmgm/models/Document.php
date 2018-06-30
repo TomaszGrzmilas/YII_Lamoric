@@ -25,7 +25,8 @@ use app\components\LogBehavior;
  */
 class Document extends \yii\db\ActiveRecord
 {
-
+    public $docRootCategoryId = 10;
+    
     public static function tableName()
     {
         return '{{%document}}';

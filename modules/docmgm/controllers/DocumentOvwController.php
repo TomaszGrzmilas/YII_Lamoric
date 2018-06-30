@@ -12,19 +12,26 @@ use yii\data\ActiveDataProvider;
 
 class DocumentOvwController extends Controller
 {
-    public function actionIndex()
+    public function actionIndex($id = null)
     {
         $model = new Document();
+
+        if(is_null($id)){
+            $category_id = $model->docRootCategoryId;
+        } else {
+            $category_id = $id;
+        }
         
         $documents = new ActiveDataProvider([
-            'query' => $model->find(),
+            'query' => $model->find()->where(['category_id' => $category_id])->all(),
         ]);
 
-        $categories = Category::getSubCategories(10);
+        $categories = Category::getSubCategories($category_id);
    
         return $this->render('index', [
-            'documents' => $documents,
+            'documents' => $documents->query,
             'categories' => $categories,
+            'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);
     }
 

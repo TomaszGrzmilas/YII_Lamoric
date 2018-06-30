@@ -11566,7 +11566,7 @@ textarea.input-transparent:focus {
 
 .accordion-style1.panel-group .panel-heading .accordion-toggle:hover {
     color: #6EA6CC;
-    background-color: #F1F8FD;
+    /*background-color: #F1F8FD;*/
     text-decoration: none
 }
 

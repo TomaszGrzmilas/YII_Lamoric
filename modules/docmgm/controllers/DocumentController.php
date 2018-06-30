@@ -16,7 +16,6 @@ use yii\filters\AccessControl;
  */
 class DocumentController extends Controller
 {
-    public $docRootCategoryId = 10;
 
     public function init()
     {
@@ -49,10 +48,6 @@ class DocumentController extends Controller
         ];
     }
 
-    /**
-     * Lists all Document models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $model = new Document();
