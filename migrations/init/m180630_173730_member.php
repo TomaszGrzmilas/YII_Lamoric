@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m180630_173724_member extends Migration
+class m180630_173730_member extends Migration
 {
     public $tableName = '{{%member}}';
 
@@ -29,7 +29,7 @@ class m180630_173724_member extends Migration
         );
         }
 
-        if(is_null($this->getDb()->getSchema()->getTableSchema($this->tableName)->getColumn('created_by'))) {
+        if(is_null($this->getDb()->getSchema()->getTableSchema($this->tableName)->getColumn('updated_by'))) {
             $this->addColumn(
                 $this->tableName,              
                     'updated_by',
