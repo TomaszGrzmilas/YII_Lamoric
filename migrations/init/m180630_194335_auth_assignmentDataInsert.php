@@ -15,7 +15,7 @@ class m180630_194335_auth_assignmentDataInsert extends Migration
     public function safeUp()
     {
         $this->batchInsert('{{%auth_assignment}}',
-                           ["item_name", "user_id", "created_at"],
+                           ["item_name", "user_id"],
                             [
     [
         'item_name' => 'Application Admin',

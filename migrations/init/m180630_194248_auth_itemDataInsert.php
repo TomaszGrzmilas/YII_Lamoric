@@ -15,7 +15,7 @@ class m180630_194248_auth_itemDataInsert extends Migration
     public function safeUp()
     {
         $this->batchInsert('{{%auth_item}}',
-                           ["name", "type", "description", "rule_name", "data", "created_at", "updated_at"],
+                           ["name", "type", "description", "rule_name", "data"],
                             [
     [
         'name' => 'Application Admin',
