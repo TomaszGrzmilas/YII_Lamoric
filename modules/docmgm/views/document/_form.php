@@ -27,7 +27,7 @@ use app\models\Category;
             'name' => 'category_id',
             'value' => 'true', 
             'model' => $model,
-            'query' => Category::find()->where(['root' => $model->docRootCategoryId])->addOrderBy('root, lft'),
+            'query' => Category::find()->addOrderBy('root, lft'),
             'rootOptions' => ['label'=>'Start'],
             'fontAwesome' => true,
             'asDropdown' => false,
