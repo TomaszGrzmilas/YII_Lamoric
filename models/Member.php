@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use app\components\LogBehavior;
 
 /**
  * This is the model class for table "{{%member}}".
@@ -42,6 +43,11 @@ class Member extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::className(),
+            [
+                'class' => LogBehavior::className(),
+                'indexColumn' => 'id',
+                'objName' => 'member'
+            ]
         ];
     }
     

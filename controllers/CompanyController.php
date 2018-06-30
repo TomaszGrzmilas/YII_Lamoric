@@ -12,12 +12,8 @@ use ruskid\csvimporter\CSVImporter;
 use ruskid\csvimporter\CSVReader;
 use ruskid\csvimporter\ARImportStrategy;
 use yii\web\UploadedFile;
+//use yii\base\Event;
 
-
-
-/**
- * CompanyController implements the CRUD actions for Company model.
- */
 class CompanyController extends Controller
 {
 
@@ -32,6 +28,11 @@ class CompanyController extends Controller
             ],
         ];
     }
+
+    //public function init(){
+    //    Event::on(Company::className(), Company::EVENT_AFTER_INSERT, ['app\components\EventHandler', 'AfterInsert']);
+    //    parent::init();
+    //}
 
     public function actionIndex()
     {

@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use creocoder\nestedsets\NestedSetsBehavior;
 use yii\helpers\ArrayHelper;
+use app\components\LogBehavior;
 
 /**
  * This is the model class for table "{{%category}}".
@@ -54,6 +55,11 @@ class Category extends \kartik\tree\models\Tree
                  'rightAttribute' => 'rgt',
                  'depthAttribute' => 'lvl',
             ],
+            [
+                'class' => LogBehavior::className(),
+                'indexColumn' => 'id',
+                'objName' => 'category'
+            ]
         ];
     }
 

@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
 use yii\behaviors\BlameableBehavior;
 use app\modules\docmgm\models\UploadedFile;
 use dektrium\user\models\User;
+use app\components\LogBehavior;
 
 /**
  * This is the model class for table "{{%company}}".
@@ -54,6 +55,11 @@ class Company extends \yii\db\ActiveRecord
                 'autoSave' => true, // when true then uploaded file will be save before ActiveRecord::save()
                 'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
             ],
+            [
+                'class' => LogBehavior::className(),
+                'indexColumn' => 'company_id',
+                'objName' => 'company'
+            ]
         ];
     }
 
@@ -128,7 +134,6 @@ class Company extends \yii\db\ActiveRecord
 
     public static function getImg() 
     { 
-        
         return $this->uploadedFile->Img;
     }
 }

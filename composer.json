@@ -23,7 +23,7 @@
         "mdmsoft/yii2-upload-file": "~2.0",
         "dektrium/yii2-user": "*",
         "dektrium/yii2-rbac": "*",
-        "ruskid/yii2-csv-importer": "dev-master"
+        "ruskid/yii2-csv-importer": "dev-master"        
     },
     "require-dev": {
     },

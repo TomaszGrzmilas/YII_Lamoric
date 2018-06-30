@@ -1,10 +1,12 @@
 <?php
 
 namespace app\models;
-use yii\behaviors\TimestampBehavior;
-use yii\helpers\ArrayHelper;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
+use app\components\EventHandler;
+use app\components\LogBehavior;
 
 /**
  * This is the model class for table "{{%company_workplace}}".
@@ -20,9 +22,7 @@ use Yii;
  */
 class Workplace extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return '{{%company_workplace}}';
@@ -32,6 +32,11 @@ class Workplace extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::className(),
+            [
+                'class' => LogBehavior::className(),
+                'indexColumn' => 'workplace_id',
+                'objName' => 'workplace'
+            ]
         ];
     }
 
@@ -82,4 +87,5 @@ class Workplace extends \yii\db\ActiveRecord
         $models = Workplace::find()->select('workplace_id, name')->asArray()->all();
         return ArrayHelper::map($models, 'workplace_id', 'name');
     }
+
 }

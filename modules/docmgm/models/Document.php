@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use app\modules\docmgm\DocmgmModule;
 use app\models\Category;
+use app\components\LogBehavior;
 
 /**
  * This is the model class for table "{{%document}}".
@@ -42,6 +43,11 @@ class Document extends \yii\db\ActiveRecord
                 'autoSave' => true, // when true then uploaded file will be save before ActiveRecord::save()
                 'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
             ],
+            [
+                'class' => LogBehavior::className(),
+                'indexColumn' => 'doc_id',
+                'objName' => 'document'
+            ]
         ];
     }
 
@@ -73,9 +79,7 @@ class Document extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
+
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);

@@ -99,7 +99,6 @@ $config = [
             'thousandSeparator' => ' ',
             'currencyCode' => 'PLN',
        ],
-
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
