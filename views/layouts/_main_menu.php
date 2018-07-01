@@ -28,9 +28,9 @@ $appId = Yii::$app->id;
             ['label' => Yii::t('app', 'Members'), 'icon' => 'users', 'url' =>  Url::toRoute('/member/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-member*'] ,$item ))],
             ['label' => Yii::t('app', 'Payments'), 'icon' => 'money', 'url' => Yii::$app->homeUrl, 'active' => (false)],
             ['label' => Yii::t('app', 'Law'), 'icon' => 'balance-scale', 'url' => Url::toRoute('/articlemgm/article-category/overview-law'), 'active' => (false)],
-            ['label' => Yii::t('app', 'Articles'), 'icon' => 'newspaper-o', 'url' => Url::toRoute('/articlemgm/article-category/overview-article'), 'active' => (false)],
+            ['label' => Yii::t('app', 'Articles'), 'icon' => 'newspaper-o', 'url' => Url::toRoute('//docmgm/article-ovw/index'), 'active' => (Yii::$app->CustomUtil->in_array(['docmgm-article-ovw*'] ,$item ))],
             ['label' => Yii::t('app', 'Documents'), 'icon' => 'book', 'url' => Url::toRoute('/docmgm/document-ovw/index'), 'active' => (Yii::$app->CustomUtil->in_array(['docmgm-document-ovw*'] ,$item ))],
-            ['label' => Yii::t('app', 'Rodo'), 'icon' => 'user-secret', 'url' => Yii::$app->homeUrl, 'active' => (false)]
+            ['label' => Yii::t('app', 'Rodo'), 'icon' => 'user-secret', 'url' => Url::toRoute('/docmgm/rodo-ovw/index'), 'active' => (Yii::$app->CustomUtil->in_array(['docmgm-rodo-ovw*'] ,$item ))]
     );
             
     echo SideNav::widget([

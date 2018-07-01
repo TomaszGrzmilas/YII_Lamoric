@@ -99,14 +99,16 @@ $config = [
             'thousandSeparator' => ' ',
             'currencyCode' => 'PLN',
        ],
-        /*
+        
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'docmgm/article-ovw/article-index' => 'docmgm/document-ovw/article-index',
             ],
         ],
-        */
+        
     ],
     'controllerMap' => [
         'file' => 'mdm\\upload\\FileController', // use to show or download file

@@ -26,6 +26,8 @@ use app\components\LogBehavior;
 class Document extends \yii\db\ActiveRecord
 {
     public $docRootCategoryId = 10;
+    public $articleRootCategoryId = 11;
+    public $rodoRootCategoryId = 9;
     
     public static function tableName()
     {
