@@ -12,5 +12,6 @@ return array(
     'Local' => 'Lokal',
     'Notes' => 'Uwagi',
     'Company ID' => 'Id firmy',
+    'Chose company' => 'Wybierz firmę'
 );
 ?>

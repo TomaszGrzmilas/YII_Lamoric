@@ -3,6 +3,7 @@ return array(
     'Workplaces'=>'Miejsca pracy',
     'Update Workplace: '=>'Edycja miejsca pracy: ',
     'Name'=>'Nazwa miejsca pracy',
-    'Create Workplace'=>'Dodaj miejsce pracy'
+    'Create Workplace'=>'Dodaj miejsce pracy',
+    'Chose workplace' => 'Wybierz miejsce pracy',
 );
 ?>

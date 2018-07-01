@@ -18,7 +18,7 @@ use yii\helpers\Html;
     ],
 ]); ?>
 
-<?= $form->field($profile, 'company_id')->dropDownList($profile->CompanyList)  ?>
+<?= $form->field($profile, 'company_id')->dropDownList($profile->CompanyList, ['prompt' => Yii::t('db/company', 'Chose company')])  ?>
 
 <div class="form-group">
     <div class="col-lg-offset-3 col-lg-9">

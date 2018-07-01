@@ -169,7 +169,7 @@ use yii\helpers\Url;
                                         </div>\n
                                         {error}\n
                                     {endWrapper}",
-                ])->dropDownList($model->CompanyList) ?>
+                ])->dropDownList($model->CompanyList, ['prompt' => Yii::t('db/company', 'Chose company')]) ?>
 
                 <?= $form->field($model, 'workplace_id', [
                     'inputOptions' => [
@@ -182,7 +182,7 @@ use yii\helpers\Url;
                                         </div>\n
                                         {error}\n
                                     {endWrapper}",
-                ])->dropDownList($model->WorkplaceList) ?>
+                ])->dropDownList($model->WorkplaceList, ['prompt' => Yii::t('db/workplace', 'Chose workplace'),]) ?>
 
                 <?= $form->field($model, 'notes', [
                     'inputOptions' => [
