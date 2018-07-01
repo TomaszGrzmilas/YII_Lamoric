@@ -14,7 +14,7 @@ use app\modules\docmgm\models\UploadedFile;
 use dektrium\user\models\User;
 use dektrium\user\models\Profile;
 use app\components\LogBehavior;
-
+use app\models\balance_account\BalanceAccount;
 /**
  * This is the model class for table "{{%company}}".
  *
@@ -27,6 +27,8 @@ use app\components\LogBehavior;
  * @property string $building 
  * @property string $local 
  * @property string $notes 
+ * @property int $account_id 
+ * @property double $contribution 
  * @property int $created_by
  * @property int $created_at
  * @property int $updated_by
@@ -36,6 +38,7 @@ use app\components\LogBehavior;
  * @property UploadedFile $uploadedfile
  * @property User $createdBy
  * @property User $updatedBy
+ * @property BalanceAccount $account
  * @property CompanyWorkplace[] $companyWorkplaces
  * @property Member[] $members
  * @property Profile[] $profiles 
@@ -73,15 +76,21 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'tax_id'], 'required'],
             [['name'], 'unique'],
             [['name'], 'string', 'max' => 200],
+            [['tax_id'], 'string', 'max' => 10],
+            [['account_id'], 'integer'],
+            [['contribution'], 'number'],
             [['zip_code'], 'string', 'max' => 6], 
             [['city', 'street'], 'string', 'max' => 100], 
             [['building', 'local'], 'string', 'max' => 5], 
             [['notes'], 'string', 'max' => 2000], 
+            
             [['importfile'], 'file', 'skipOnEmpty' => true, 'extensions'=> 'csv'],
             [['logo'], 'exist', 'skipOnError' => true, 'targetClass' => UploadedFile::className(), 'targetAttribute' => ['logo' => 'id']],
+            [['account_id'], 'exist', 'skipOnError' => true, 'targetClass' => BalanceAccount::className(), 'targetAttribute' => ['account_id' => 'id']],
+
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];
@@ -92,6 +101,7 @@ class Company extends \yii\db\ActiveRecord
         return [
             'company_id' => Yii::t('db/company', 'Company ID'),
             'name' => Yii::t('db/company', 'Name'),
+            'tax_id' => Yii::t('db/company', 'Tax ID'), 
             'logo' => Yii::t('db/company', 'Logo'),
             'zip_code' => Yii::t('db/company', 'Zip Code'),
             'city' => Yii::t('db/company', 'City'),
@@ -99,6 +109,8 @@ class Company extends \yii\db\ActiveRecord
             'building' => Yii::t('db/company', 'Building'),
             'local' => Yii::t('db/company', 'Local'),
             'notes' => Yii::t('db/company', 'Notes'),
+            'account_id' => Yii::t('db/company', 'Account ID'), 
+            'contribution' => Yii::t('db/company', 'Contribution'), 
             'created_by' => Yii::t('db/company', 'Created By'),
             'created_at' => Yii::t('db/company', 'Created At'),
             'updated_by' => Yii::t('db/company', 'Updated By'),
@@ -141,6 +153,11 @@ class Company extends \yii\db\ActiveRecord
     public function getProfiles() 
     { 
         return $this->hasMany(Profile::className(), ['company_id' => 'company_id']); 
+    } 
+
+    public function getAccount() 
+    { 
+        return $this->hasOne(BalanceAccount::className(), ['id' => 'account_id']); 
     } 
 
     public static function find()

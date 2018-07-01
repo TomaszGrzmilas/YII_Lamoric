@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m180630_183627_company extends Migration
+class m180701_163854_company extends Migration
 {
     public $tableName = '{{%company}}';
     public $columns = [];
@@ -16,17 +16,11 @@ class m180630_183627_company extends Migration
 
     public function safeUp()
     {
+
         $this->columns = [
-            'zip_code' => Schema::TYPE_STRING ."(6) NULL DEFAULT NULL",
-            'city' =>  Schema::TYPE_STRING ."(100) NULL DEFAULT NULL",
-            'street' =>  Schema::TYPE_STRING ."(100) NULL DEFAULT NULL",
-            'building'=> Schema::TYPE_STRING ."(5) NULL DEFAULT NULL",
-            'local'=> Schema::TYPE_STRING ."(5) NULL DEFAULT NULL",
-            'notes'=> Schema::TYPE_STRING ."(2000) NULL DEFAULT NULL",
-            'created_by'=> Schema::TYPE_INTEGER ."(11) NULL DEFAULT NULL",
-            'created_at'=> Schema::TYPE_INTEGER ."(11) NULL DEFAULT NULL",
-            'updated_by'=> Schema::TYPE_INTEGER ."(11) NULL DEFAULT NULL",
-            'updated_at'=> Schema::TYPE_INTEGER ."(11) NULL DEFAULT NULL",
+            'tax_id'=> Schema::TYPE_STRING."(10) NOT NULL",
+            'account_id'=> Schema::TYPE_INTEGER."(11) NULL DEFAULT NULL",
+            'contribution'=> Schema::TYPE_FLOAT." NOT NULL DEFAULT 40",
         ];
 
         foreach ($this->columns as $key => $value) {
@@ -37,11 +31,19 @@ class m180630_183627_company extends Migration
                         $value);     
             }
         }
-    
+
+        $this->createIndex('account_id','{{%company}}',['account_id'],false);
+        $this->addForeignKey('fk_company_account_id',
+        '{{%company}}','account_id',
+        '{{%balance_account}}','id',
+        'NO ACTION','NO ACTION'
+        );
     }
 
     public function safeDown()
     {
+        $this->dropIndex('account_id', '{{%company}}');
+        $this->dropForeignKey('fk_company_account_id', '{{%company}}');
         foreach ($this->columns as $key => $value) {
             $this->dropColumn(
                 $this->tableName,        

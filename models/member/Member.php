@@ -27,6 +27,8 @@ use app\models\balance_account\BalanceAccount;
  * @property int $company_id
  * @property int $workplace_id
  * @property string $notes
+ * @property int $account_id 
+ * @property double $contribution 
  * @property int $created_at
  * @property int $updated_at
  * @property Workplace $workplace
@@ -61,7 +63,8 @@ class Member extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'surname', 'pesel', 'zip_code', 'city', 'street', 'building', 'company_id'], 'required'],
-            [['pesel', 'phone', 'company_id', 'workplace_id'], 'integer'],
+            [['pesel', 'account_id', 'phone', 'company_id', 'workplace_id'], 'integer'],
+            [['contribution'], 'number'],
             [['name', 'surname', 'city', 'street', 'email'], 'string', 'max' => 100],
             [['email'], 'email'],
             [['zip_code'], 'string', 'max' => 6],
@@ -93,7 +96,8 @@ class Member extends \yii\db\ActiveRecord
             'company_id' => Yii::t('db/member', 'Company ID'),
             'workplace_id' => Yii::t('db/member', 'Workplace ID'),
             'notes' => Yii::t('db/member', 'Notes'),
-            'account_id' => Yii::t('db/log', 'Account ID'),
+            'account_id' => Yii::t('db/company', 'Account ID'),
+           'contribution' => Yii::t('db/company', 'Contribution'),
             'importfile' => Yii::t('app', 'File'),
         ];
     }
