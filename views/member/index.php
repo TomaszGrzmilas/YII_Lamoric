@@ -32,6 +32,13 @@ Url::remember();
                 'filterModel' => $searchModel,
                 'tableOptions' => ['style' => 'margin-bottom: 0px'],
                 'columns' =>  [
+                    [
+                        'class' => 'kartik\grid\ActionColumn',
+                        'viewOptions' => ['icon'=>'<i class="ace-icon fa fa-eye bigger-130"></i>', 'title' => 'Show', 'data-toggle' => 'tooltip'],
+                        'updateOptions' => ['icon'=>'<i class="ace-icon fa fa-pencil bigger-130"></i>', 'title' => 'Edit', 'data-toggle' => 'tooltip', 'class'=>'green'],
+                        'deleteOptions' => ['icon'=>'<i class="ace-icon fa fa-trash-o bigger-130"></i>', 'title' => 'Delete', 'data-toggle' => 'tooltip', 'class'=>'red'],
+                        'headerOptions' => ['class' => 'kartik-sheet-style'],
+                    ],
                     'name',
                     'surname',
                     'pesel',
@@ -45,13 +52,6 @@ Url::remember();
                     'company.name',
                     'workspace.name',
                     'notes',
-                    [
-                        'class' => 'kartik\grid\ActionColumn',
-                        'viewOptions' => ['icon'=>'<i class="ace-icon fa fa-eye bigger-130"></i>', 'title' => 'Show', 'data-toggle' => 'tooltip'],
-                        'updateOptions' => ['icon'=>'<i class="ace-icon fa fa-pencil bigger-130"></i>', 'title' => 'Edit', 'data-toggle' => 'tooltip', 'class'=>'green'],
-                        'deleteOptions' => ['icon'=>'<i class="ace-icon fa fa-trash-o bigger-130"></i>', 'title' => 'Delete', 'data-toggle' => 'tooltip', 'class'=>'red'],
-                        'headerOptions' => ['class' => 'kartik-sheet-style'],
-                    ],
                 ],
                 'containerOptions' => ['style' => 'overflow: auto'], 
                 'headerRowOptions' => ['class' => 'kartik-sheet-style'],
