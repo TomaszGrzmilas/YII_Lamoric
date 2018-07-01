@@ -8,6 +8,7 @@ return array(
     'Tag'=>'Słowa kluczowe',
     'File'=>'Plik',
     'Category ID'=>'Kategoria',
-    'Articles' => 'Artykuły'
+    'Articles' => 'Artykuły',
+    'Law' => 'Prawo'
 );
 ?>
