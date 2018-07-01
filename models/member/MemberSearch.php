@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace app\models\member;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Member;
+use app\models\member\Member;
 
 /**
  * MemberSearch represents the model behind the search form of `app\models\Member`.

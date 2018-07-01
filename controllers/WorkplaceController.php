@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Workplace;
-use app\models\WorkplaceSearch;
+use app\models\workplace\Workplace;
+use app\models\workplace\WorkplaceSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

@@ -1,13 +1,13 @@
 <?php
 
-namespace app\models;
+namespace app\models\member;
 
 /**
- * This is the ActiveQuery class for [[Log]].
+ * This is the ActiveQuery class for [[Member]].
  *
- * @see Log
+ * @see Member
  */
-class LogQuery extends \yii\db\ActiveQuery
+class MemberQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class LogQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Log[]|array
+     * @return Member[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class LogQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Log|array|null
+     * @return Member|array|null
      */
     public function one($db = null)
     {

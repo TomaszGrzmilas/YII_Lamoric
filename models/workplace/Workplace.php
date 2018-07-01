@@ -1,12 +1,13 @@
 <?php
 
-namespace app\models;
+namespace app\models\workplace;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 use app\components\EventHandler;
 use app\components\LogBehavior;
+use app\models\company\Company;
 
 /**
  * This is the model class for table "{{%company_workplace}}".

@@ -5,7 +5,7 @@ namespace app\modules\docmgm\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use app\modules\docmgm\DocmgmModule;
-use app\models\Category;
+use app\models\category\Category;
 use app\components\LogBehavior;
 
 /**

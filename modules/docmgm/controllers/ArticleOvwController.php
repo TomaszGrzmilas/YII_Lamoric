@@ -3,7 +3,7 @@
 namespace app\modules\docmgm\controllers;
 
 use Yii;
-use app\models\Category;
+use app\models\category\Category;
 use app\modules\docmgm\models\Document;
 use app\modules\docmgm\models\DocCategorySearch;
 use yii\web\Controller;

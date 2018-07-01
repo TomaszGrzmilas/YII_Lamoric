@@ -1,13 +1,13 @@
 <?php
 
-namespace app\models;
+namespace app\models\balance_account;
 
 /**
- * This is the ActiveQuery class for [[Workplace]].
+ * This is the ActiveQuery class for [[BalanceTransaction]].
  *
- * @see Workplace
+ * @see BalanceTransaction
  */
-class WorkplaceQuery extends \yii\db\ActiveQuery
+class BalanceTransactionQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class WorkplaceQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Workplace[]|array
+     * @return BalanceTransaction[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class WorkplaceQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Workplace|array|null
+     * @return BalanceTransaction|array|null
      */
     public function one($db = null)
     {

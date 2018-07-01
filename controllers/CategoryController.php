@@ -1,13 +1,17 @@
 <?php
 
 namespace app\controllers;
-use app\models\Category;
+use app\models\category\Category;
 
 class CategoryController extends \yii\web\Controller
 {
     public function actionAdmin()
     {
-        return $this->render('admin');
+        $model = new Category;
+        return $this->render('admin',
+            [
+                'model'=>$model,
+            ]);
     }
 
     public function actionOverviewArticle()

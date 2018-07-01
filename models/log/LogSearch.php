@@ -1,16 +1,15 @@
 <?php
 
-namespace app\models;
+namespace app\models\log;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Workplace;
+use app\models\log\Log;
+use DateTime;
 
-/**
- * WorkplaceSearch represents the model behind the search form of `app\models\Workplace`.
- */
-class WorkplaceSearch extends Workplace
+
+class LogSearch extends Log
 {
     /**
      * {@inheritdoc}
@@ -18,8 +17,10 @@ class WorkplaceSearch extends Workplace
     public function rules()
     {
         return [
-            [['workplace_id'], 'integer'],
-            [['name','company_id'], 'safe'],
+            [['id', 'level'], 'integer'],
+            [['category', 'prefix', 'message'], 'safe'],
+            [['log_time'], 'date'],
+            
         ];
     }
 
@@ -41,7 +42,7 @@ class WorkplaceSearch extends Workplace
      */
     public function search($params)
     {
-        $query = Workplace::find();
+        $query = Log::find();
 
         // add conditions that should always apply here
 
@@ -57,16 +58,16 @@ class WorkplaceSearch extends Workplace
             return $dataProvider;
         }
 
-        $query->joinWith('company');
-
         // grid filtering conditions
         $query->andFilterWhere([
-            //'company_id' => $this->company_id,
-            'workplace_id' => $this->workplace_id,
+            'id' => $this->id,
+            'level' => $this->level,
+            'log_time' => $this->log_time //DateTime::createFromFormat('dd.MM.yyyy', $this->log_time)->format('U.u'),
         ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
-              ->andFilterWhere(['like', 'company.name', $this->company_id]);
+        //17 cze 2018, 19:26:34
+        $query->andFilterWhere(['like', 'category', $this->category])
+            ->andFilterWhere(['like', 'prefix', $this->prefix])
+            ->andFilterWhere(['like', 'message', $this->message]);
 
         return $dataProvider;
     }

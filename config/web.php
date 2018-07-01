@@ -99,7 +99,6 @@ $config = [
             'thousandSeparator' => ' ',
             'currencyCode' => 'PLN',
        ],
-        
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
@@ -107,6 +106,14 @@ $config = [
             'rules' => [
                 'docmgm/article-ovw/article-index' => 'docmgm/document-ovw/article-index',
             ],
+        ],
+        'balanceManager' => [
+            'class' => 'yii2tech\balance\ManagerDb',
+            'accountTable' => '{{%balance_account}}',
+            'transactionTable' => '{{%balance_transaction}}',
+            'accountLinkAttribute' => 'account_id',
+            'amountAttribute' => 'amount',
+            'dataAttribute' => 'data',
         ],
         
     ],
@@ -128,13 +135,15 @@ $config = [
             'enableRegistration' => false,
             'enableConfirmation' => false,
             'rememberFor' => '3600', // 1 hour
-            'admins' => ['root'],
+            'adminPermission' => 'Application Admin',
+            //'admins' => ['root'],
             'controllerMap' => [
                 'security' => 'app\controllers\user\SecurityController',
                 'recovery' => 'app\controllers\user\RecoveryController',
             ],
             'modelMap' => [
                 'Profile' => 'app\models\user\Profile',
+                'User' => 'app\models\user\User',
             ],
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',

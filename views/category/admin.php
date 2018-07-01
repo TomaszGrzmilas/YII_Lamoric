@@ -9,7 +9,7 @@ $this->title = Yii::t('db/category', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo TreeView::widget([
-    'query'             => Category::find()->addOrderBy('root, lft'), 
+    'query'             => $model::find()->addOrderBy('root, lft'), 
     'headingOptions'    => ['label' => Yii::t('db/category', 'Categories')],
     'fontAwesome' => true,     
     'isAdmin'           => Yii::$app->user->can('Application Admin'),                       // optional (toggle to enable admin mode)

@@ -11,5 +11,6 @@ return array(
     'Building' => 'Budynek',
     'Local' => 'Lokal',
     'Notes' => 'Uwagi',
+    'Company ID' => 'Id firmy',
 );
 ?>

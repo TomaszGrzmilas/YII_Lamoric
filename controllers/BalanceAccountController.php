@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\log\Log;
-use app\models\log\LogSearch;
+use app\models\BalanceAccount;
+use app\models\BalanceAccountSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * LogController implements the CRUD actions for Log model.
+ * BalanceAccountController implements the CRUD actions for BalanceAccount model.
  */
-class LogController extends Controller
+class BalanceAccountController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class LogController extends Controller
     }
 
     /**
-     * Lists all Log models.
+     * Lists all BalanceAccount models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new LogSearch();
+        $searchModel = new BalanceAccountSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,8 +45,8 @@ class LogController extends Controller
     }
 
     /**
-     * Displays a single Log model.
-     * @param string $id
+     * Displays a single BalanceAccount model.
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -58,13 +58,13 @@ class LogController extends Controller
     }
 
     /**
-     * Creates a new Log model.
+     * Creates a new BalanceAccount model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Log();
+        $model = new BalanceAccount();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,9 +76,9 @@ class LogController extends Controller
     }
 
     /**
-     * Updates an existing Log model.
+     * Updates an existing BalanceAccount model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -96,9 +96,9 @@ class LogController extends Controller
     }
 
     /**
-     * Deletes an existing Log model.
+     * Deletes an existing BalanceAccount model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -110,18 +110,18 @@ class LogController extends Controller
     }
 
     /**
-     * Finds the Log model based on its primary key value.
+     * Finds the BalanceAccount model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Log the loaded model
+     * @param integer $id
+     * @return BalanceAccount the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Log::findOne($id)) !== null) {
+        if (($model = BalanceAccount::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('db/log', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('db/balanceaccount', 'The requested page does not exist.'));
     }
 }

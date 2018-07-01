@@ -2,13 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\assets\TableAsset;
-/* @var $this yii\web\View */
-/* @var $model app\modules\docmgm\models\DocCategory */
-/* @var $form yii\widgets\ActiveForm */
-/* @var $title string */
 
-TableAsset::register($this); 
 ?>
 
 <div id="modal-table" class="modal fade" tabindex="-1" style="display: none;">

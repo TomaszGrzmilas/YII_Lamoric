@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\web\View;
-use app\models\Category;
+use app\models\category\Category;
 
 ?>
 

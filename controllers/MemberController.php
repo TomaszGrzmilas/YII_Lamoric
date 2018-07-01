@@ -3,10 +3,10 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Member;
-use app\models\Company;
-use app\models\Workplace;
-use app\models\MemberSearch;
+use app\models\member\Member;
+use app\models\company\Company;
+use app\models\workplace\Workplace;
+use app\models\member\MemberSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

@@ -1,13 +1,10 @@
 <?php
 
-namespace app\models;
+namespace app\models\category;
 
 use creocoder\nestedsets\NestedSetsQueryBehavior;
-/**
- * This is the ActiveQuery class for [[ArticleCategory]].
- *
- * @see ArticleCategory
- */
+
+
 class CategoryQuery extends \yii\db\ActiveQuery
 {
     public function behaviors() {

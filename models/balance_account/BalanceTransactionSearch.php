@@ -1,15 +1,16 @@
 <?php
 
-namespace app\models;
+namespace app\models\balance_account;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Log;
-use DateTime;
+use app\models\BalanceTransaction;
 
-
-class LogSearch extends Log
+/**
+ * BalanceTransactionSearch represents the model behind the search form of `app\models\BalanceTransaction`.
+ */
+class BalanceTransactionSearch extends BalanceTransaction
 {
     /**
      * {@inheritdoc}
@@ -17,10 +18,9 @@ class LogSearch extends Log
     public function rules()
     {
         return [
-            [['id', 'level'], 'integer'],
-            [['category', 'prefix', 'message'], 'safe'],
-            [['log_time'], 'date'],
-            
+            [['id', 'account_id', 'extra_account_id'], 'integer'],
+            [['date', 'data'], 'safe'],
+            [['amount'], 'number'],
         ];
     }
 
@@ -42,7 +42,7 @@ class LogSearch extends Log
      */
     public function search($params)
     {
-        $query = Log::find();
+        $query = BalanceTransaction::find();
 
         // add conditions that should always apply here
 
@@ -61,13 +61,13 @@ class LogSearch extends Log
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'level' => $this->level,
-            'log_time' => $this->log_time //DateTime::createFromFormat('dd.MM.yyyy', $this->log_time)->format('U.u'),
+            'date' => $this->date,
+            'account_id' => $this->account_id,
+            'extra_account_id' => $this->extra_account_id,
+            'amount' => $this->amount,
         ]);
-        //17 cze 2018, 19:26:34
-        $query->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'prefix', $this->prefix])
-            ->andFilterWhere(['like', 'message', $this->message]);
+
+        $query->andFilterWhere(['like', 'data', $this->data]);
 
         return $dataProvider;
     }

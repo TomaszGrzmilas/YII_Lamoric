@@ -1,10 +1,14 @@
 <?php
 
-namespace app\models;
+namespace app\models\member;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 use app\components\LogBehavior;
+use app\models\workplace\Workplace;
+use app\models\company\Company;
+use app\models\balance_account\BalanceAccount;
 
 /**
  * This is the model class for table "{{%member}}".
@@ -27,6 +31,7 @@ use app\components\LogBehavior;
  * @property int $updated_at
  * @property Workplace $workplace
  * @property Company $company 
+ * @property BalanceAccount $account
  */
 class Member extends \yii\db\ActiveRecord
 {
@@ -43,6 +48,7 @@ class Member extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::className(),
+            BlameableBehavior::className(),
             [
                 'class' => LogBehavior::className(),
                 'indexColumn' => 'id',
@@ -64,6 +70,7 @@ class Member extends \yii\db\ActiveRecord
             [['importfile'], 'file', 'skipOnEmpty' => true, 'extensions'=> 'csv'],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'company_id']], 
             [['workplace_id'], 'exist', 'skipOnError' => false, 'targetClass' => Workplace::className(), 'targetAttribute' => ['company_id' => 'company_id', 'workplace_id' => 'workplace_id']], 
+            [['account_id'], 'exist', 'skipOnError' => true, 'targetClass' => BalanceAccount::className(), 'targetAttribute' => ['account_id' => 'id']],
         ];
     }
 
@@ -86,6 +93,7 @@ class Member extends \yii\db\ActiveRecord
             'company_id' => Yii::t('db/member', 'Company ID'),
             'workplace_id' => Yii::t('db/member', 'Workplace ID'),
             'notes' => Yii::t('db/member', 'Notes'),
+            'account_id' => Yii::t('db/log', 'Account ID'),
             'importfile' => Yii::t('app', 'File'),
         ];
     }
@@ -110,6 +118,11 @@ class Member extends \yii\db\ActiveRecord
         return Workplace::getWorkplaceList();
     }
 
+    public function getAccount()
+    {
+        return $this->hasOne(BalanceAccount::className(), ['id' => 'account_id']);
+    }
+ 
     public static function find()
     {
         return new MemberQuery(get_called_class());
