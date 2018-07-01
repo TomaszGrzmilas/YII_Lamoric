@@ -63,7 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'company_id',
             'value' =>  function ($model) {
-                return $model->getCompany($model->id)->name;
+                $company = $model->getCompany($model->id);
+                return isset($company) ? $company->name : null;
             },
         ],
         [
