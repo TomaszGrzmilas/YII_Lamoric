@@ -3,6 +3,7 @@
 namespace app\models\member;
 
 use Yii;
+use yii\base\UserException;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 use app\components\LogBehavior;
@@ -59,6 +60,11 @@ class Member extends \yii\db\ActiveRecord
         ];
     }
     
+    public function init(){
+        $this->on(self::EVENT_BEFORE_INSERT, [$this, '_createBalanceAccount']);
+        return parent::init();
+      }
+
     public function rules()
     {
         return [
@@ -102,6 +108,18 @@ class Member extends \yii\db\ActiveRecord
         ];
     }
     
+    public function _createBalanceAccount() 
+    { 
+        $account = new BalanceAccount();
+        $account->balance = 0;
+        if ($account->save())
+        {
+            $this->account_id = $account->id;
+        } else {
+            throw new UserException(Yii::t('app','Error when creating user account. Try again.'));
+        }
+    }
+
     public function getWorkspace() 
     { 
         return $this->hasOne(Workplace::className(), ['company_id' => 'company_id', 'workplace_id' => 'workplace_id']); 

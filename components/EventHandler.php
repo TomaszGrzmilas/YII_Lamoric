@@ -16,7 +16,6 @@ class EventHandler
         Yii::info('USER['.$event->identity->username.']','trace\logout');
     }
 
-
     public static function AfterInsert($traceMsg, $indexColumn, $newAttr)
     {
         $changedMsg = '';

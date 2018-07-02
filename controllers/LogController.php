@@ -29,10 +29,6 @@ class LogController extends Controller
         ];
     }
 
-    /**
-     * Lists all Log models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new LogSearch();

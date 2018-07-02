@@ -24,7 +24,22 @@ class m180701_163651_balance_account extends Migration
             ],$tableOptions
         );
         $this->createIndex('id','{{%balance_account}}',['id'],true);
+       
+        
+        $model = new \app\models\member\Member();
+        $result = $model->find()->where(['account_id' => null])->all();
 
+        foreach ($result as $key => $value) {
+            $account = new \app\models\balance_account\BalanceAccount();
+            $account->balance = 0;
+            if ($account->save())
+            {
+                $value->account_id = $account->id;
+                $value->save();
+            } else {
+                throw new UserException(Yii::t('app','Error when creating user account. Try again.'));
+            }
+        }
     }
 
     public function safeDown()
