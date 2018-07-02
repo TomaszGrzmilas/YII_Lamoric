@@ -2,6 +2,7 @@
 
 use yii\db\Schema;
 use yii\db\Migration;
+use app\components\LogBehavior;
 
 class m180701_163651_balance_account extends Migration
 {
