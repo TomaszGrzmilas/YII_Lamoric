@@ -6,7 +6,6 @@ use yii\base\Behavior;
 
 class LogBehavior extends Behavior
 {
-
     public $indexColumn;
     public $objName;
 
