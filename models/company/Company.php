@@ -81,14 +81,14 @@ class Company extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 200],
             [['tax_id'], 'string', 'max' => 10],
             [['account_id'], 'integer'],
-            [['contribution'], 'number'],
+            [['contribution'], 'match', 'pattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/', 'message' => 'Wartość musi być liczbą'],
             [['zip_code'], 'string', 'max' => 6], 
             [['city', 'street'], 'string', 'max' => 100], 
             [['building', 'local'], 'string', 'max' => 5], 
             [['notes'], 'string', 'max' => 2000], 
             
             [['importfile'], 'file', 'skipOnEmpty' => true, 'extensions'=> 'csv'],
-            [['logo'], 'exist', 'skipOnError' => true, 'targetClass' => UploadedFile::className(), 'targetAttribute' => ['logo' => 'id']],
+            [['logo'], 'exist', 'skipOnError' => true, 'skipOnEmpty'=>true, 'targetClass' => UploadedFile::className(), 'targetAttribute' => ['logo' => 'id']],
             [['account_id'], 'exist', 'skipOnError' => true, 'targetClass' => BalanceAccount::className(), 'targetAttribute' => ['account_id' => 'id']],
 
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -119,6 +119,11 @@ class Company extends \yii\db\ActiveRecord
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        $this->contribution = str_replace(',','.',$this->contribution);
+        return parent::beforeSave($insert);
+    }
 
     public function getAuthUsers()
     {

@@ -17,7 +17,7 @@ Url::remember();
 
 <div class="<?=$item?>-index">
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-10">
         <?
             Pjax::begin(['id' => $item.'-pjax-table']); 
             
@@ -28,12 +28,14 @@ Url::remember();
                 'tableOptions' => ['style' => 'margin-bottom: 0px'],
                 'columns' =>  [
                     'name',
+                    'tax_id',
                     'zip_code',
                     'city',
                     'street',
                     'building',
                     'local',
                     'notes',
+                    'contribution:currency',
                     'logo' => [
                         'attribute' => 'logo',
                         'value'=> 'uploadedFile.Img',

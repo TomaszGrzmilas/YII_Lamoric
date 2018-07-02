@@ -39,6 +39,20 @@ $img = isset($model->uploadedFile->img) ? $model->uploadedFile->img : '<img src=
                                     {endWrapper}",
                 ])->textInput(['maxlength' => true]) ?>
 
+                <?= $form->field($model, 'tax_id', [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('tax_id'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-check\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
+
+
                 <?= $form->field($model, 'zip_code',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('zip_code'),
@@ -104,6 +118,19 @@ $img = isset($model->uploadedFile->img) ? $model->uploadedFile->img : '<img src=
                                     {endWrapper}",
                 ])->textInput(['maxlength' => true]) ?>
 
+                <?= $form->field($model, 'contribution',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('contribution'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-usd\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
+
                 <?= $form->field($model, 'logo',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('local'),
@@ -121,7 +148,6 @@ $img = isset($model->uploadedFile->img) ? $model->uploadedFile->img : '<img src=
                                         </div>
                                     {endWrapper}",
                 ])->fileInput(['accept'=> 'image/*', 'id'=>'fileinput']) ?>
-
 
             <div class="form-group">
                 <div class="col-xs-4">&nbsp;</div>

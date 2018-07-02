@@ -14,5 +14,6 @@ return array(
 	'Workplace ID'=>'Miejsce pracy',
 	'Notes' => 'Uwagi',
 	'Create Member' => 'Dodaj członka',
+	'Contribution' => 'Składka'
 );
 ?>

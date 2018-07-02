@@ -196,6 +196,19 @@ use yii\helpers\Url;
                                         {error}\n
                                     {endWrapper}",
                 ])->textarea(['maxlength' => true, 'rows' => 7, 'style'=>'resize: none;']) ?>
+
+                <?= $form->field($model, 'contribution',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('contribution'),
+                    ],
+                    'template' => "{label}\n{beginWrapper}\n
+                                        <div class=\"input-group\">\n
+                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-usd\"></i></span>
+                                            {input}\n{hint}\n
+                                        </div>\n
+                                        {error}\n
+                                    {endWrapper}",
+                ])->textInput(['maxlength' => true]) ?>
 </div>
 <div class="form-group">
                 <div class="col-xs-6">

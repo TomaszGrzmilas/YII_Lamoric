@@ -29,11 +29,6 @@ class CompanyController extends Controller
         ];
     }
 
-    //public function init(){
-    //    Event::on(Company::className(), Company::EVENT_AFTER_INSERT, ['app\components\EventHandler', 'AfterInsert']);
-    //    parent::init();
-    //}
-
     public function actionIndex()
     {
         $model = new Company();

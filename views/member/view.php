@@ -42,6 +42,7 @@ Url::remember();
                     'company.name',
                     'workspace.name',
                     'notes',
+                    'contribution:currency',
                 ],
             ]) ?>
         </div>

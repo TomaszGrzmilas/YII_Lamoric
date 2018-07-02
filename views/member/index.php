@@ -52,6 +52,7 @@ Url::remember();
                     'company.name',
                     'workspace.name',
                     'notes',
+                    'contribution:currency',
                 ],
                 'containerOptions' => ['style' => 'overflow: auto'], 
                 'headerRowOptions' => ['class' => 'kartik-sheet-style'],

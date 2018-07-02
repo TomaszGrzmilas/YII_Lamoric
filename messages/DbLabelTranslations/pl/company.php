@@ -12,6 +12,8 @@ return array(
     'Local' => 'Lokal',
     'Notes' => 'Uwagi',
     'Company ID' => 'Id firmy',
-    'Chose company' => 'Wybierz firmę'
+    'Chose company' => 'Wybierz firmę',
+    'Contribution' => 'Składka',
+    'Tax ID' => 'NIP'
 );
 ?>

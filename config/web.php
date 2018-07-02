@@ -95,7 +95,7 @@ $config = [
         ],
         'formatter' => [
             'dateFormat' => 'dd.MM.yyyy',
-            'decimalSeparator' => '.',
+            'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
             'currencyCode' => 'PLN',
        ],

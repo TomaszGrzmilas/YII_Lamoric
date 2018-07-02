@@ -70,7 +70,7 @@ class Member extends \yii\db\ActiveRecord
         return [
             [['name', 'surname', 'pesel', 'zip_code', 'city', 'street', 'building', 'company_id'], 'required'],
             [['pesel', 'account_id', 'phone', 'company_id', 'workplace_id'], 'integer'],
-            [['contribution'], 'number'],
+            [['contribution'], 'match', 'pattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/', 'message' => 'Wartość musi być liczbą'],
             [['name', 'surname', 'city', 'street', 'email'], 'string', 'max' => 100],
             [['email'], 'email'],
             [['zip_code'], 'string', 'max' => 6],
@@ -83,9 +83,6 @@ class Member extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -102,8 +99,8 @@ class Member extends \yii\db\ActiveRecord
             'company_id' => Yii::t('db/member', 'Company ID'),
             'workplace_id' => Yii::t('db/member', 'Workplace ID'),
             'notes' => Yii::t('db/member', 'Notes'),
-            'account_id' => Yii::t('db/company', 'Account ID'),
-           'contribution' => Yii::t('db/company', 'Contribution'),
+            'account_id' => Yii::t('db/member', 'Account ID'),
+            'contribution' => Yii::t('db/member', 'Contribution'),
             'importfile' => Yii::t('app', 'File'),
         ];
     }
@@ -118,6 +115,12 @@ class Member extends \yii\db\ActiveRecord
         } else {
             throw new UserException(Yii::t('app','Error when creating user account. Try again.'));
         }
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->contribution = str_replace(',','.',$this->contribution);
+        return parent::beforeSave($insert);
     }
 
     public function getWorkspace() 

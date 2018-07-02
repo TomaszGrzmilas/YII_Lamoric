@@ -16,6 +16,7 @@ class CompanySearch extends Company
     {
         return [
             [['name'], 'safe'],
+            [['tax_id'], 'string', 'max' => 10],
             [['zip_code'], 'string', 'max' => 6], 
             [['city', 'street'], 'string', 'max' => 100], 
             [['building', 'local'], 'string', 'max' => 5], 
@@ -23,9 +24,6 @@ class CompanySearch extends Company
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -66,6 +64,7 @@ class CompanySearch extends Company
         $query->andFilterWhere(['like', 'name', $this->name])
               ->andFilterWhere(['like', 'zip_code', $this->zip_code])
               ->andFilterWhere(['like', 'city', $this->city])
+              ->andFilterWhere(['like', 'tax_id', $this->tax_id])
               ->andFilterWhere(['like', 'street', $this->street])
               ->andFilterWhere(['like', 'building', $this->building])
               ->andFilterWhere(['like', 'local', $this->local])
