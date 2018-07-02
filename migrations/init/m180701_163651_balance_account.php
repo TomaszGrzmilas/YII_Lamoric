@@ -5,6 +5,7 @@ use yii\db\Migration;
 
 class m180701_163651_balance_account extends Migration
 {
+    public $tableName = '{{%balance_account}}';
 
     public function init()
     {
@@ -16,16 +17,17 @@ class m180701_163651_balance_account extends Migration
     {
         $tableOptions = 'ENGINE=InnoDB';
 
-        $this->createTable(
-            '{{%balance_account}}',
-            [
-                'id'=> $this->primaryKey(11),
-                'balance'=> $this->float()->notNull()->defaultValue("0"),
-            ],$tableOptions
-        );
-        $this->createIndex('id','{{%balance_account}}',['id'],true);
-       
-        
+        if(is_null($this->getDb()->getSchema()->getTableSchema($this->tableName))) {
+            $this->createTable(
+                $this->tableName,
+                [
+                    'id'=> $this->primaryKey(11),
+                    'balance'=> $this->float()->notNull()->defaultValue("0"),
+                ],$tableOptions
+            );
+            $this->createIndex('id',$this->tableName,['id'],true);
+        }
+
         $model = new \app\models\member\Member();
         $result = $model->find()->where(['account_id' => null])->all();
 
@@ -44,7 +46,7 @@ class m180701_163651_balance_account extends Migration
 
     public function safeDown()
     {
-        $this->dropIndex('id', '{{%balance_account}}');
-        $this->dropTable('{{%balance_account}}');
+        $this->dropIndex('id', $this->tableName);
+        $this->dropTable($this->tableName);
     }
 }

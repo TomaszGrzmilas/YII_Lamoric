@@ -29,7 +29,8 @@ class LogBehavior extends Behavior
         EventHandler::AfterUpdate('trace\\'.$this->objName.'\update', $this->indexColumn, $this->owner->attributes, $event->changedAttributes);
     }
 
-    public function afterDelete() {
+    public function afterDelete() 
+    {
         EventHandler::AfterDelete('trace\\'.$this->objName.'delete', $this->indexColumn, $this->owner->attributes);
     }
 }?>
