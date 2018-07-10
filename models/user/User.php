@@ -18,7 +18,7 @@ class User extends BaseUser
         ['LogBehavior' =>
             [
             'class' => LogBehavior::className(),
-            'indexColumn' => 'user_id',
+            'indexColumn' => 'id',
             'objName' => 'profile'
             ]
         ]);
