@@ -26,7 +26,8 @@ class DocumentOvwController extends Controller
             'query' => $model->find()->where(['category_id' => $category_id])->all(),
         ]);
 
-        $categories = Category::getSubCategories($category_id);
+        $categories = new Category();
+        $categories = $categories->getSubCategories($category_id);
    
         return $this->render('index', [
             'documents' => $documents->query,

@@ -24,7 +24,8 @@
         "dektrium/yii2-user": "*",
         "dektrium/yii2-rbac": "*",
         "ruskid/yii2-csv-importer": "dev-master",
-        "yii2tech/balance": "*"        
+        "yii2tech/balance": "*",
+        "mikehaertl/php-pdftk": "*"
     },
     "require-dev": {
     },
