@@ -74,6 +74,7 @@ $config = [
                        'db/document' => 'document.php',
                        'db/category' => 'category.php',
                        'db/log' => 'log.php',
+                       'db/balanceaccount' => 'balanceaccount.php',
                    ],
                ],
             ],

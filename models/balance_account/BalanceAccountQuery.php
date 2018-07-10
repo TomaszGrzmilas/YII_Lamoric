@@ -1,23 +1,20 @@
 <?php
 
 namespace app\models\balance_account;
+use Yii;
 
-/**
- * This is the ActiveQuery class for [[BalanceAccount]].
- *
- * @see BalanceAccount
- */
 class BalanceAccountQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function prepare($builder)
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        $this->innerJoinWith('member');
 
-    /**
-     * {@inheritdoc}
-     * @return BalanceAccount[]|array
-     */
+        if (! Yii::$app->user->can('Application Admin')) {  
+            $this->andWhere(['member.company_id' => Yii::$app->user->identity->profile->company_id]);
+        }
+        return parent::prepare($builder);
+    }
+
     public function all($db = null)
     {
         return parent::all($db);

@@ -5,7 +5,7 @@ namespace app\models\balance_account;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\BalanceAccount;
+use app\models\balance_account\BalanceAccount;
 
 /**
  * BalanceAccountSearch represents the model behind the search form of `app\models\BalanceAccount`.
@@ -18,8 +18,8 @@ class BalanceAccountSearch extends BalanceAccount
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['balance'], 'number'],
+    //        [['id'], 'integer'],
+      //      [['balance'], 'number'],
         ];
     }
 

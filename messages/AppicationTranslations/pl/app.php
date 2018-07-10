@@ -34,6 +34,7 @@ return array(
 	'Are you sure you want to delete this item?'=>'Czy na pewno chcesz usunąć ten element?',
 	'Profile'=>'Profil',
 	'File' => 'Plik',
-	'Error when creating user account. Try again.' => 'Błąd podczas tworzenia konta dla użytkownika. Spróbuj jeszcze raz.'
+	'Error when creating user account. Try again.' => 'Błąd podczas tworzenia konta dla użytkownika. Spróbuj jeszcze raz.',
+	'Payments' => 'Płatności',
 );
 ?>

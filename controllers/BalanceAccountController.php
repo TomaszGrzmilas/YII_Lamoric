@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\BalanceAccount;
-use app\models\BalanceAccountSearch;
+use app\models\balance_account\BalanceAccount;
+use app\models\balance_account\BalanceAccountSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

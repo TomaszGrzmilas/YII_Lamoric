@@ -3,6 +3,7 @@
 namespace app\models\balance_account;
 
 use Yii;
+use app\models\member\Member;
 
 /**
  * This is the model class for table "{{%balance_account}}".
@@ -12,7 +13,7 @@ use Yii;
  *
  * @property BalanceTransaction[] $balanceTransactions
  * @property BalanceTransaction[] $balanceTransactions0
- * @property Member[] $members
+ * @property Member[] $member
  */
 class BalanceAccount extends \yii\db\ActiveRecord
 {
@@ -45,9 +46,6 @@ class BalanceAccount extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getBalanceTransactions()
     {
         return $this->hasMany(BalanceTransaction::className(), ['account_id' => 'id']);
@@ -61,12 +59,9 @@ class BalanceAccount extends \yii\db\ActiveRecord
         return $this->hasMany(BalanceTransaction::className(), ['extra_account_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMembers()
+    public function getMember()
     {
-        return $this->hasMany(Member::className(), ['account_id' => 'id']);
+        return $this->hasOne(Member::className(), ['account_id' => 'id']);
     }
 
     /**
