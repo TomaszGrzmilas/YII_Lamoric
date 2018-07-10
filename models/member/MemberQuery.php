@@ -1,12 +1,9 @@
 <?php
 
 namespace app\models\member;
+use Yii;
 
-/**
- * This is the ActiveQuery class for [[Member]].
- *
- * @see Member
- */
+
 class MemberQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
@@ -14,19 +11,19 @@ class MemberQuery extends \yii\db\ActiveQuery
         return $this->andWhere('[[status]]=1');
     }*/
 
-    /**
-     * {@inheritdoc}
-     * @return Member[]|array
-     */
+    public function prepare($builder)
+    {
+        if (! Yii::$app->user->can('Application Admin')) {  
+            $this->andWhere(['company_id' => Yii::$app->user->identity->profile->company_id]);
+        }
+        return parent::prepare($builder);
+    }
+
     public function all($db = null)
     {
         return parent::all($db);
     }
 
-    /**
-     * {@inheritdoc}
-     * @return Member|array|null
-     */
     public function one($db = null)
     {
         return parent::one($db);
