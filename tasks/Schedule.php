@@ -8,11 +8,5 @@ $schedule = new Schedule();
 $schedule->call(function() {
     $account = new BalanceAccount();
     $account->balance = 100;
-    if ($account->save())
-    {
-
-    } else {
-        throw new UserException(Yii::t('app','Error when creating user account. Try again.'));
-    }
-
+    $account->save();
 })->dailyAt('21:10');
