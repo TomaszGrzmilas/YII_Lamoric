@@ -23,22 +23,12 @@ class BalanceAccountSearch extends BalanceAccount
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = BalanceAccount::find();
@@ -59,7 +49,7 @@ class BalanceAccountSearch extends BalanceAccount
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'balance_account.id' => $this->id,
             'balance' => $this->balance,
         ]);
 

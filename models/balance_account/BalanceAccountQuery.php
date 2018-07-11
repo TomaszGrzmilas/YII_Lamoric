@@ -12,6 +12,11 @@ class BalanceAccountQuery extends \yii\db\ActiveQuery
         if (! Yii::$app->user->can('Application Admin')) {  
             $this->andWhere(['member.company_id' => Yii::$app->user->identity->profile->company_id]);
         }
+
+        if (isset($this->where['id'])) {
+            $this->where['balance_account.id'] = $this->where['id'];
+            unset($this->where['id']);
+        }
         return parent::prepare($builder);
     }
 
