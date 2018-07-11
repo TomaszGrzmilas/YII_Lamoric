@@ -25,7 +25,8 @@
         "dektrium/yii2-rbac": "*",
         "ruskid/yii2-csv-importer": "dev-master",
         "yii2tech/balance": "*",
-        "mikehaertl/php-pdftk": "*"
+        "mikehaertl/php-pdftk": "*",
+        "omnilight/yii2-scheduling": "*"
     },
     "require-dev": {
     },
