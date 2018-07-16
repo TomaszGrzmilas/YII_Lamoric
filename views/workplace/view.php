@@ -18,7 +18,7 @@ Url::remember();
     <div class="row">
         <div class="col-xs-4">
             <p>
-                <?= Html::a(Yii::t('app', 'Back'), ['workplace/index'], ['class' => 'btn btn-gray']) ?>            
+                <?= Html::a(Yii::t('app', 'Back'), ['workplace/index'], ['class' => 'btn btn-info']) ?>            
                 <?= Html::a(Yii::t('app', 'Update'), ['update', 'company_id' => $model->company_id, 'workplace_id' => $model->workplace_id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'company_id' => $model->company_id, 'workplace_id' => $model->workplace_id], [
                     'class' => 'btn btn-danger',

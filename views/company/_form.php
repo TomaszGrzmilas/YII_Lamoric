@@ -152,7 +152,7 @@ $img = isset($model->uploadedFile->img) ? $model->uploadedFile->img : '<img src=
             <div class="form-group">
                 <div class="col-xs-4">&nbsp;</div>
                     <div class="col-xs-8 inputGroupContainer">
-                        <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-gray']) ?>            
+                        <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info']) ?>            
                         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
                     </div>
                 </div>

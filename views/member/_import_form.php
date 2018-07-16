@@ -16,7 +16,7 @@ use yii\web\View;
             <?= $form->field($model, 'importfile')->fileInput(['accept'=> '.csv', 'id'=>'importfile']) ?>
 
             <div class="form-group">
-                <?= Html::button( Yii::t('app', 'Cancel'), ['type' => 'button', 'title' => Yii::t('app', 'Cancel'), 'class' => 'btn btn-gray', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) ?>
+                <?= Html::button( Yii::t('app', 'Cancel'), ['type' => 'button', 'title' => Yii::t('app', 'Cancel'), 'class' => 'btn btn-info', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) ?>
                 <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
             </div>
 

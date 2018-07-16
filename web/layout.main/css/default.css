@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700,700i&subset=latin-ext');
+
+html
+{
+    min-height: 100%;
+}
+body
+{
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Ubuntu';
+    font-weight: 400;
+    background-color: #f2f2f2;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding:0;
+    color: #6f6f6f;
+    transition: all 0.5s ease-in;
+}
+
+a
+{
+    color: #820101;
+    text-decoration: none !important;
+}
+a:hover
+{
+    color: #000;
+}
+
+.left-menu
+{
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    padding: 0;
+    height: 100%;
+    background-color: #820101;
+    background-image: url(../images/left-bg.jpg);
+    background-position: center center;
+    background-size: cover;
+}
+.left-menu .logo
+{
+    display: block;
+    margin: 15px auto 30px;
+    text-align: center;
+    border: 0;
+    text-decoration: none;
+}
+
+.left-menu .left-menu-list
+{
+    display: block;
+    margin: 30px 0;
+    padding: 0;
+    list-style: none outside;
+}
+.left-menu .left-menu-list .item
+{
+    display: block;
+    height: 50px;
+    padding: 0 15px;
+    transition: all ease-in 0.3s;
+}
+.left-menu .left-menu-list .item .left-menu-sublist
+{
+    padding: 0;
+    margin: 0;
+    list-style: none outside;
+    display: none;
+    background: rgba(0,0,0,0);
+    transition: all ease-in 0.5s;
+}
+.left-menu .left-menu-list .item .left-menu-sublist .subitem
+{
+    height: 40px;
+}
+.left-menu .left-menu-list .item .left-menu-sublist .subitem a
+{
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0);
+    padding: 0 0 0 25px;
+}
+.left-menu .left-menu-list .item .left-menu-sublist .subitem a:hover
+{
+    background-color: rgba(0,0,0,0.4);
+}
+.left-menu .left-menu-list .item a
+{
+    display: block;
+    height: 50px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0);
+    color: #fff;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 300;
+    text-decoration: none;
+    padding: 0 15px;
+    transition: all ease-in 0.3s;
+}
+.left-menu .left-menu-list .item a:hover
+{
+    background-color: rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+.left-menu .left-menu-list .item:hover .left-menu-sublist
+{
+    display: block;
+    background: rgba(0,0,0,0.2);
+}
+.left-menu .left-menu-list .item:hover
+{
+    height: inherit;
+}
+.left-menu .left-menu-list .item:hover a
+{
+    background-color: rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+
+@media(max-width:991px)
+{
+    .left-menu
+    {
+        width: 50px;
+        transition: all ease-out 0.4s;
+    }
+    .left-menu .show-button
+    {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        font-size: 21px;
+        color: #fff;
+    }
+    .left-menu .logo, .left-menu .left-menu-list
+    {
+        display: none;
+    }
+}
+
+.page-right
+{
+    float: right;
+    position: 9;
+}
+.panel-client
+{
+    margin: 15px -15px 15px 0;
+    padding: 15px;
+    background: #fff;
+    min-height: 70px;
+}
+.panel-client .logo
+{
+    position: relative;
+    height: 100%;
+}
+.panel-client .logo img
+{
+    height: 100%;
+}
+.panel-client .panel-account
+{
+    text-align: right;
+    line-height: 40px;
+}
+.panel-client .panel-account .user
+{
+    color: #5d5d5d;
+    display: inline-block;
+    margin: 0;
+}
+.panel-client .panel-account .logout
+{
+    display: inline-block;
+    margin: 0 0 0 25px;
+    padding: 0 15px;
+    background: #820101;
+    color: #fff;
+}
+.title-page
+{
+    padding: 30px 0 20px 0;
+    margin: 0;
+    border-bottom: 1px solid #c6c6c6;
+    color: #6f6f6f;
+    font-weight: 400;
+}
+
+.home-stats
+{
+    line-height: 72px;
+    font-size: 38px;
+    font-weight: 300;
+    text-align: center;
+    padding: 30px 0;
+    display: block;
+}
+.home-stats .row
+{
+    margin: 0;
+    padding: 0;
+}
+.home-stats .col-xs-12
+{
+    margin: 15px 0;
+}
+.home-stats span.blue
+{
+    display: inline-block;
+    padding: 0 15px;
+    background: #1390db;
+    color: #fff;
+}
+.home-stats span.green
+{
+    display: inline-block;
+    padding: 0 15px;
+    background: #7fdb13;
+    color: #fff;
+}
+.home-stats span.red
+{
+    display: inline-block;
+    padding: 0 15px;
+    background: #b90707;
+    color: #fff;
+}
+.home-chart
+{
+    margin: 30px 0;
+    text-align: center;
+}
+.home-chart img
+{
+    width: 90%;
+    margin: 0 auto;
+}
+

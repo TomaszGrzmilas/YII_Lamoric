@@ -2,7 +2,9 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+namespace app\views\layouts\red;
 
+use Yii;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -52,10 +54,10 @@ $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->con
 <body class="no-skin">
 	<?php $this->beginBody() ?>
 	<div class="wrap">
-		<?= $this->render('@app/views/layouts/_navbar'); ?>
+		<?= $this->render('_navbar'); ?>
 
 <div class="main-container ace-save-state" id="main-container">
-	<?= $this->render('@app/views/layouts/_main_menu', [
+	<?= $this->render('_main_menu', [
 		'item' =>  $item,
 	]); 
 	?>

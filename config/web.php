@@ -11,7 +11,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
-    'layout' => '@app/views/layouts/red.php',
+    'layout' => '@app/views/layouts/main/main.php',
     'language'=>'pl',
     'sourceLanguage' => 'en',
     'components' => [

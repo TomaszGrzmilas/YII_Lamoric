@@ -37,7 +37,7 @@ use app\models\category\Category;
             ?>
 
             <div class="form-group">
-                <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-gray']) ?>            
+                <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info']) ?>            
                 <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
             </div>
 

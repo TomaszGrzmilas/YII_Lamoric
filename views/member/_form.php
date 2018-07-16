@@ -215,7 +215,7 @@ use yii\helpers\Url;
                    
                         <div class="col-xs-3">&nbsp;</div>
                         <div class="col-xs-9"></div>
-                            <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-gray']) ?>        
+                            <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info']) ?>        
                             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
                         </div>
                     </div>

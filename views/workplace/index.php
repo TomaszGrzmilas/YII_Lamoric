@@ -19,8 +19,6 @@ Url::remember();
 
 
 <div class="<?=$item?>-index">
-    <div class="row">
-    <div class="col-xs-5">
         <div>
         <?
             Pjax::begin(['id' => $item.'-pjax-table']); 
@@ -73,6 +71,5 @@ Url::remember();
             
             Pjax::end(); 
         ?>
-        </div>
-    </div>
+
 </div>

@@ -75,6 +75,11 @@ class UploadedFile extends \yii\db\ActiveRecord
         return false; 
     }
 
+    public function Img($width = '175px', $height = '100%')
+    {
+        return $this->getImg($width, $height); 
+    }
+
     public function getImg2($width = '175px', $height = '100%')
     {
         if(stripos($this->type,'image') !== false){
