@@ -10,10 +10,11 @@ use yii\helpers\Html;
 			<div class="logo col-xs-12 col-sm-4 col-md-4">
 				<?= Yii::$app->user->identity->profile->company->uploadedFile->Img('175px','40px') ?>
 			</div>
-		<? endif; ?>
-		<!-- konto klienta & logout -->
-		
 		<div class="panel-account col-xs-12 col-sm-8 col-md-8">
+		<? else: ?>
+		<div class="panel-account col-xs-12 col-sm-12 col-md-12">
+		<? endif; ?>
+		
 			<div class="user">
 				Zalogowany jako: <a href="<?=Url::toRoute('/user/settings/profile')?>" class="hvr-push"> <? if (isset(Yii::$app->user->identity->username)) {echo Yii::$app->user->identity->username;} ?> </a>
 			</div>
