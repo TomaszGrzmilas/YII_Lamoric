@@ -36,5 +36,6 @@ return array(
 	'File' => 'Plik',
 	'Error when creating user account. Try again.' => 'Błąd podczas tworzenia konta dla użytkownika. Spróbuj jeszcze raz.',
 	'Payments' => 'Płatności',
+	'The requested page does not exist.' => 'Strona, kórą chciałeś odwiedzić nie istnieje.',
 );
 ?>

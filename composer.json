@@ -26,7 +26,8 @@
         "ruskid/yii2-csv-importer": "dev-master",
         "yii2tech/balance": "*",
         "mikehaertl/php-pdftk": "*",
-        "omnilight/yii2-scheduling": "*"
+        "omnilight/yii2-scheduling": "*",
+        "philippfrenzel/yii2fullcalendar":"*"
     },
     "require-dev": {
     },

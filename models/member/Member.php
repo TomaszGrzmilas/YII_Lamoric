@@ -68,7 +68,7 @@ class Member extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'surname', 'pesel', 'zip_code', 'city', 'street', 'building', 'company_id'], 'required'],
+            [['name', 'surname', 'pesel', 'zip_code', 'city', 'street', 'building', 'contribution', 'company_id'], 'required'],
             [['pesel', 'account_id', 'phone', 'company_id', 'workplace_id'], 'integer'],
             [['contribution'], 'match', 'pattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/', 'message' => 'Wartość musi być liczbą'],
             [['name', 'surname', 'city', 'street', 'email'], 'string', 'max' => 100],

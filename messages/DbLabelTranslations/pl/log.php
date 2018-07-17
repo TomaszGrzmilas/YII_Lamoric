@@ -1,6 +1,6 @@
 <?php
 return array(
-    'Logs'=>'Dziennik aktywności',
+    'Logs'=>'Rejestr czynności',
     'Category' => 'Kategoria',
     'Log Time' => 'Czas zdarzenia',
     'Prefix' => 'Komputer',

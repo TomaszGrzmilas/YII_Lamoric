@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="<?=$item?>-index">
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-12">
         <?
             Pjax::begin(['id' => $item.'-pjax-table']); 
             

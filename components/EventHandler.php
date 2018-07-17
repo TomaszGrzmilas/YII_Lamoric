@@ -8,12 +8,12 @@ class EventHandler
 
     public static function AfterLogin($event)
     {
-        Yii::info('USER['.$event->identity->username.']','trace\login');
+        Yii::info('USER['.$event->identity->username.'] COMPANY['.$event->identity->profile->company_id.']','trace\login');
     }
 
     public static function AfterLogout($event)
     {
-        Yii::info('USER['.$event->identity->username.']','trace\logout');
+        Yii::info('USER['.$event->identity->username.'] COMPANY['.$event->identity->profile->company_id.']','trace\logout');
     }
 
     public static function AfterInsert($traceMsg, $indexColumn, $newAttr)
@@ -26,7 +26,7 @@ class EventHandler
                 
             }
         }
-        Yii::info('USER['.Yii::$app->user->identity->username.'] INSERT NEW ID ['. $newAttr[$indexColumn] .'] IS ['. $changedMsg .']' ,$traceMsg);
+        Yii::info('USER['.Yii::$app->user->identity->username.'] FROM COMPANY['.Yii::$app->user->identity->profile->company_id.'] INSERT NEW ID ['. $newAttr[$indexColumn] .'] IS ['. $changedMsg .']' ,$traceMsg);
     }
 
     public static function AfterUpdate($traceMsg, $indexColumn, $newAttr, $oldAttr)
@@ -43,7 +43,7 @@ class EventHandler
             }
         }
         if ($changedMsg != '') {
-            Yii::info('USER['.Yii::$app->user->identity->username.'] UPDATE ID['. $newAttr[$indexColumn] .'] CHANGE ['. trim($changedMsg) .']', $traceMsg);
+            Yii::info('USER['.Yii::$app->user->identity->username.'] FROM COMPANY['.Yii::$app->user->identity->profile->company_id.'] UPDATE ID['. $newAttr[$indexColumn] .'] CHANGE ['. trim($changedMsg) .']', $traceMsg);
         }
     }
 
@@ -57,7 +57,7 @@ class EventHandler
                 
             }
         }
-        Yii::info('USER['.Yii::$app->user->identity->username.'] DELETE ID['. $newAttr[$indexColumn] .'] WAS ['. $changedMsg .']' ,$traceMsg);
+        Yii::info('USER['.Yii::$app->user->identity->username.'] FROM COMPANY['.Yii::$app->user->identity->profile->company_id.'] DELETE ID['. $newAttr[$indexColumn] .'] WAS ['. $changedMsg .']' ,$traceMsg);
     }
 
     

@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\balance_account\BalanceAccount;
-use app\models\balance_account\BalanceAccountSearch;
+use app\models\event\Event;
+use app\models\event\EventSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
-/**
- * BalanceAccountController implements the CRUD actions for BalanceAccount model.
- */
-class BalanceAccountController extends Controller
+class EventController extends Controller
 {
+    
     public function behaviors()
     {
         return [
@@ -28,12 +27,22 @@ class BalanceAccountController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new BalanceAccountSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = new EventSearch();
+
+        $events = $model->find()->all();
+
+        $array[] = array();
+
+        foreach ($events as $event) {
+            $event['url'] = Url::toRoute('/event/update?id='.$event->event_id); 
+            array_push ( $array ,$event->attributes );
+        }
+
+
+     //   return  "<pre>" . json_encode ( $event->attributes) . "</pre>";
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'events' => $array,
         ]);
     }
 
@@ -46,10 +55,10 @@ class BalanceAccountController extends Controller
 
     public function actionCreate()
     {
-        $model = new BalanceAccount();
+        $model = new Event();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->event_id]);
         }
 
         return $this->render('create', [
@@ -62,7 +71,7 @@ class BalanceAccountController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->event_id]);
         }
 
         return $this->render('update', [
@@ -79,7 +88,7 @@ class BalanceAccountController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = BalanceAccount::findOne($id)) !== null) {
+        if (($model = Event::findOne($id)) !== null) {
             return $model;
         }
 

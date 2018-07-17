@@ -20,7 +20,7 @@ MainAsset::register($this);
 
 $appId = Yii::$app->id;
 
-$baseAsset = [$appId.'-balance-account-index', $appId.'-member-index',$appId.'-member-import', $appId.'-category*', $appId.'-log*', $appId.'-company-index', $appId.'-workplace-index', 'user-admin*', 'rbac*', 'docmgm-document-index', 'docmgm-document-create'];
+$baseAsset = [$appId.'-event-index', $appId.'-balance-account-index', $appId.'-member-index',$appId.'-member-import', $appId.'-category*', $appId.'-log*', $appId.'-company-index', $appId.'-workplace-index', 'user-admin*', 'rbac*', 'docmgm-document-index', 'docmgm-document-create'];
 
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 

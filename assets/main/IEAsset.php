@@ -18,7 +18,7 @@ class IEAsset extends AssetBundle
     ];
 
     public $depends = [
-        'app\assets\MainAsset',
+        'app\assets\main\MainAsset',
     ];
 
     
