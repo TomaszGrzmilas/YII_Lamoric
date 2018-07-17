@@ -52,10 +52,11 @@ use kartik\color\ColorInput;
                 ?>
             </div>
             <div class="col-xs-12 form-group">  
-                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info btn-lg']) ?>   
+                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success btn-lg']) ?>
                 <? if ($this->context->action->id == 'update') {
                     echo  Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->event_id], [
-                    'class' => 'btn btn-danger',
+                    'class' => 'btn btn-danger btn-lg',
                     'data' => [
                         'confirm' => Yii::t('db/event', 'Are you sure you want to delete this item?'),
                         'method' => 'post',

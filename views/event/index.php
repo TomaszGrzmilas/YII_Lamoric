@@ -4,12 +4,14 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 use yii2fullcalendar\yii2fullcalendar;
+use yii\helpers\Url;
 
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 
 $this->title = Yii::t('db/event', 'Events');
 $this->params['breadcrumbs'][] = $this->title;
 
+Url::remember();
 ?>
 <div id="<?=$item?>">
 

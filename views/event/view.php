@@ -2,14 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use yii\helpers\Url;
 use kartik\color\ColorInput;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('db/event', 'Events'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-Url::remember();
 ?>
 <div class="event-view">
     <div class="row">

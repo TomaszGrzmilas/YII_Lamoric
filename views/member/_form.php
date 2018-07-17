@@ -207,18 +207,15 @@ use yii\helpers\Url;
                                     {endWrapper}",
                 ])->textInput(['maxlength' => true]) ?>
 </div>
-<div class="form-group">
-                <div class="col-xs-6">
-                   
-                        <div class="col-xs-3">&nbsp;</div>
-                        <div class="col-xs-9"></div>
-                            <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info']) ?>        
-                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+
+                <div class="form-group col-xs-12">
+                        <div class="col-xs-6">&nbsp;</div>
+                            <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info btn-lg']) ?>        
+                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success btn-lg']) ?>
                         </div>
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>
 
-        </div>
     </div>
 </div>

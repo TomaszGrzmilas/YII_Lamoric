@@ -5,9 +5,6 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Workplace */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="row">
@@ -21,7 +18,8 @@ use yii\web\View;
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
             <div class="form-group">
-                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info btn-lg']) ?>   
+                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success  btn-lg']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>
