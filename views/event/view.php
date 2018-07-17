@@ -2,40 +2,49 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\event\Event */
+use yii\helpers\Url;
+use kartik\color\ColorInput;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('db/event', 'Events'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+Url::remember();
 ?>
 <div class="event-view">
+    <div class="row">
+        <div class="col-xs-6">
+            <p>
+                <?= Html::a(Yii::t('app', 'Back'), ['event/index'], ['class' => 'btn btn-info']) ?>            
+                <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->event_id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->event_id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => Yii::t('db/event', 'Are you sure you want to delete this item?'),
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </p>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'title',
+                    'body',
+                    'start',
+                    'end',
+                    'color'=>[
+                        'attribute' => 'color',
+                        'value' => ColorInput::widget([
+                                    'name' => 'color',
+                                    'value' => $model->color,
+                                    'disabled' => true                                  
+                                ]),
+                        'format' => 'raw'
+                    ],
+                ],
+            ]) ?>
 
-    <p>
-        <?= Html::a(Yii::t('db/event', 'Update'), ['update', 'id' => $model->event_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('db/event', 'Delete'), ['delete', 'id' => $model->event_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('db/event', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'event_id',
-            'title',
-            'body',
-            'start',
-            'end',
-            'all_day',
-            'color',
-        ],
-    ]) ?>
-
+        </div>
+    </div>
 </div>

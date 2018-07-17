@@ -13,8 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="<?=$item?>">
 
-  
-
     <p>
         <?= Html::a(Yii::t('db/event', 'Create Event'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>

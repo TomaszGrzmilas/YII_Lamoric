@@ -38,9 +38,6 @@ class EventController extends Controller
             array_push ( $array ,$event->attributes );
         }
 
-
-     //   return  "<pre>" . json_encode ( $event->attributes) . "</pre>";
-
         return $this->render('index', [
             'events' => $array,
         ]);
@@ -58,7 +55,7 @@ class EventController extends Controller
         $model = new Event();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->event_id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -71,7 +68,7 @@ class EventController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->event_id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

@@ -4,9 +4,6 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Member */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="row">

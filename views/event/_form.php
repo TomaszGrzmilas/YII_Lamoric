@@ -1,33 +1,71 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
+use kartik\datetime\DateTimePicker;
+use kartik\color\ColorInput;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\event\Event */
-/* @var $form yii\widgets\ActiveForm */
 ?>
+<div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-8">
+        <div class="event-form">
 
-<div class="event-form">
+            <?php $form = ActiveForm::begin(); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+            <div class="col-xs-12 form-group">  
+                <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            </div>
+            <div class="col-xs-12 form-group">  
+                <?= $form->field($model, 'body')->textArea(['maxlength' => true]) ?>
+            </div>
+            <div class="col-xs-4 form-group">
+                <?
+                echo $form->field($model, 'start')->widget(DateTimePicker::classname(), [
+                    'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
+                    'pluginOptions' => [
+                        'autoclose' => true
+                    ]
+                ]);
+                ?>
+            </div>
+            <div class="col-xs-4 form-group">     
+                <? 
+                    echo $form->field($model, 'end')->widget(DateTimePicker::classname(), [
+                        'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
+                        'pluginOptions' => [
+                            'autoclose' => true
+                        ]
+                    ]);
+                ?>
+            </div>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <? //$form->field($model, 'all_day')->checkbox() ?>
 
-    <?= $form->field($model, 'body')->textInput(['maxlength' => true]) ?>
+            <div class="col-xs-4 form-group">     
+                <?
+                    echo $form->field($model, 'color')->widget(ColorInput::classname(), [
+                        'options' => ['placeholder' => 'Kolor wydarzenia...',
+                                    'readonly' => true
+                                    ],
+                    ]);
+                ?>
+            </div>
+            <div class="col-xs-12 form-group">  
+                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                <? if ($this->context->action->id == 'update') {
+                    echo  Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->event_id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => Yii::t('db/event', 'Are you sure you want to delete this item?'),
+                        'method' => 'post',
+                    ],
+                ]);
+                } ?>
+            </div>
 
-    <?= $form->field($model, 'start')->textInput() ?>
+            <?php ActiveForm::end(); ?>
 
-    <?= $form->field($model, 'end')->textInput() ?>
-
-    <?= $form->field($model, 'all_day')->textInput() ?>
-
-    <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('db/event', 'Save'), ['class' => 'btn btn-success']) ?>
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>

@@ -42,10 +42,24 @@ $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->con
 			<?= $this->render('_main_menu', ['item' =>  $item,]); ?>
 
 			<div class="page-right col-xs-11 col-md-9 col-lg-10">
+
 				<?= $this->render('_navbar'); ?>
+
+			<div id="breadcrumbs">
+				<?= Breadcrumbs::widget([
+				'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [' '],
+				'homeLink' => ['label' => Yii::t('app', 'Home'), 'url' => Yii::$app->homeUrl],
+				'options' => ['style' => 'background-color: white',
+							'class' => 'breadcrumb',
+							 ]
+				]) ?>
+				
+			</div>
+
 				<div class="main-content">
 					<?= $content ?>
 				</div>
+
 			</div>
 		</div>
 	</div>
