@@ -17,8 +17,8 @@ class MainAsset extends AssetBundle
     ];
 
     public $depends = [
-        'app\assets\BaseAsset',
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
-
     
 }

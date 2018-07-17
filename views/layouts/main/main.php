@@ -16,14 +16,8 @@ use app\assets\main\BaseAsset;
 use app\assets\main\Base2Asset;
 use yii\web\View;
 
-MainAsset::register($this); 
-
 $appId = Yii::$app->id;
-
-$baseAsset = [$appId.'-event-index', $appId.'-balance-account-index', $appId.'-member-index',$appId.'-member-import', $appId.'-category*', $appId.'-log*', $appId.'-company-index', $appId.'-workplace-index', 'user-admin*', 'rbac*', 'docmgm-document-index', 'docmgm-document-create'];
-
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
-
 ?>
 
 <?php $this->beginPage() ?>
@@ -33,16 +27,9 @@ $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->con
     <meta charset="<?= Yii::$app->charset ?>">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-
-	<?
-	if (Yii::$app->CustomUtil->in_array($baseAsset, $item)) {
-		BaseAsset::register($this); 
-	} else
-	{
-		Base2Asset::register($this); 
-	}
-
-	$this->head()
+	<?	
+		MainAsset::register($this); 
+		$this->head()
 	?>
 </head>
 
