@@ -29,7 +29,8 @@
         "omnilight/yii2-scheduling": "*",
         "philippfrenzel/yii2fullcalendar":"*",
         "kartik-v/yii2-widget-datetimepicker": "*",
-        "kartik-v/yii2-widget-colorinput": "*"
+        "kartik-v/yii2-widget-colorinput": "*",
+        "kartik-v/yii2-mpdf": "*"
     },
     "require-dev": {
     },
