@@ -20,7 +20,7 @@ Url::remember();
 
  <?= Yii::$app->session->getFlash('success'); ?>
 
-<div class="<?=$item?>-index">
+<div class="<?=$item?>">
 
         <?
             Pjax::begin(['id' => $item.'-pjax-table']); 
@@ -34,15 +34,20 @@ Url::remember();
                 'columns' => [
                     [
                         'class' => 'kartik\grid\ActionColumn',
-                        'viewOptions' => ['icon'=>'<i class="ace-icon fa fa-eye bigger-130"></i>', 'title' => 'Show', 'data-toggle' => 'tooltip'],
-                        'updateOptions' => ['icon'=>'<i class="ace-icon fa fa-pencil bigger-130"></i>', 'title' => 'Edit', 'data-toggle' => 'tooltip', 'class'=>'green'],
-                        'deleteOptions' => ['icon'=>'<i class="ace-icon fa fa-trash-o bigger-130"></i>', 'title' => 'Delete', 'data-toggle' => 'tooltip', 'class'=>'red'],
-                        'headerOptions' => ['class' => 'kartik-sheet-style'],
+                        'viewOptions' => ['icon'=>'<i class="ace-icon fa fa-eye fa-2x"></i>', 'title' => 'Show', 'data-toggle' => 'tooltip'],
+                        'updateOptions' => ['icon'=>'<i class="ace-icon fa fa-pencil fa-2x"></i>', 'title' => 'Edit', 'data-toggle' => 'tooltip', 'class'=>'green'],
+                        'deleteOptions' => ['icon'=>'<i class="ace-icon fa fa-trash-o fa-2x"></i>', 'title' => 'Delete', 'data-toggle' => 'tooltip', 'class'=>'red'],
+                        'headerOptions' => ['class' => 'kartik-sheet-style', 'style' => 'width:8%;'],
+                        'contentOptions'=>['style'=>'min-width: 100px;'] // <-- right here
                     ],
                     [
                         'class' => 'kartik\grid\CheckboxColumn',
                         'headerOptions' => ['class' => 'kartik-sheet-style skip-export'],
                         'contentOptions' => ['class' => 'skip-export'],
+                        'name' => 'selected',
+                        'checkboxOptions' => function ($model, $key, $index, $column) {
+                            return ['value' => $model->id];
+                        }
                     ],
                     'name',
                     'surname',
@@ -63,17 +68,17 @@ Url::remember();
                     ],
                     'contribution:currency',
                 ],
-                'containerOptions' => ['style' => 'overflow: auto'], 
+                'containerOptions' => ['style' => 'overflow: auto;'], 
                 'headerRowOptions' => ['class' => 'kartik-sheet-style'],
                 'filterRowOptions' => ['class' => 'kartik-sheet-style'],
                 'pjax' => true, 
                 'toolbar' =>  [
                     ['content' => 
-                        Html::button('<i class="fa fa-file-o"></i>', ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
-                        Html::a('<i class="fa fa-plus"></i>', ['member/create'], ['data-pjax' => 0, 'class' => 'btn btn-success', 'title' => $addButtonTitle]) . ' '.
-                        Html::a('<i class="fa fa-retweet"></i>', ['member/index'], ['class' => 'btn btn-warning', 'title' => Yii::t('app', 'Reset Grid')])
+                        Html::button('<i class="fa fa-file-o"></i>', ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger btn-lg', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
+                        Html::a('<i class="fa fa-plus"></i>', ['member/create'], ['data-pjax' => 0, 'class' => 'btn btn-success btn-lg', 'title' => $addButtonTitle]) . ' '.
+                        Html::a('<i class="fa fa-retweet"></i>', ['member/index'], ['class' => 'btn btn-warning btn-lg', 'title' => Yii::t('app', 'Reset Grid')]) . ' '.
+                        Html::button('<i class="fa fa-print"></i>', ['type' => 'button', 'title' => Yii::t('app', 'Print'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList()'])
                     ],
-                    '{export}',
                 ],
                 'export' => [
                     'target'=> GridView::TARGET_SELF,
@@ -81,7 +86,7 @@ Url::remember();
                     'showConfirmAlert' => false,
                     'header' => '',
                 ],
-                'responsive' => false,
+                'responsive' => true,
                 'panel' => [
                     'type' => GridView::TYPE_DANGER,
                     'heading' => $this->title,
@@ -139,4 +144,46 @@ Url::remember();
 <?= $this->render('_modal_import_form', [
     'model' => $model,
     'title' => Yii::t('app', 'Import')
-]) ?>
+    ]);
+?>
+
+
+<?
+$script = <<<JS
+    function printList(){
+        var keys = $('#{$item}-table').yiiGridView('getSelectedRows');
+        if(keys.length <= 0){   
+            var dialog = confirm("Nie wybrano wierszy do wydruku. Wydrukować całą listę ? ");
+            if (dialog == true) {
+                var ajax = new XMLHttpRequest();
+                $.ajax({
+                    type: "POST",
+                    url: 'test', 
+                    data: {keylist: 'ALL'},
+                    success: function(result){
+                    console.log(result);
+                    }
+                });
+            }
+        }else{
+            //console.log(keys);
+            var ajax = new XMLHttpRequest();
+            $.ajax({
+                type: "POST",
+                url: 'test', 
+                data: {keylist: keys},
+                success: function(result){
+                console.log(result);
+                }
+            });
+        }
+    }
+JS;
+
+      $this->registerJs($script,
+       \yii\web\View::POS_BEGIN,
+	'printList'
+);
+
+?>
+

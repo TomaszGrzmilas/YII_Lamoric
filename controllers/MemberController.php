@@ -60,11 +60,18 @@ class MemberController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Member model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+    public function actionTest()
+    {
+        $keys = Yii::$app->request->post('keylist');
+        
+        if (is_array($keys) || $keys === 'ALL' )
+        {
+            echo 'ok';
+        }
+        
+        return null;
+    }
+
     public function actionCreate()
     {
         $model = new Member();
