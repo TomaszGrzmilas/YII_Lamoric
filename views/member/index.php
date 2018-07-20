@@ -160,9 +160,9 @@ $script = <<<JS
                     type: "POST",
                     url: 'test', 
                     data: {keylist: 'ALL'},
-                    success: function(result){
-                    console.log(result);
-                    }
+                 //   success: function(result){
+                  //  console.log(result);
+                  //  }
                 });
             }
         }else{
@@ -172,9 +172,9 @@ $script = <<<JS
                 type: "POST",
                 url: 'test', 
                 data: {keylist: keys},
-                success: function(result){
-                console.log(result);
-                }
+               // success: function(result){
+               // console.log(result);
+               // }
             });
         }
     }

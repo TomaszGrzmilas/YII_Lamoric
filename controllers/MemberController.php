@@ -35,7 +35,7 @@ class MemberController extends Controller
         ];
     }
 
-    public function actionIndex()
+    public function actionIndex($dataProvider = null)
     {
         $model = new Member();
       
@@ -44,8 +44,11 @@ class MemberController extends Controller
         }
 
         $searchModel = new MemberSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        if ($dataProvider == null) {    
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }
+        
         return $this->render('index', [
             'searchModel' => $searchModel, 
             'dataProvider' => $dataProvider,
@@ -63,13 +66,14 @@ class MemberController extends Controller
     public function actionTest()
     {
         $keys = Yii::$app->request->post('keylist');
+        $searchModel = new MemberSearch();
         
-        if (is_array($keys) || $keys === 'ALL' )
+        if (is_array($keys) || $keys === 'ALL')
         {
-            echo 'ok';
-        }
-        
-        return null;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        } 
+       
+        return $this->actionIndex($dataProvider);
     }
 
     public function actionCreate()
