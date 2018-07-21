@@ -157,24 +157,25 @@ $script = <<<JS
             if (dialog == true) {
                 var ajax = new XMLHttpRequest();
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     url: 'test', 
                     data: {keylist: 'ALL'},
-                 //   success: function(result){
-                  //  console.log(result);
-                  //  }
+               //     success: function(result){
+               //     console.log(result);
+               //     }
                 });
             }
         }else{
+            keys = JSON.stringify(keys);
             //console.log(keys);
             var ajax = new XMLHttpRequest();
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: 'test', 
                 data: {keylist: keys},
-               // success: function(result){
-               // console.log(result);
-               // }
+              //  success: function(result){
+              //  console.log(result);
+              //  }
             });
         }
     }

@@ -16,6 +16,7 @@ use app\classes\ruskid\ARImportStrategy;
 use yii\web\UploadedFile;
 use yii\base\DynamicModel;
 use app\components\CustomUtil;
+use kartik\mpdf\Pdf;
 
 /**
  * MemberController implements the CRUD actions for Member model.
@@ -35,7 +36,7 @@ class MemberController extends Controller
         ];
     }
 
-    public function actionIndex($dataProvider = null)
+    public function actionIndex()
     {
         $model = new Member();
       
@@ -44,11 +45,8 @@ class MemberController extends Controller
         }
 
         $searchModel = new MemberSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        if ($dataProvider == null) {    
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        }
-        
         return $this->render('index', [
             'searchModel' => $searchModel, 
             'dataProvider' => $dataProvider,
@@ -63,17 +61,44 @@ class MemberController extends Controller
         ]);
     }
 
-    public function actionTest()
+    public function actionTest($keylist)
     {
-        $keys = Yii::$app->request->post('keylist');
-        $searchModel = new MemberSearch();
+        if (isset($keylist)) {
+            $keys = json_decode($keylist);
+            if (!is_array($keys)) {
+                $keys = null;
+            }
+        } else {
+            $keys = null;
+        }
+
+        $model = new Member();
+
+        $dataProvider = $model->find()->list($keys)->asArray()->all();
+        $content = $this->renderPartial('@app/views/_reports/member_list', 
+            [
+                'dataProvider' =>$dataProvider,
+                'model'=> $model
+            ]
+        );
+
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_UTF8, 
+            'format' => Pdf::FORMAT_A4, 
+            'orientation' => Pdf::ORIENT_LANDSCAPE, 
+            'destination' => Pdf::DEST_FILE, 
+            'filename' => $_SERVER['DOCUMENT_ROOT'].'/media/download/Lista_Czlonkow.pdf',
+            'content' => $content,  
+            'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            'cssInline' => '.kv-heading-1{font-size:18px}', 
+            'options' => ['title' => 'Krajee Report Title'],
+            'methods' => [ 
+                'SetHeader'=>['Krajee Report Header'], 
+                'SetFooter'=>['{PAGENO}'],
+            ]
+        ]);
         
-        if (is_array($keys) || $keys === 'ALL')
-        {
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        } 
-       
-        return $this->actionIndex($dataProvider);
+        return $pdf->render(); 
     }
 
     public function actionCreate()

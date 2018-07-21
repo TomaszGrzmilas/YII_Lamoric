@@ -28,4 +28,16 @@ class MemberQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function list($ids)
+    {
+        $this->select(['name','surname']);
+
+        if (is_array($ids))
+        {
+            $this->where(['id' => $ids]);
+        }
+        return $this;
+    }
+    
 }

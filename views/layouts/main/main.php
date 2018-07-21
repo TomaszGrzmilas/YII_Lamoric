@@ -12,12 +12,13 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\main\MainAsset;
-use app\assets\main\BaseAsset;
-use app\assets\main\Base2Asset;
+use app\assets\main\JsAsset;
 use yii\web\View;
 
 $appId = Yii::$app->id;
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
+
+$JsAsset = ['docmgm-document-ovw*','docmgm-law-ovw*','docmgm-article-ovw*','docmgm-rodo-ovw*'];
 ?>
 
 <?php $this->beginPage() ?>
@@ -29,6 +30,9 @@ $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->con
     <title><?= Html::encode($this->title) ?></title>
 	<?	
 		MainAsset::register($this); 
+		if (Yii::$app->CustomUtil->in_array($JsAsset, $item)) {
+			JsAsset::register($this); 
+		}
 		$this->head()
 	?>
 </head>

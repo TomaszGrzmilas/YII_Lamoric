@@ -73,20 +73,4 @@ class MemberSearch extends Member
 
         return $dataProvider;
     }
-
-    public function list($ids)
-    {
-        $query = Member::find();
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        if (is_array($ids))
-        {
-            return $query->where(['id' => $ids]);
-        }
-
-        return $dataProvider;
-    }
-
 }

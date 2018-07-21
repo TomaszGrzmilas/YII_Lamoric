@@ -22,15 +22,13 @@ class DocumentOvwController extends Controller
             $category_id = $id;
         }
         
-        $documents = new ActiveDataProvider([
-            'query' => $model->find()->where(['category_id' => $category_id])->all(),
-        ]);
+        $documents = $model->find()->where(['category_id' => $category_id])->all();
 
         $categories = new Category();
         $categories = $categories->getSubCategories($category_id);
    
         return $this->render('index', [
-            'documents' => $documents->query,
+            'documents' => $documents,
             'categories' => $categories,
             'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);
