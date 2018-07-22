@@ -134,7 +134,6 @@ Url::remember();
                                 ],
                          
             ]);
-            //var keys = $('#grid').yiiGridView('getSelectedRows');
             Pjax::end(); 
         ?>
 
@@ -149,6 +148,7 @@ Url::remember();
 
 
 <?
+
 $script = <<<JS
     function printList(){
         var keys = $('#{$item}-table').yiiGridView('getSelectedRows');
@@ -158,24 +158,24 @@ $script = <<<JS
                 var ajax = new XMLHttpRequest();
                 $.ajax({
                     type: "GET",
-                    url: 'test', 
+                    url: 'member/print-list', 
                     data: {keylist: 'ALL'},
-               //     success: function(result){
-               //     console.log(result);
-               //     }
+                    success: function(result){
+                        window.open(result, '_blank');
+                    }
                 });
             }
         }else{
             keys = JSON.stringify(keys);
-            //console.log(keys);
             var ajax = new XMLHttpRequest();
             $.ajax({
                 type: "GET",
-                url: 'test', 
+                url: 'member/print-list', 
                 data: {keylist: keys},
-              //  success: function(result){
-              //  console.log(result);
-              //  }
+                success: function(result){
+                //  console.log(result);
+                    window.open(result, '_blank');
+                }
             });
         }
     }
@@ -183,8 +183,7 @@ JS;
 
       $this->registerJs($script,
        \yii\web\View::POS_BEGIN,
-	'printList'
-);
+	  'printList');
 
 ?>
 

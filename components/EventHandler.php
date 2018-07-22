@@ -60,6 +60,11 @@ class EventHandler
         Yii::info('USER['.Yii::$app->user->identity->username.'] FROM COMPANY['.Yii::$app->user->identity->profile->company_id.'] DELETE ID['. $newAttr[$indexColumn] .'] WAS ['. $changedMsg .']' ,$traceMsg);
     }
 
+    public static function AfterPrint($traceMsg, $reportId)
+    {
+        Yii::info('USER['.Yii::$app->user->identity->username.'] FROM COMPANY['.Yii::$app->user->identity->profile->company_id.'] PRINT REPORT ['. $reportId .']', $traceMsg);
+    }
+
     
             
 }?>

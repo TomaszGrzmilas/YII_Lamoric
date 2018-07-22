@@ -31,7 +31,11 @@ class MemberQuery extends \yii\db\ActiveQuery
 
     public function list($ids)
     {
-        $this->select(['name','surname']);
+        $this->select([
+            "CONCAT(NAME,' ', surname) AS full_name",
+            "CONCAT(street,' ',building, IF(LOCAL = '','',CONCAT('/',LOCAL)), ',', zip_code, ' ', city) AS address",
+            'phone', 'email', 'contribution', 'notes'
+            ]);
 
         if (is_array($ids))
         {

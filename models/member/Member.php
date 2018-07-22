@@ -56,7 +56,7 @@ class Member extends \yii\db\ActiveRecord
                 'class' => LogBehavior::className(),
                 'indexColumn' => 'id',
                 'objName' => 'member'
-            ]
+            ],
         ];
     }
     
@@ -102,6 +102,9 @@ class Member extends \yii\db\ActiveRecord
             'account_id' => Yii::t('db/member', 'Account ID'),
             'contribution' => Yii::t('db/member', 'Contribution'),
             'importfile' => Yii::t('app', 'File'),
+            ///////////////////////
+            'full_name'=> Yii::t('db/member', 'Full Name'),
+            'address'=> Yii::t('db/member', 'Address'),
         ];
     }
     

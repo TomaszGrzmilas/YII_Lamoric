@@ -17,13 +17,13 @@ use yii\web\UploadedFile;
 use yii\base\DynamicModel;
 use app\components\CustomUtil;
 use kartik\mpdf\Pdf;
+use app\components\EventHandler;
 
 /**
  * MemberController implements the CRUD actions for Member model.
  */
 class MemberController extends Controller
 {
-
     public function behaviors()
     {
         return [
@@ -61,44 +61,51 @@ class MemberController extends Controller
         ]);
     }
 
-    public function actionTest($keylist)
+    public function actionPrintList($keylist)
     {
-        if (isset($keylist)) {
-            $keys = json_decode($keylist);
-            if (!is_array($keys)) {
+        if (Yii::$app->request->isAjax) {
+            $file = '/media/download/Lista_Czlonkow_'.time().'.pdf';
+            $filePath = $_SERVER['DOCUMENT_ROOT'].$file;
+
+            if (isset($keylist)) {
+                $keys = json_decode($keylist);
+                if (!is_array($keys)) {
+                    $keys = null;
+                }
+            } else {
                 $keys = null;
             }
-        } else {
-            $keys = null;
-        }
 
-        $model = new Member();
+            $model = new Member();
 
-        $dataProvider = $model->find()->list($keys)->asArray()->all();
-        $content = $this->renderPartial('@app/views/_reports/member_list', 
-            [
-                'dataProvider' =>$dataProvider,
-                'model'=> $model
-            ]
-        );
+            $dataProvider = $model->find()->list($keys)->asArray()->all();
+            $content = $this->renderPartial('@app/views/_reports/member_list', 
+                [
+                    'dataProvider' =>$dataProvider,
+                    'model'=> $model
+                ]
+            );
 
-        $pdf = new Pdf([
-            'mode' => Pdf::MODE_UTF8, 
-            'format' => Pdf::FORMAT_A4, 
-            'orientation' => Pdf::ORIENT_LANDSCAPE, 
-            'destination' => Pdf::DEST_FILE, 
-            'filename' => $_SERVER['DOCUMENT_ROOT'].'/media/download/Lista_Czlonkow.pdf',
-            'content' => $content,  
-            'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
-            'cssInline' => '.kv-heading-1{font-size:18px}', 
-            'options' => ['title' => 'Krajee Report Title'],
-            'methods' => [ 
-                'SetHeader'=>['Krajee Report Header'], 
-                'SetFooter'=>['{PAGENO}'],
-            ]
-        ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, 
+                'format' => Pdf::FORMAT_A4, 
+                'orientation' => Pdf::ORIENT_LANDSCAPE, 
+                'destination' => Pdf::DEST_FILE, 
+                'filename' => $filePath,
+                'content' => $content,  
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '.kv-heading-1{font-size:18px}', 
+                'options' => ['title' => 'Lista Członków'],
+                'methods' => [ 
+                    'SetHeader'=>['Wydruk listy członków'], 
+                    'SetHTMLFooter'=>['Wydrukował  '. Yii::$app->user->identity->username . ' w dniu: {DATE j-m-Y} <br> Strona: {PAGENO}'],
+                ]
+            ]);
         
-        return $pdf->render(); 
+            $pdf->render();
+            EventHandler::AfterPrint('trace\member\report', 'Lista Członków');
+            return $file;
+        }
     }
 
     public function actionCreate()
