@@ -6,11 +6,6 @@ use Yii;
 
 class MemberQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
-
     public function prepare($builder)
     {
         if (! Yii::$app->user->can('Application Admin')) {  
@@ -24,12 +19,7 @@ class MemberQuery extends \yii\db\ActiveQuery
         return parent::all($db);
     }
 
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
-
-    public function list($ids) 
+    public function list_members($ids) 
     {
         $this->select([
             "CONCAT(NAME,' ', surname) AS full_name",
@@ -45,4 +35,10 @@ class MemberQuery extends \yii\db\ActiveQuery
         return $this;
     }
     
-}?>
+
+    public function one($db = null)
+    {
+        return parent::one($db);
+    }
+}
+?>

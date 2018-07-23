@@ -78,7 +78,7 @@ class MemberController extends Controller
 
             $model = new Member();
 
-            $dataProvider = $model->find()->list($keys)->asArray()->all();
+            $dataProvider = $model->find()->list_members($keys)->asArray()->all();
             $content = $this->renderPartial('@app/views/_reports/member_list', 
                 [
                     'dataProvider' =>$dataProvider,
