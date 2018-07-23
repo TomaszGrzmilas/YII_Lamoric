@@ -162,12 +162,11 @@ $script = <<<JS
                     url: '/member/print-list', 
                     data: {keylist: 'ALL'},
                     success: function(result){
-                       // window.open(result, '_blank');
                         var popup_window=window.open(result,"myWindow","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=600");            
                             try {
                                 popup_window.focus();   
                             } catch (e) {
-                                alert("Pop-up Blocker is enabled! Please add this site to your exception list.");
+                                alert("{$popupErr}");
                             }
                     }
                 });
@@ -181,7 +180,12 @@ $script = <<<JS
                 data: {keylist: keys},
                 success: function(result){
                 //  console.log(result);
-                    window.open(result, '_blank');
+                    var popup_window=window.open(result,"myWindow","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=600");            
+                    try {
+                        popup_window.focus();   
+                    } catch (e) {
+                        alert("{$popupErr}");
+                    }
                 }
             });
         }
