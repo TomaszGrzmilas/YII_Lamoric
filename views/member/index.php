@@ -148,7 +148,7 @@ Url::remember();
 
 
 <?
-$popupErr = Yii::t('app', 'Pop-up Blocker is enabled! Please add this site to your exception list.')
+$popupErr = Yii::t('app', 'Pop-up Blocker is enabled! Please add this site to your exception list.');
 
 $script = <<<JS
     function printList(){
