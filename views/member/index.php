@@ -158,7 +158,7 @@ $script = <<<JS
                 var ajax = new XMLHttpRequest();
                 $.ajax({
                     type: "GET",
-                    url: 'member/print-list', 
+                    url: '/member/print-list', 
                     data: {keylist: 'ALL'},
                     success: function(result){
                         window.open(result, '_blank');
@@ -170,7 +170,7 @@ $script = <<<JS
             var ajax = new XMLHttpRequest();
             $.ajax({
                 type: "GET",
-                url: 'member/print-list', 
+                url: '/member/print-list', 
                 data: {keylist: keys},
                 success: function(result){
                 //  console.log(result);
