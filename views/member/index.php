@@ -152,6 +152,28 @@ $popupErr = Yii::t('app', 'Pop-up Blocker is enabled! Please add this site to yo
 
 $script = <<<JS
     function printList(){
+        function showPopup(url) {
+            var width  = 600;
+            var height = 800;
+            var left   = - screen.width;
+            var top    = - screen.height;
+            var params = 'width='+width+', height='+height;
+            params += ', top='+top+', left='+left;
+            params += ', directories=no';
+            params += ', location=no';
+            params += ', menubar=no';
+            params += ', resizable=no';
+            params += ', scrollbars=no';
+            params += ', status=no';
+            params += ', toolbar=no';
+            newwin=window.open(url,'_blank', params);
+            try {
+                newwin.focus();   
+            } catch (e) {
+                alert("{$popupErr}");
+            }
+        }
+
         var keys = $('#{$item}-table').yiiGridView('getSelectedRows');
         if(keys.length <= 0){   
             var dialog = confirm("Nie wybrano wierszy do wydruku. Wydrukować całą listę ? ");
@@ -162,12 +184,7 @@ $script = <<<JS
                     url: '/member/print-list', 
                     data: {keylist: 'ALL'},
                     success: function(result){
-                        var popup_window=window.open(result,"myWindow","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=600");            
-                            try {
-                                popup_window.focus();   
-                            } catch (e) {
-                                alert("{$popupErr}");
-                            }
+                        showPopup(result);
                     }
                 });
             }
@@ -180,12 +197,7 @@ $script = <<<JS
                 data: {keylist: keys},
                 success: function(result){
                 //  console.log(result);
-                    var popup_window=window.open(result,"myWindow","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=600");            
-                    try {
-                        popup_window.focus();   
-                    } catch (e) {
-                        alert("{$popupErr}");
-                    }
+                    showPopup(result);
                 }
             });
         }
