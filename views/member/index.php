@@ -148,6 +148,7 @@ Url::remember();
 
 
 <?
+$popupErr = Yii::t('app', 'Pop-up Blocker is enabled! Please add this site to your exception list.')
 
 $script = <<<JS
     function printList(){
@@ -161,7 +162,13 @@ $script = <<<JS
                     url: '/member/print-list', 
                     data: {keylist: 'ALL'},
                     success: function(result){
-                        window.open(result, '_blank');
+                       // window.open(result, '_blank');
+                        var popup_window=window.open(result,"myWindow","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=600");            
+                            try {
+                                popup_window.focus();   
+                            } catch (e) {
+                                alert("Pop-up Blocker is enabled! Please add this site to your exception list.");
+                            }
                     }
                 });
             }

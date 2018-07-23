@@ -64,8 +64,8 @@ class MemberController extends Controller
     public function actionPrintList($keylist)
     {
         if (Yii::$app->request->isAjax) {
-            $file = '/media/download/Lista_Czlonkow_'.time().'.pdf';
-            $filePath = $_SERVER['DOCUMENT_ROOT'].$file;
+            $file = 'media/download/Lista_Czlonkow_'.time().'.pdf';
+            $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
 
             if (isset($keylist)) {
                 $keys = json_decode($keylist);
