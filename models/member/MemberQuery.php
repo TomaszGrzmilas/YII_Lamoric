@@ -41,8 +41,8 @@ class MemberQuery extends \yii\db\ActiveQuery
         {
             $this->where(['id' => $ids]);
         }
-        
+
         return $this;
     }
     
-}
+}?>
