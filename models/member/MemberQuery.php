@@ -29,7 +29,7 @@ class MemberQuery extends \yii\db\ActiveQuery
         return parent::one($db);
     }
 
-    public function list($ids)
+    public function list($ids) 
     {
         $this->select([
             "CONCAT(NAME,' ', surname) AS full_name",
@@ -41,6 +41,7 @@ class MemberQuery extends \yii\db\ActiveQuery
         {
             $this->where(['id' => $ids]);
         }
+        
         return $this;
     }
     
