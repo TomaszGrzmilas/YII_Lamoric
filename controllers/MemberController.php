@@ -104,7 +104,7 @@ class MemberController extends Controller
         
             $pdf->render();
             EventHandler::AfterPrint('trace\member\report', 'Lista Członków');
-            return $file;
+            return \yii\helpers\Url::home(true) . $file;
         }
     }
 
