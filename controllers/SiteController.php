@@ -10,6 +10,10 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\SignupForm;
+use app\models\member\Member;
+use app\models\company\Company;
+use dektrium\user\models\User;
+use app\modules\docmgm\models\Document;
 
 class SiteController extends Controller
 {
@@ -36,9 +40,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -54,7 +55,13 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', [
+            'member' => new Member(),
+            'user' => new User(),
+            'company' => new Company(),
+            'document' => new Document(),
+
+        ]);
     }
 
 }

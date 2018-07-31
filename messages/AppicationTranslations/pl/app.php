@@ -39,6 +39,7 @@ return array(
 	'Error when creating user account. Try again.' => 'Błąd podczas tworzenia konta dla użytkownika. Spróbuj jeszcze raz.',
 	'Payments' => 'Płatności',
 	'The requested page does not exist.' => 'Strona, kórą chciałeś odwiedzić nie istnieje.',
-	'Pop-up Blocker is enabled! Please add this site to your exception list.' => 'Wyskakujące okienka są aktualnie zablokowane. Proszę dodać stronę do listy wyjątków.'
+	'Pop-up Blocker is enabled! Please add this site to your exception list.' => 'Wyskakujące okienka są aktualnie zablokowane. Proszę dodać stronę do listy wyjątków.',
+	'Documents' => 'Dokumenty',
 );
 ?>
