@@ -8,6 +8,7 @@ use yii\helpers\Url;
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 
 $this->title = Yii::t('db/balanceaccount', 'Balance Accounts');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('db/member', 'Members'), 'url' => ['/member/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 

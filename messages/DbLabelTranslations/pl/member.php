@@ -1,6 +1,7 @@
 <?php
 return array(
 	'Members'=>'Członkowie',
+	'Member list' => 'Lista członków',
 	'Create Member'=>'Dodaj członka',
 	'Name' => 'Imię',
 	'Surname' => 'Nazwisko',

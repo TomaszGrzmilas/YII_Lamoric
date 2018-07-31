@@ -38,6 +38,11 @@ class MemberController extends Controller
 
     public function actionIndex()
     {
+        return $this->render('first');
+    }
+
+    public function actionList()
+    {
         $model = new Member();
       
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -61,7 +66,7 @@ class MemberController extends Controller
         ]);
     }
 
-    public function actionPrintList($keylist)
+    public function actionPrintList($keylist, $type)
     {
         if (Yii::$app->request->isAjax) {
             $file = 'media/download/Lista_Czlonkow_'.time().'.pdf';
@@ -78,7 +83,15 @@ class MemberController extends Controller
 
             $model = new Member();
 
-            $dataProvider = $model->find()->list_members($keys)->asArray()->all();
+            if ($type == 10) {
+                $dataProvider = $model->find()->list_members_full($keys)->asArray()->all();
+            } else if ($type == 259) {
+                $dataProvider = $model->find()->list_members_short($keys)->asArray()->all();
+            } else 
+            { 
+                return null;
+            }
+
             $content = $this->renderPartial('@app/views/_reports/member_list', 
                 [
                     'dataProvider' =>$dataProvider,

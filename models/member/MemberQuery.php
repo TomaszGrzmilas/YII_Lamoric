@@ -19,7 +19,7 @@ class MemberQuery extends \yii\db\ActiveQuery
         return parent::all($db);
     }
 
-    public function list_members($ids) 
+    public function list_members_full($ids) 
     {
         $this->select([
             "CONCAT(NAME,' ', surname) AS full_name",
@@ -35,6 +35,19 @@ class MemberQuery extends \yii\db\ActiveQuery
         return $this;
     }
     
+    public function list_members_short($ids) 
+    {
+        $this->select([
+            "CONCAT(NAME,' ', surname) AS full_name"
+            ]);
+
+        if (is_array($ids))
+        {
+            $this->where(['id' => $ids]);
+        }
+
+        return $this;
+    }
 
     public function one($db = null)
     {

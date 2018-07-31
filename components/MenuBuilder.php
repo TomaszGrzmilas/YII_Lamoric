@@ -22,10 +22,8 @@ class MenuBuilder
             ]]);
         }
         array_push($items, 
-            ['label' => Yii::t('app', 'Members'), 'icon' => 'users', 'url' =>  Url::toRoute('/member/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-member*'] ,$item )), 'items' => [
-                ['label' => Yii::t('app', 'Add'), 'icon' => 'plus', 'url' => Url::toRoute('/member/create'), 'active' =>  (Yii::$app->CustomUtil->in_array([$appId.'-member-create'] ,$item ))],			
-            ]],
-            ['label' => Yii::t('app', 'Payments'), 'icon' => 'money', 'url' =>  Url::toRoute('/balance-account/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-balance-account*'] ,$item ))],
+            ['label' => Yii::t('app', 'Members'), 'icon' => 'users', 'url' =>  Url::toRoute('/member/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-member*'] ,$item ))],
+        //    ['label' => Yii::t('app', 'Payments'), 'icon' => 'money', 'url' =>  Url::toRoute('/balance-account/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-balance-account*'] ,$item ))],
             ['label' => Yii::t('app', 'Law'), 'icon' => 'balance-scale', 'url' => Url::toRoute('/docmgm/law-ovw/index'), 'active' => (Yii::$app->CustomUtil->in_array(['docmgm-law-ovw*'] ,$item ))],
             ['label' => Yii::t('app', 'Articles'), 'icon' => 'newspaper-o', 'url' => Url::toRoute('//docmgm/article-ovw/index'), 'active' => (Yii::$app->CustomUtil->in_array(['docmgm-article-ovw*'] ,$item ))],
             ['label' => Yii::t('app', 'Documents'), 'icon' => 'book', 'url' => Url::toRoute('/docmgm/document-ovw/index'), 'active' => (Yii::$app->CustomUtil->in_array(['docmgm-document-ovw*'] ,$item ))]

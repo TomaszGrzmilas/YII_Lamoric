@@ -7,7 +7,8 @@ use yii\helpers\Url;
 
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 
-$this->title = Yii::t('db/member', 'Members');
+$this->title = Yii::t('db/member', 'Member list');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('db/member', 'Members'), 'url' => ['/member/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $addButtonTitle = Yii::t('db/member', 'Create Member');
@@ -38,7 +39,7 @@ Url::remember();
                         'updateOptions' => ['icon'=>'<i class="ace-icon fa fa-pencil fa-2x"></i>', 'title' => 'Edit', 'data-toggle' => 'tooltip', 'class'=>'green'],
                         'deleteOptions' => ['icon'=>'<i class="ace-icon fa fa-trash-o fa-2x"></i>', 'title' => 'Delete', 'data-toggle' => 'tooltip', 'class'=>'red'],
                         'headerOptions' => ['class' => 'kartik-sheet-style', 'style' => 'width:8%;'],
-                        'contentOptions'=>['style'=>'min-width: 100px;'] // <-- right here
+                        'contentOptions'=> ['style'=>'min-width: 100px;'] // <-- right here
                     ],
                     [
                         'class' => 'kartik\grid\CheckboxColumn',
@@ -74,10 +75,11 @@ Url::remember();
                 'pjax' => true, 
                 'toolbar' =>  [
                     ['content' => 
-                        Html::button('<i class="fa fa-file-o"></i>', ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger btn-lg', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
-                        Html::a('<i class="fa fa-plus"></i>', ['member/create'], ['data-pjax' => 0, 'class' => 'btn btn-success btn-lg', 'title' => $addButtonTitle]) . ' '.
-                        Html::a('<i class="fa fa-retweet"></i>', ['member/index'], ['class' => 'btn btn-warning btn-lg', 'title' => Yii::t('app', 'Reset Grid')]) . ' '.
-                        Html::button('<i class="fa fa-print"></i>', ['type' => 'button', 'title' => Yii::t('app', 'Print'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList()'])
+                        Html::button('<i class="fa fa-file-o"></i> '.Yii::t('app', 'Import'), ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger btn-lg', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
+                        Html::a('<i class="fa fa-plus"></i> '. $addButtonTitle, ['member/create'], ['data-pjax' => 0, 'class' => 'btn btn-success btn-lg', 'title' => $addButtonTitle]) . ' '.
+                        Html::a('<i class="fa fa-retweet"></i> '. Yii::t('app', 'Reset Grid'), ['member/index'], ['class' => 'btn btn-warning btn-lg', 'title' => Yii::t('app', 'Reset Grid')]) . ' '.
+                        Html::button('<i class="fa fa-print"></i> '. Yii::t('app', 'Print full list'), ['type' => 'button', 'title' => Yii::t('app', 'Print full list'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList(10)']) . ' ' .
+                        Html::button('<i class="fa fa-print"></i> '. Yii::t('app', 'Print short list'), ['type' => 'button', 'title' => Yii::t('app', 'Print short list'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList(259)'])
                     ],
                 ],
                 'export' => [
@@ -151,7 +153,7 @@ Url::remember();
 $popupErr = Yii::t('app', 'Pop-up Blocker is enabled! Please add this site to your exception list.');
 
 $script = <<<JS
-    function printList(){
+    function printList(type){
         function showPopup(url) {
             var width  = 600;
             var height = 800;
@@ -182,7 +184,7 @@ $script = <<<JS
                 $.ajax({
                     type: "GET",
                     url: '/member/print-list', 
-                    data: {keylist: 'ALL'},
+                    data: {keylist: 'ALL', type: type},
                     success: function(result){
                         showPopup(result);
                     }
@@ -194,7 +196,7 @@ $script = <<<JS
             $.ajax({
                 type: "GET",
                 url: '/member/print-list', 
-                data: {keylist: keys},
+                data: {keylist: keys, type: type},
                 success: function(result){
                 //  console.log(result);
                     showPopup(result);
