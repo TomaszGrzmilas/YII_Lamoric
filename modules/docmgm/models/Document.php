@@ -29,6 +29,7 @@ class Document extends \yii\db\ActiveRecord
     public $articleRootCategoryId = 11;
     public $rodoRootCategoryId = 9;
     public $lawRootCategoryId = 1;
+    public $traningRootCategoryId = 19;
     
     public static function tableName()
     {

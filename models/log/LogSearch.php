@@ -24,9 +24,6 @@ class LogSearch extends Log
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -68,6 +65,12 @@ class LogSearch extends Log
         $query->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'prefix', $this->prefix])
             ->andFilterWhere(['like', 'message', $this->message]);
+
+        $sort = $dataProvider->getSort();
+
+        $sort->defaultOrder = ['log_time' => SORT_DESC];
+        
+        $dataProvider->setSort($sort);
 
         return $dataProvider;
     }

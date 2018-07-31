@@ -15,6 +15,17 @@ $addButtonTitle = Yii::t('db/member', 'Create Member');
 
 Url::remember();
 
+$toolbar =  Html::button('<i class="fa fa-file-o"></i> '.Yii::t('app', 'Import'), ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger btn-lg', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
+            Html::a('<i class="fa fa-plus"></i> '. $addButtonTitle, ['member/create'], ['data-pjax' => 0, 'class' => 'btn btn-success btn-lg', 'title' => $addButtonTitle]) . ' '.
+            Html::a('<i class="fa fa-retweet"></i> '. Yii::t('app', 'Reset Grid'), ['member/index'], ['class' => 'btn btn-warning btn-lg', 'title' => Yii::t('app', 'Reset Grid')]) . ' '.
+            Html::button('<i class="fa fa-print"></i> '. Yii::t('app', 'Print short list'), ['type' => 'button', 'title' => Yii::t('app', 'Print short list'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList(259)']);
+
+if (Yii::$app->user->can('Company Admin')) 
+{   
+    $toolbar .= Html::button('<i class="fa fa-print"></i> '. Yii::t('app', 'Print full list'), ['type' => 'button', 'title' => Yii::t('app', 'Print full list'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList(10)']) . ' ';
+}
+
+
 ?>
 
  <?= Yii::$app->session->getFlash('error'); ?>
@@ -74,13 +85,7 @@ Url::remember();
                 'filterRowOptions' => ['class' => 'kartik-sheet-style'],
                 'pjax' => true, 
                 'toolbar' =>  [
-                    ['content' => 
-                        Html::button('<i class="fa fa-file-o"></i> '.Yii::t('app', 'Import'), ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger btn-lg', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
-                        Html::a('<i class="fa fa-plus"></i> '. $addButtonTitle, ['member/create'], ['data-pjax' => 0, 'class' => 'btn btn-success btn-lg', 'title' => $addButtonTitle]) . ' '.
-                        Html::a('<i class="fa fa-retweet"></i> '. Yii::t('app', 'Reset Grid'), ['member/index'], ['class' => 'btn btn-warning btn-lg', 'title' => Yii::t('app', 'Reset Grid')]) . ' '.
-                        Html::button('<i class="fa fa-print"></i> '. Yii::t('app', 'Print full list'), ['type' => 'button', 'title' => Yii::t('app', 'Print full list'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList(10)']) . ' ' .
-                        Html::button('<i class="fa fa-print"></i> '. Yii::t('app', 'Print short list'), ['type' => 'button', 'title' => Yii::t('app', 'Print short list'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList(259)'])
-                    ],
+                    ['content' => $toolbar],
                 ],
                 'export' => [
                     'target'=> GridView::TARGET_SELF,

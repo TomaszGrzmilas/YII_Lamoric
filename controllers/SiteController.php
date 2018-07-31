@@ -64,4 +64,9 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionNews()
+    {
+        return $this->render('news');
+    }
+
 }

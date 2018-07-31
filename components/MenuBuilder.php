@@ -40,7 +40,9 @@ class MenuBuilder
         }
 
         array_push($items, 
-            ['label' => Yii::t('db/event', 'Events'), 'icon' => 'calendar', 'url' => Url::toRoute('/event/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-event*'] ,$item ))]
+            ['label' => Yii::t('db/event', 'Events'), 'icon' => 'calendar', 'url' => Url::toRoute('/event/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-event*'] ,$item ))],
+            ['label' => Yii::t('app', 'News'), 'icon' => 'globe', 'url' =>  Url::toRoute('/site/news'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-balance-account*'] ,$item ))],
+            ['label' => Yii::t('app', 'Trainings'), 'icon' => 'bullhorn', 'url' =>  Url::toRoute('/docmgm/trainings-ovw/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-balance-account*'] ,$item ))]
         ); 
 
         return $items;
