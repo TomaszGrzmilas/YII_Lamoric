@@ -63,7 +63,7 @@ class Company extends \yii\db\ActiveRecord
                 'savedAttribute' => 'logo', // optional, use to link model with saved file.
                 'uploadPath' => '@app/web/media/upload/companies_logo', // saved directory. default to '@runtime/upload'
                 'autoSave' => true, // when true then uploaded file will be save before ActiveRecord::save()
-                'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
+                //'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
             ],
             [
                 'class' => LogBehavior::className(),
