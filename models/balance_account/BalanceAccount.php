@@ -38,6 +38,30 @@ class BalanceAccount extends \yii\db\ActiveRecord
         ];
     }
 
+    public function chargeContribution()
+    {
+        $now = new \DateTime('now');
+        $paymentTitle = "Składka za " . Yii::$app->CustomUtil->translateMonth($now) . " ". $now->format('Y') ;
+        $this->chargeAccount($this->member->contribution, $paymentTitle);
+    }
+
+    public function chargeAccount($amount, $paymentTitle)
+    {
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            Yii::$app->balanceManager->decrease($this->id, $amount, ['data' => $paymentTitle]); 
+            $this->balance += Yii::$app->balanceManager->calculateBalance($this->id);
+
+            if (!$this->save()) {
+                $transaction->rollback();
+            }
+            $transaction->commit();
+
+        } catch (Exception $ex) {
+            $transaction->rollback();
+        }
+    }
+
     public function getBalanceTransactions()
     {
         return $this->hasMany(BalanceTransaction::className(), ['account_id' => 'id']);

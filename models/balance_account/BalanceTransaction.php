@@ -19,17 +19,11 @@ use Yii;
  */
 class BalanceTransaction extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return '{{%balance_transaction}}';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -43,9 +37,6 @@ class BalanceTransaction extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -58,26 +49,16 @@ class BalanceTransaction extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getAccount()
     {
         return $this->hasOne(BalanceAccount::className(), ['id' => 'account_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getExtraAccount()
     {
         return $this->hasOne(BalanceAccount::className(), ['id' => 'extra_account_id']);
     }
 
-    /**
-     * {@inheritdoc}
-     * @return BalanceTransactionQuery the active query used by this AR class.
-     */
     public static function find()
     {
         return new BalanceTransactionQuery(get_called_class());

@@ -44,6 +44,24 @@ class BalanceAccountController extends Controller
         ]);
     }
 
+    public function actionTest()
+    {
+        $now = new \DateTime('now');
+        $paymTitle = "Składka za";
+
+        if ($now->format('d') == "01") 
+        {
+            $members = \app\models\member\Member::find()->all();
+
+            foreach ($members as $member) {
+                $member->account->chargeContribution();
+            }
+        }
+
+        return $this->redirect(['index']); 
+    }
+
+    /*
     public function actionCreate()
     {
         $model = new BalanceAccount();
@@ -76,7 +94,7 @@ class BalanceAccountController extends Controller
 
         return $this->redirect(['index']);
     }
-
+    */
     protected function findModel($id)
     {
         if (($model = BalanceAccount::findOne($id)) !== null) {
