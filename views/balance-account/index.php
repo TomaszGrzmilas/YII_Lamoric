@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'balance:currency',
                     [
                         'class' => 'kartik\grid\ActionColumn',
-                        'viewOptions' => ['icon'=>'<i class="ace-icon fa fa-eye bigger-130"></i>', 'title' => 'Show', 'data-toggle' => 'tooltip'],
+                        'viewOptions' => ['icon'=>'<i class="ace-icon fa fa-eye fa-2x"></i>', 'title' => Yii::t('app', 'Details'), 'data-toggle' => 'tooltip'],
                         'updateOptions' => ['icon'=>'<i class="ace-icon fa fa-pencil bigger-130"></i>', 'title' => 'Edit', 'data-toggle' => 'tooltip', 'class'=>'green'],
                         'headerOptions' => ['class' => 'kartik-sheet-style'],
                         'template'=>'{view}'

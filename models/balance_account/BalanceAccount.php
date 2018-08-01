@@ -11,8 +11,8 @@ use app\models\member\Member;
  * @property int $id
  * @property double $balance
  *
- * @property BalanceTransaction[] $balanceTransactions
- * @property BalanceTransaction[] $balanceTransactions0
+ * @property BalanceTransaction[] $transactions
+ * @property BalanceTransaction[] $extraTransactions
  * @property Member[] $member
  */
 class BalanceAccount extends \yii\db\ActiveRecord
@@ -62,12 +62,12 @@ class BalanceAccount extends \yii\db\ActiveRecord
         }
     }
 
-    public function getBalanceTransactions()
+    public function getTransactions()
     {
         return $this->hasMany(BalanceTransaction::className(), ['account_id' => 'id']);
     }
 
-    public function getBalanceTransactions0()
+    public function getExtraTransactions()
     {
         return $this->hasMany(BalanceTransaction::className(), ['extra_account_id' => 'id']);
     }

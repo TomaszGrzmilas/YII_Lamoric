@@ -76,6 +76,7 @@ $config = [
                        'db/category' => 'category.php',
                        'db/log' => 'log.php',
                        'db/balanceaccount' => 'balanceaccount.php',
+                       'db/balancetransaction' => 'balancetransaction.php',
                        'db/event' => 'event.php',
                    ],
                ],

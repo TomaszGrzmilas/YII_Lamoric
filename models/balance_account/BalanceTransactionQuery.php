@@ -14,19 +14,11 @@ class BalanceTransactionQuery extends \yii\db\ActiveQuery
         return $this->andWhere('[[status]]=1');
     }*/
 
-    /**
-     * {@inheritdoc}
-     * @return BalanceTransaction[]|array
-     */
     public function all($db = null)
     {
         return parent::all($db);
     }
 
-    /**
-     * {@inheritdoc}
-     * @return BalanceTransaction|array|null
-     */
     public function one($db = null)
     {
         return parent::one($db);
