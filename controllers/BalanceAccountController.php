@@ -43,21 +43,17 @@ class BalanceAccountController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
-
+/*
     public function actionTest()
     {
         $now = new \DateTime('now');
-        $paymTitle = "Składka za";
-
         if ($now->format('d') == "01") 
         {
             $members = \app\models\member\Member::find()->all();
-
             foreach ($members as $member) {
                 $member->account->chargeContribution();
             }
         }
-
         return $this->redirect(['index']); 
     }
 
