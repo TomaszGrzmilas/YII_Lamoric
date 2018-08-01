@@ -47,7 +47,8 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function actionAccount()
+    /*
+    public function actionCreateAccounts()
     {
         $dataProvider = Company::findAll(['account_id' => null]);
                 
@@ -71,7 +72,8 @@ class CompanyController extends Controller
         }
         return '<pre>' . json_encode($dataProvider) . "</pre>";
     }
-
+    */
+    
     public function actionView($id)
     {
         return $this->render('view', [
