@@ -47,6 +47,31 @@ class CompanyController extends Controller
         ]);
     }
 
+    public function actionAccount()
+    {
+        $dataProvider = Company::findAll(['account_id' => null]);
+                
+        foreach ($dataProvider as $company) {
+            $transaction = Yii::$app->db->beginTransaction();
+                $account = new \app\models\balance_account\BalanceAccount();
+                $account->balance = 0;
+                if ($account->save())
+                {
+                    $company->account_id = $account->id;
+
+                    $connection = Yii::$app->db;
+                    $connection->createCommand()->update('company', ['account_id' =>  $account->id], ['company_id' =>  $company->company_id])->execute();
+
+                    $transaction->commit();
+
+                } else {
+                    $transaction->rollback();
+                    throw new UserException(Yii::t('app','Error when creating company account. Try again.'));
+                }
+        }
+        return '<pre>' . json_encode($dataProvider) . "</pre>";
+    }
+
     public function actionView($id)
     {
         return $this->render('view', [

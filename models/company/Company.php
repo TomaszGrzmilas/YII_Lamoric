@@ -73,6 +73,11 @@ class Company extends \yii\db\ActiveRecord
         ];
     }
 
+    public function init(){
+        $this->on(self::EVENT_BEFORE_INSERT, [$this, '_createBalanceAccount']);
+        return parent::init();
+    }
+
     public function rules()
     {
         return [
@@ -117,6 +122,25 @@ class Company extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('db/company', 'Updated At'),
             'importfile' => Yii::t('app', 'File'),
         ];
+    }
+
+    public function _createBalanceAccount() 
+    { 
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $account = new BalanceAccount();
+            $account->balance = 0;
+            if ($account->save())
+            {
+                $this->account_id = $account->id;
+            } else {
+                throw new UserException(Yii::t('app','Error when creating company account. Try again.'));
+            }
+        }
+        catch (Exception $ex ) {
+            $transaction->rollback();  
+        }
+        $transaction->commit();  
     }
 
     public function beforeSave($insert)

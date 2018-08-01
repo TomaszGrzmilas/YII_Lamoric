@@ -63,7 +63,7 @@ class Member extends \yii\db\ActiveRecord
     public function init(){
         $this->on(self::EVENT_BEFORE_INSERT, [$this, '_createBalanceAccount']);
         return parent::init();
-      }
+    }
 
     public function rules()
     {
@@ -110,14 +110,21 @@ class Member extends \yii\db\ActiveRecord
     
     public function _createBalanceAccount() 
     { 
-        $account = new BalanceAccount();
-        $account->balance = 0;
-        if ($account->save())
-        {
-            $this->account_id = $account->id;
-        } else {
-            throw new UserException(Yii::t('app','Error when creating user account. Try again.'));
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $account = new BalanceAccount();
+            $account->balance = 0;
+            if ($account->save())
+            {
+                $this->account_id = $account->id;
+            } else {
+                throw new UserException(Yii::t('app','Error when creating user account. Try again.'));
+            }
         }
+        catch (Exception $ex ) {
+            $transaction->rollback();  
+        }
+        $transaction->commit();  
     }
 
     public function beforeSave($insert)
