@@ -38,9 +38,10 @@ use app\models\balance_account\BalanceAccount;
  */
 class Member extends \yii\db\ActiveRecord
 {
-
     public $importfile;
     public $importLine; 
+
+    public $addition;
 
     public static function tableName()
     {
@@ -132,6 +133,11 @@ class Member extends \yii\db\ActiveRecord
         $this->contribution = str_replace(',','.',$this->contribution);
         return parent::beforeSave($insert);
     }
+
+    public function getFullName() 
+    { 
+        return $this->name .' '. $this->surname;
+    } 
 
     public function getWorkspace() 
     { 

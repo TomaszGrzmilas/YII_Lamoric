@@ -31,7 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'member.company.name',
                     'member.name',
                     'member.contribution:currency',
-                    'balance:currency',
+                    [
+                        'attribute' => 'balance',
+                        'format' => 'currency',
+                        'contentOptions' => function ($model, $key, $index, $column) {
+                            return ['style' => 'color:' 
+                                . ($model->balance < 0 ? 'red' : 'green')];
+                        },
+                    ],
                     [
                         'class' => 'kartik\grid\ActionColumn',
                         'viewOptions' => ['icon'=>'<i class="ace-icon fa fa-eye fa-2x"></i>', 'title' => Yii::t('app', 'Details'), 'data-toggle' => 'tooltip'],

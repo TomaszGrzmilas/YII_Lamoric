@@ -3,6 +3,7 @@
 namespace app\models\balance_account;
 
 use Yii;
+use app\models\member\Member;
 
 /**
  * This is the model class for table "{{%balance_transaction}}".
@@ -52,6 +53,11 @@ class BalanceTransaction extends \yii\db\ActiveRecord
     public function getAccount()
     {
         return $this->hasOne(BalanceAccount::className(), ['id' => 'account_id']);
+    }
+
+    public function getMember()
+    {
+        return $this->hasOne(Member::className(), ['account_id' => 'account_id']);
     }
 
     public function getExtraAccount()

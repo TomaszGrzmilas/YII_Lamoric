@@ -25,10 +25,6 @@ class BalanceAccountQuery extends \yii\db\ActiveQuery
         return parent::all($db);
     }
 
-    /**
-     * {@inheritdoc}
-     * @return BalanceAccount|array|null
-     */
     public function one($db = null)
     {
         return parent::one($db);

@@ -1,7 +1,7 @@
 <?php
 return array(
-    'ID' => 'Id',
-    'Date' => 'Data',
+    'ID' => 'Id transakcji',
+    'Date' => 'Data transakcji',
     'Account ID' => 'Id konta',
     'Extra Account ID' => 'Id konta extra',
     'Amount' => 'Kwota transakcji',
