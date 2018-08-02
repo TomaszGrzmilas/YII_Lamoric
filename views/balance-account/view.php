@@ -57,3 +57,6 @@ $dataProvider = new \yii\data\ActiveDataProvider([
         </div>
     </div>
 </div>
+<p>
+    <?= Html::a(Yii::t('app', 'Back'), ['/balance-account/index'], ['class' => 'btn btn-info']) ?>            
+</p>
