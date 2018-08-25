@@ -2,12 +2,13 @@
 
 html
 {
-    min-height: 100%;
+    height: 100%;
 }
 body
 {
     width: 100%;
     min-height: 100%;
+    height: 100%;
     font-family: 'Ubuntu';
     font-weight: 400;
     background-color: #f2f2f2;
@@ -33,7 +34,7 @@ a:hover
 .left-menu
 {
     height: 100%;
-    position: fixed;
+    position: absolute;
     z-index: 999;
     padding: 0;
     height: 100%;
@@ -187,11 +188,16 @@ a:hover
     background: #820101;
     color: #fff;
 }
+.title-page-container
+{
+    border-bottom: 1px solid #6f6f6f;
+    padding: 0;
+    margin: 0 0 15px;
+}
 .title-page
 {
     padding: 30px 0 20px 0;
     margin: 0;
-    border-bottom: 1px solid #c6c6c6;
     color: #6f6f6f;
     font-weight: 400;
 }
@@ -258,3 +264,418 @@ a:hover
     margin: 0 auto;
 }
 
+/* FORMULARZE */
+.dodajczlonka
+{
+    margin: 30px 0;
+}
+
+.default-input
+{
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    outline: 0;
+    width: 100%;
+    margin: 7px 0;
+    padding: 10px 10px;
+    transition: all ease-in 0.3s;
+}
+.default-input:hover
+{
+    transform: scale(1.01);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.2) !important;
+}
+.default-textarea
+{
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    outline: 0;
+    width: 100%;
+    margin: 7px 0;
+    padding: 10px 10px;
+    height: 100px;
+    transition: all ease-in 0.3s;
+}
+.default-textarea:hover
+{
+    transform: scale(1.01);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.2) !important;
+}
+
+
+/* BUTTTONY */
+.btn-gray
+{
+    background: #787878;
+    display: inline-block;
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 8px 15px;
+}
+.btn-red
+{
+    background: #820101;
+    display: inline-block;
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 8px 15px;
+}
+.btn-unactive
+{
+    background: #905050;
+    display: inline-block;
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 8px 15px;
+}
+
+
+.log-in-bg
+{
+    padding: 30px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url(../images/login-bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.log-in-frame
+{
+    padding: 15px;
+    margin: 15px auto;
+    float: none;
+    text-align: center;
+}
+
+.log-in h1
+{
+    margin: 15px 0 40px;
+}
+
+.log-in-form
+{
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.log-in-form h2
+{
+    margin: 0 0 25px;
+    padding: 10px 0 25px;
+    border-bottom: 1px solid #bbb;
+}
+.log-in-form input
+{
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #bbb;
+    outline: 0 !important;
+    transition: all ease-in 0.4s;
+}
+.log-in-form input:hover
+{
+    transform: scale(1.01);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.6) !important;
+}
+.log-in-form button
+{
+    background: #820101;
+    display: block;
+    margin: 10px auto 20px;
+    padding: 10px 15px;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    cursor: pointer;
+}
+.log-in-form button img
+{
+    padding: 0 0 0 15px;
+}
+
+.btns-start
+{
+    margin: 15px 0;
+    background: #fff;
+    text-align: center;
+    display: block;
+    box-shadow: 0 0 1px rgba(0,0,0,0.05);
+    transition: all ease-in 0.4s;
+}
+.btns-start img
+{
+    max-height: 110px;
+    padding: 15px;
+}
+.btns-start .btn-start-info
+{
+    color: #666;
+    margin: 15px;
+    font-size: 15px;
+    line-height: 20px;
+    height: 45px;
+    transition: all ease-in 0.4s;
+}
+.btns-start:hover
+{
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+.btns-start:hover .btn-start-info
+{
+    color: #905050;
+}
+
+.title-page-nav
+{
+    padding: 20px 0 0;
+    margin: 0;
+    list-style: none outside;
+    text-align: right;
+}
+.title-page-nav li
+{
+    display: inline-block;
+}
+.title-page-nav li .title-page-btns
+{
+    display: block;
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,0.05);
+    padding: 8px 10px;
+    color: #6f6f6f;
+    text-decoration: none !important;
+}
+.title-page-nav li .title-page-btns span
+{
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+    height: 32px;
+    letter-spacing: -0.5px;
+    vertical-align: top;
+}
+.title-page-nav li .title-page-btns img
+{
+    height: 32px;
+    padding: 0 0 0 8px;
+    vertical-align:baseline;
+}
+.list-row
+{
+    width: 100%;
+    margin: 7px 0;
+    display: table;
+    table-layout: fixed;
+}
+.list-row-extended
+{
+    display: block;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+.list-row-extended.open
+{
+    box-shadow: 0 0 30px rgba(0,0,0,0.25);
+    z-index: 999;
+    position: relative;
+}
+.list-row-pan
+{
+    width: 100%;
+    margin: 5px 0 0;
+    display: table;
+    table-layout: fixed;
+    background: #fff;
+    transition: all ease-in 0.3s;
+}
+.list-row-pan:hover
+{
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    transform: scale(1.01);
+}
+.list-row .list-cell-head
+{
+    display: table-cell;
+    font-size: 16px;
+    padding: 10px;
+}
+.list-row .list-cell-head:first-child, .list-row .list-cell-search:first-child, .list-row-pan .list-cell:first-child
+{
+    width: 40px;
+}
+.list-row .list-cell-search
+{
+    display: table-cell;
+    padding: 0 0 15px;
+}
+.list-cell-search input
+{
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    z-index: 0;
+    position: relative;
+    transition: all ease-in 0.4s;
+}
+.list-cell-search input:hover
+{
+    z-index: 99;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.list-row-pan .list-cell
+{
+    display: table-cell;
+    font-size: 16px;
+    padding: 10px 10px;
+    vertical-align: middle;
+}
+.pan-btn-new
+{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url(../images/icn-small-new.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all ease-in 0.4s;
+}
+.pan-btn-new:hover
+{
+    background-image: url(../images/icn-small-new-hvr.png);
+}
+.pan-btn-edit
+{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url(../images/icn-small-edit.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all ease-in 0.4s;
+}
+.pan-btn-edit:hover
+{
+    background-image: url(../images/icn-small-edit-hvr.png);
+}
+.pan-btn-show
+{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url(../images/icn-small-show.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all ease-in 0.4s;
+    float: right;
+}
+.pan-btn-hide
+{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url(../images/icn-small-hide.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all ease-in 0.4s;
+    float: right;
+}
+
+
+.list-cell-more
+{
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    display: none;
+}
+.list-cell-more-box
+{
+    border: 1px solid #ddd;
+    padding: 15px 10px 0;
+    margin: 15px 0 15px;
+}
+.list-cell-more-box h3
+{
+    margin: -30px 0 0 -5px;
+    padding: 5px 5px;
+    font-weight: 400;
+    font-size: 18px;
+    background: #fff;
+    display: inline-block;
+    position: absolute;
+}
+.list-cell-more-cont
+{
+    display: block;
+    margin: 5px 0;
+    float: none;
+    clear: both;
+}
+.list-cell-more-cont .list-cell-more-cont-label
+{
+    display: inline-block;
+    width: 45%;
+    font-size: 12px;
+}
+.list-cell-more-cont .list-cell-more-cont-value
+{
+    width: 50%;
+    display: inline-block;
+    color: #820101;
+    font-weight: bold;
+}
+.list-cell-more-cont .list-cell-more-cont-value .more-cont-last-pay
+{
+    font-weight: 400;
+    color: #6f6f6f;
+    font-size: 12px;
+}
+.list-cell-more-cont .list-cell-more-cont-area
+{
+    font-size: 12px;
+}
+
+.list-cell-more-menu
+{
+    padding: 0;
+    margin: 0;
+    list-style: none outside;
+}
+.list-cell-more-menu li
+{
+    display: inline-block;
+}
+.list-cell-more-menu li a
+{
+    background: #f2f2f2;
+    display: block;
+    padding: 10px;
+    color: #6f6f6f;
+    font-size: 12px;
+}
+.list-cell-more-menu li a span
+{
+    height: 24px;
+    vertical-align: middle;
+}
+.list-cell-more-menu li a img
+{
+    height: 24px;
+    padding: 0 0 0 10px;
+}
+
+.page-view
+{
+    margin: 0 0 30px;
+}

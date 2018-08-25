@@ -13,7 +13,7 @@ return array(
     'Notes' => 'Uwagi',
     'Company ID' => 'Id firmy',
     'Chose company' => 'Wybierz firmę',
-    'Contribution' => 'Składka',
+    'Contribution' => 'Opłata',
     'Tax ID' => 'NIP'
 );
 ?>

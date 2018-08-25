@@ -19,56 +19,74 @@ Url::remember();
 ?>
 
 <div class="<?=$item?>">
-    <div class="col-xs-12 col-md-2">
-        <?= Html::a(HTML::img('@web/layout.main\images\icn-big-dodajczlonka.png') .
-                    '<div class="btn-start-info">'.Yii::t('db/member', 'Create Member').'</div>', 
-                    Url::toRoute('/member/create'), 
-                    ['class'=> 'btns-start hvr-pop']);
-        ?>
-    </div>
-
-    <div class="col-xs-12 col-md-2">
-        <?= Html::a(HTML::img('@web/layout.main\images\icn-big-listaczlonkow.png') .
-                    '<div class="btn-start-info">'.Yii::t('db/member', 'Member list').'</div>', 
-                    Url::toRoute('/member/list'), 
-                    ['class'=> 'btns-start hvr-pop']);
-        ?>
-    </div>
-
-    <div class="col-xs-12 col-md-2">
-        <?= Html::a(HTML::img('@web/layout.main\images\icn-big-drukuj.png') .
-                    '<div class="btn-start-info">'.Yii::t('app', 'Print short list').'</div>', 
-                    '#', 
-                    ['class'=> 'btns-start hvr-pop', 'onclick'=>'printList(259)']);
-        ?>
-    </div>
-
-    <? if (Yii::$app->user->can('Company Admin')): ?> 
+    <div class='row'>
         <div class="col-xs-12 col-md-2">
-        <?= Html::a(HTML::img('@web/layout.main\images\icn-big-drukuj.png') .
-                     '<div class="btn-start-info">'.Yii::t('app', 'Print full list').'</div>', 
-                     '#', 
-                     ['class'=> 'btns-start hvr-pop', 'onclick'=>'printList(10)']);
-        ?>
+            <?= Html::a(HTML::img('@web/layout.main\images\icn-big-dodajczlonka.png') .
+                        '<div class="btn-start-info">'.Yii::t('db/member', 'Create Member').'</div>', 
+                        Url::toRoute('/member/create'), 
+                        ['class'=> 'btns-start hvr-pop']);
+            ?>
         </div>
-    <? endif;?>
 
-    <div class="col-xs-12 col-md-2">
-        <?= Html::a(HTML::img('@web/layout.main\images\icn-big-listaskladek.png') .
-                    '<div class="btn-start-info">'.Yii::t('app', 'Payments').'</div>', 
-                    Url::toRoute('/balance-account/index'), 
-                    ['class'=> 'btns-start hvr-pop']);
-        ?>
+        <div class="col-xs-12 col-md-2">
+            <?= Html::a(HTML::img('@web/layout.main\images\icn-big-listaczlonkow.png') .
+                        '<div class="btn-start-info">'.Yii::t('db/member', 'Member list').'</div>', 
+                        Url::toRoute('/member/list'), 
+                        ['class'=> 'btns-start hvr-pop']);
+            ?>
+        </div>
+
+        <div class="col-xs-12 col-md-2" id="259">
+            <?= Html::a(HTML::img('@web/layout.main\images\icn-big-drukuj.png') .
+                        '<div class="btn-start-info">'.Yii::t('app', 'Print short list').'</div>', 
+                        '', 
+                        ['class'=> 'btns-start hvr-pop', 'onclick'=>'printList(259); return false;']);
+            ?>
+        </div>
+
+        <? if (Yii::$app->user->can('Company Admin')): ?> 
+            <div class="col-xs-12 col-md-2" id="10">
+            <?= Html::a(HTML::img('@web/layout.main\images\icn-big-drukuj.png') .
+                        '<div class="btn-start-info">'.Yii::t('app', 'Print full list').'</div>', 
+                        '', 
+                        ['class'=> 'btns-start hvr-pop', 'onclick'=>'printList(10); return false;']);
+            ?>
+            </div>
+        <? endif;?>
     </div>
+    <div class='row'>
+        <div class="col-xs-12 col-md-2">
+            <?= Html::a(HTML::img('@web/layout.main\images\icn-big-listaskladek.png') .
+                        '<div class="btn-start-info">'.Yii::t('app', 'Payments').'</div>', 
+                        Url::toRoute('/balance-account/index'), 
+                        ['class'=> 'btns-start hvr-pop']);
+            ?>
+        </div>
 
-    <div class="col-xs-12 col-md-2">
-        <?= Html::a(HTML::img('@web/layout.main\images\icn-big-zalegleskladki.png') .
-                    '<div class="btn-start-info">'.Yii::t('app', 'Check outstanding contributions').'</div>', 
-                    Url::toRoute('#'), 
-                    ['class'=> 'btns-start hvr-pop']);
-        ?>
+        <div class="col-xs-12 col-md-2">
+            <?= Html::a(HTML::img('@web/layout.main\images\icn-big-drukuj.png') .
+                        '<div class="btn-start-info">'.Yii::t('db/balanceaccount', 'Print payments list').'</div>', 
+                        '#', 
+                        ['class'=> 'btns-start hvr-pop', 'onclick'=>'printList(456)']);
+            ?>
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+            <?= Html::a(HTML::img('@web/layout.main\images\icn-big-zalegleskladki.png') .
+                        '<div class="btn-start-info">'.Yii::t('app', 'Check outstanding contributions').'</div>', 
+                        Url::toRoute('/balance-account/outstanding'), 
+                        ['class'=> 'btns-start hvr-pop']);
+            ?>
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+            <?= Html::a(HTML::img('@web/layout.main\images\icn-big-drukuj.png') .
+                        '<div class="btn-start-info">'.Yii::t('db/balanceaccount', 'Print outstanding payments').'</div>', 
+                        '#', 
+                        ['class'=> 'btns-start hvr-pop', 'onclick'=>'printList(789)']);
+            ?>
+        </div>
     </div>
-
 </div>
 
 <?
@@ -95,16 +113,33 @@ $script = <<<JS
                 alert("{$popupErr}");
             }
         }
+        $("body").css("cursor", "progress");
 
         var ajax = new XMLHttpRequest();
-        $.ajax({
-            type: "GET",
-            url: '/member/print-list', 
-            data: {keylist: 'ALL', type: type},
-            success: function(result){
-                showPopup(result);
-            }
-        });  
+        if (type == '259' || type == '10')
+        {
+            $.ajax({
+                type: "GET",
+                url: '/member/print-list', 
+                data: {keylist: 'ALL', type: type},
+                success: function(result){
+                    showPopup(result);
+                    $("body").css("cursor", "default");
+                }
+            });  
+        }
+        else if (type == '456' || type == '789')
+        {
+            $.ajax({
+                type: "GET",
+                url: '/balance-account/print-list', 
+                data: {keylist: 'ALL', type: type},
+                success: function(result){
+                    showPopup(result);
+                    $("body").css("cursor", "default");
+                }
+            });  
+        }
     }
 JS;
 

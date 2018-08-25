@@ -81,7 +81,7 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'tax_id', 'contribution'], 'required'],
+            [['name', 'contribution'], 'required'],
             [['name'], 'unique'],
             [['name'], 'string', 'max' => 200],
             [['tax_id'], 'string', 'max' => 10],

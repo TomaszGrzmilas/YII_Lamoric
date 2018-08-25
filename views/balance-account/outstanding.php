@@ -7,7 +7,7 @@ use yii\helpers\Url;
 
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 
-$this->title = Yii::t('db/balanceaccount', 'Balance Accounts');
+$this->title = Yii::t('db/balanceaccount', 'Outstanding payments');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('db/member', 'Members'), 'url' => ['/member/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'pjax' => true, 
                 'toolbar' =>  [
                     ['content' => 
-                        Html::a('<i class="fa fa-retweet"></i>', ['balance-account/index'], ['class' => 'btn btn-warning', 'title' => Yii::t('app', 'Reset Grid')])
+                        Html::a('<i class="fa fa-retweet"></i>', ['balance-account/outstanding'], ['class' => 'btn btn-warning', 'title' => Yii::t('app', 'Reset Grid')])
                     ],
                     '{export}',
                 ],

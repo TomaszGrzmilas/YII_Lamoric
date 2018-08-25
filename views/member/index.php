@@ -180,6 +180,7 @@ $script = <<<JS
                 alert("{$popupErr}");
             }
         }
+        $("body").css("cursor", "progress");
 
         var keys = $('#{$item}-table').yiiGridView('getSelectedRows');
         if(keys.length <= 0){   
@@ -192,6 +193,7 @@ $script = <<<JS
                     data: {keylist: 'ALL', type: type},
                     success: function(result){
                         showPopup(result);
+                        $("body").css("cursor", "default");
                     }
                 });
             }
@@ -205,6 +207,7 @@ $script = <<<JS
                 success: function(result){
                 //  console.log(result);
                     showPopup(result);
+                    $("body").css("cursor", "default");
                 }
             });
         }
