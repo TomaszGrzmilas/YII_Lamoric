@@ -42,7 +42,7 @@ use kartik\color\ColorInput;
 
             <? //$form->field($model, 'all_day')->checkbox() ?>
 
-            <div class="col-xs-4 form-group">     
+            <div class="col-xs-6 form-group">     
                 <?
                     echo $form->field($model, 'color')->widget(ColorInput::classname(), [
                         'options' => ['placeholder' => 'Kolor wydarzenia...',
