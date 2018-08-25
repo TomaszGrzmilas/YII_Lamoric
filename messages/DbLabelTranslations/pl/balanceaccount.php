@@ -2,6 +2,6 @@
 return array(
     'ID' => 'Id',
     'Balance' => 'Stan konta',
-    'Balance Accounts' => 'Płatności'
+    'Balance Accounts' => 'Lista składek',
 );
 ?>

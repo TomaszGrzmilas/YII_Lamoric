@@ -104,21 +104,21 @@ a:hover
     padding: 0 15px;
     transition: all ease-in 0.3s;
 }
-.left-menu .left-menu-list .item a:hover
+.left-menu .left-menu-list .item a:hover, .left-menu .left-menu-list .item.active a
 {
     background-color: rgba(255,255,255,0.15);
     border-bottom: 1px solid rgba(255,255,255,0.5);
 }
-.left-menu .left-menu-list .item:hover .left-menu-sublist
+.left-menu .left-menu-list .item:hover .left-menu-sublist, .left-menu .left-menu-list .item.active .left-menu-sublist
 {
     display: block;
     background: rgba(0,0,0,0.2);
 }
-.left-menu .left-menu-list .item:hover
+.left-menu .left-menu-list .item:hover, .left-menu .left-menu-list .item.active
 {
     height: inherit;
 }
-.left-menu .left-menu-list .item:hover a
+.left-menu .left-menu-list .item:hover a, .left-menu .left-menu-list .item.active a
 {
     background-color: rgba(255,255,255,0.15);
     border-bottom: 1px solid rgba(255,255,255,0.5);
@@ -139,6 +139,7 @@ a:hover
         left: 15px;
         font-size: 21px;
         color: #fff;
+        cursor: pointer;
     }
     .left-menu .logo, .left-menu .left-menu-list
     {
@@ -193,6 +194,18 @@ a:hover
     border-bottom: 1px solid #c6c6c6;
     color: #6f6f6f;
     font-weight: 400;
+}
+@media(max-width:767px)
+{
+    .panel-client .logo
+    {
+        text-align: center;
+    }
+    .panel-client .panel-account
+    {
+        text-align: center;
+        margin: 15px 0 0;
+    }
 }
 
 .home-stats

@@ -16,6 +16,11 @@ class MainAsset extends AssetBundle
         'css/default.css'
     ];
 
+    public $js = [
+        'javascripts/lightbox.js',
+        'javascripts/scripts.js',
+    ];
+    
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
