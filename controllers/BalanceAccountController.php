@@ -74,9 +74,9 @@ class BalanceAccountController extends Controller
             $model = new BalanceAccount();
 
             if ($type == 456) {
-                $dataProvider = $model->find()->list($keys,'full')->asArray()->all();
+                $dataProvider = $model->find()->listPayments($keys,'full')->asArray()->all();
             } else if ($type == 789) {
-                $dataProvider = $model->find()->list($keys,'outstanding')->asArray()->all();
+                $dataProvider = $model->find()->listPayments($keys,'outstanding')->asArray()->all();
             } else 
             { 
                 return null;

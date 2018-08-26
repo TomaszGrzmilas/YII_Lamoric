@@ -20,7 +20,7 @@ class BalanceAccountQuery extends \yii\db\ActiveQuery
         return parent::prepare($builder);
     }
 
-    public function list($keys, $type) 
+    public function listPayments($keys, $type) 
     {
         $this->select([
             "balance_account.id",
