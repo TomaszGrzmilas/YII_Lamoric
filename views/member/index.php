@@ -15,17 +15,16 @@ $addButtonTitle = Yii::t('db/member', 'Create Member');
 
 Url::remember();
 
-$toolbar =  Html::button('<i class="fa fa-file-o"></i> '.Yii::t('app', 'Import'), ['type' => 'button', 'title' => Yii::t('app', 'Import'), 'class' => 'btn btn-danger btn-lg', 'data-toggle'=>'modal', 'data-target' => '#modal-table']) . ' '.                    
-            Html::a('<i class="fa fa-plus"></i> '. $addButtonTitle, ['member/create'], ['data-pjax' => 0, 'class' => 'btn btn-success btn-lg', 'title' => $addButtonTitle]) . ' '.
-            Html::a('<i class="fa fa-retweet"></i> '. Yii::t('app', 'Reset Grid'), ['member/index'], ['class' => 'btn btn-warning btn-lg', 'title' => Yii::t('app', 'Reset Grid')]) . ' '.
-            Html::button('<i class="fa fa-print"></i> '. Yii::t('app', 'Print short list'), ['type' => 'button', 'title' => Yii::t('app', 'Print short list'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList(259)']);
-
-if (Yii::$app->user->can('Company Admin')) 
-{   
-    $toolbar .= Html::button('<i class="fa fa-print"></i> '. Yii::t('app', 'Print full list'), ['type' => 'button', 'title' => Yii::t('app', 'Print full list'), 'class' => 'btn btn-primary btn-lg', 'onclick'=>'printList(10)']) . ' ';
-}
-
-
+$toolbar = Html::ul(
+                [
+                    Html::a($addButtonTitle . HTML::img('@web/layout.main\images\icn-big-dodajczlonka.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), ['member/create'], ['data-pjax' => 0, 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' => $addButtonTitle]),
+                    Html::a(Yii::t('app', 'Print short list') . HTML::img('@web/layout.main\images\icn-big-drukuj.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), '#', ['data-pjax' => 0, 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' => Yii::t('app', 'Print short list'), 'onclick'=>'printList(259)']),
+                    Html::a(Yii::t('app', 'Import') . HTML::img('@web/layout.main\images\icn-big-eksportuj.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), '#', ['data-pjax' => 0, 'data-toggle'=>'modal', 'data-target' => '#modal-table', 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' =>Yii::t('app', 'Import')]),
+                    Yii::$app->user->can('Company Admin') ? 
+                        Html::a(Yii::t('app', 'Print full list') . HTML::img('@web/layout.main\images\icn-big-drukuj.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), '#', ['data-pjax' => 0, 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' => Yii::t('app', 'Print full list'), 'onclick'=>'printList(10)']) 
+                    : null 
+                ],
+                ['class'=> 'title-page-nav', 'encode'=> false]);     
 ?>
 
  <?= Yii::$app->session->getFlash('error'); ?>
@@ -44,13 +43,32 @@ if (Yii::$app->user->can('Company Admin'))
                 'tableOptions' => ['style' => 'margin-bottom: 0px'],
                 'rowOptions'=> ['class' => 'skip-export'],
                 'columns' => [
+                    /*
                     [
                         'class' => 'kartik\grid\ActionColumn',
-                        'viewOptions' => ['icon'=>'<i class="ace-icon fa fa-eye fa-2x"></i>', 'title' => 'Show', 'data-toggle' => 'tooltip'],
-                        'updateOptions' => ['icon'=>'<i class="ace-icon fa fa-pencil fa-2x"></i>', 'title' => 'Edit', 'data-toggle' => 'tooltip', 'class'=>'green'],
+                        'viewOptions' => [false], // ['icon'=>'&nbsp', 'title' => 'Show', 'data-toggle' => 'tooltip', 'class' => 'pan-btn-show hvr-pop'],
+                        'updateOptions' => ['icon'=>'&nbsp', 'title' => 'Edit', 'data-toggle' => 'tooltip', 'class'=>'pan-btn-edit hvr-pop'],
                         'deleteOptions' => ['icon'=>'<i class="ace-icon fa fa-trash-o fa-2x"></i>', 'title' => 'Delete', 'data-toggle' => 'tooltip', 'class'=>'red'],
                         'headerOptions' => ['class' => 'kartik-sheet-style', 'style' => 'width:8%;'],
-                        'contentOptions'=> ['style'=>'min-width: 100px;'] // <-- right here
+                        'contentOptions'=> ['style'=>'min-width: 100px;'], // <-- right here
+                        'visibleButtons' => ['view'=>false]
+                    ],
+                    */
+                    [
+                        'class' => 'kartik\grid\ExpandRowColumn',
+                        'width' => '50px',
+                        'value' => function ($model, $key, $index, $column) {
+                            return GridView::ROW_COLLAPSED;
+                        },
+                        'detail' => function ($model, $key, $index, $column) {
+                            return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model]);
+                        },
+                        'header' => '',
+                        'headerOptions' => ['class' => ''] ,
+                        'expandOneOnly' => true,
+                        'expandIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
+                        'collapseIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
+                        //'options'=> ['icon'=>'&nbsp', 'title' => 'Show', 'data-toggle' => 'tooltip', 'class' => 'pan-btn-show hvr-pop'],
                     ],
                     [
                         'class' => 'kartik\grid\CheckboxColumn',
@@ -64,14 +82,14 @@ if (Yii::$app->user->can('Company Admin'))
                     'name',
                     'surname',
                     'pesel',
-                    'zip_code',
-                    'city',
-                    'street',
-                    'building',
-                    'local',
-                    'phone',
-                    'email:email',
-                    'company.name',
+                //    'zip_code',
+                //    'city',
+                //    'street',
+                //    'building',
+                //    'local',
+                //    'phone',
+                //    'email:email',
+                //    'company.name',
                     'workspace.name',
                     [
                         'attribute' => 'notes',
