@@ -7,6 +7,7 @@ use app\assets\main\FullCalendar;
 
 FullCalendar::register($this); 
 
+$create_button = Yii::t('db/event', 'Create Event');
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 
 $this->title = Yii::t('db/event', 'Events');
@@ -16,20 +17,29 @@ $events =  json_encode($events);
 
 Url::remember();
 ?>
-    <p>
-        <?= Html::a(Yii::t('db/event', 'Create Event'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 <div id="<?=$item?>">
 
 </div>
-
 <?
-
+/*
+ echo $this->render('_modal_form_create_', [
+    'model' => $model,
+    'title' => Yii::t('app', 'Import')
+    ]);
+*/
 $this->registerJs(
     " 
         $('#".$item."').fullCalendar({
+            customButtons: {
+                myCustomButton: {
+                  text: '{$create_button}',
+                  click: function() {
+                    window.location.href = '/event/create';
+                  }
+                }
+              },
             header: {
-                left: 'prev,next today',
+                left: 'prev,next today myCustomButton',
                 center: 'title',
                 right: 'month,listMonth'
               },

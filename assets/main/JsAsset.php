@@ -9,7 +9,7 @@ class JsAsset extends AssetBundle
     public $baseUrl = '@web/layout.main';
 
     public $js = [
-        'javascripts/jquery-2.1.4.min.js',
+     //   'javascripts/jquery-2.1.4.min.js',
         'javascripts/bootstrap.min.js',
     ];
 

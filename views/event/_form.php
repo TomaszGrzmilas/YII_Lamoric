@@ -8,10 +8,10 @@ use kartik\color\ColorInput;
 
 ?>
 <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8">
+    <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="event-form">
 
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin(['action' =>'/event/create', 'method' => 'post']); ?>
 
             <div class="col-xs-12 form-group">  
                 <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>

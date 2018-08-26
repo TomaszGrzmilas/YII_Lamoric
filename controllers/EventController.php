@@ -40,6 +40,7 @@ class EventController extends Controller
 
         return $this->render('index', [
             'events' => $array,
+            'model' => $model
         ]);
     }
 

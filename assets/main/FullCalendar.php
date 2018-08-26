@@ -10,15 +10,15 @@ class FullCalendar extends AssetBundle
 
     public $css = [
         'fullcalendar.min.css',
-     //   'fullcalendar.print.min.css',
+        ['fullcalendar.print.min.css', 'media' => 'print'],
     ];
 
     public $js = [
         'lib/moment.min.js',
-        'lib/jquery.min.js',
+        'lib/bootstrap.min.js',
+        
         'fullcalendar.min.js',
-        'gcal.min.js',
-       //'jquery-ui.min',
+       // 'gcal.min.js', google calendar
         'locale-all.js'
     ];  
     
