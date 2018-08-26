@@ -9,25 +9,25 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-/**
- * Main application asset bundle.
- *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
 class LoginAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $basePath = '@webroot/layout.main';
+    public $baseUrl = '@web/layout.main';
+
     public $css = [
-        'css/site.css',
-        'css/login.css',
+        'css/bootstrap.min.css',
+        'css/hover.css',
+        'css/default.css',
+        'css/lightbox.css',
     ];
+
     public $js = [
-      
+        'javascripts/_jquery-1.11.0.min.js',
+        'javascripts/bootstrap.min.js',
+        'javascripts/lightbox.js',
+        'javascripts/scripts.js',
+
     ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];
+
+
 }

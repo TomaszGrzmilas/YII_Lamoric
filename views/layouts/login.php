@@ -1,8 +1,5 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use app\widgets\Alert;
 use yii\helpers\Html;
 use app\assets\LoginAsset;
@@ -22,9 +19,9 @@ LoginAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-    <div class="container">
+   
         <?= $content ?>
-    </div>
+    
 </div>
 <?php $this->endBody() ?>
 </body>
