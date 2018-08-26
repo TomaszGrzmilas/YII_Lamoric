@@ -1,20 +1,16 @@
 <?php
 
 use yii\helpers\Html;
+use app\modules\docmgm\DocmgmModule;
 
-/* @var $this yii\web\View */
-/* @var $model app\modules\docmgm\models\Document */
-
-$this->title = Yii::t('db/docmgm', 'Update Document: ' . $model->title, [
+$this->title = DocmgmModule::t('db/document', 'Update Document: ' . $model->title, [
     'nameAttribute' => '' . $model->title,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('db/docmgm', 'Documents'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/document', 'Documents'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->doc_id]];
-$this->params['breadcrumbs'][] = Yii::t('db/docmgm', 'Update');
+$this->params['breadcrumbs'][] = DocmgmModule::t('db/document', 'Update');
 ?>
 <div class="document-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

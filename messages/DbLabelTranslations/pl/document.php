@@ -6,6 +6,7 @@ return array(
     'Text'=>'Opis',
     'Tag'=>'Słowa kluczowe',
     'File'=>'Plik',
-    'Category ID'=>'Kategoria'
+    'Category ID'=>'Kategoria',
+    'Update' => 'Edycja',
 );
 ?>

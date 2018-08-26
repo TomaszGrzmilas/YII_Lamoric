@@ -30,7 +30,7 @@ Url::remember();
                 'attributes' => [
                     'doc_id',
                     'title',
-                    'text:ntext',
+                    'text:raw',
                     'tag',
                     [
                         'attribute' => 'file',

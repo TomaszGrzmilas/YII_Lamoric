@@ -52,7 +52,7 @@ class Document extends \yii\db\ActiveRecord
                 'class' => LogBehavior::className(),
                 'indexColumn' => 'doc_id',
                 'objName' => 'document'
-            ]
+            ],
         ];
     }
 

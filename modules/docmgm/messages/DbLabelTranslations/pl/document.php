@@ -9,6 +9,7 @@ return array(
     'File'=>'Plik',
     'Category ID'=>'Kategoria',
     'Articles' => 'Artykuły',
-    'Law' => 'Prawo'
+    'Law' => 'Prawo',
+    'Update' => 'Edycja'
 );
 ?>

@@ -137,6 +137,20 @@ $config = [
     ],
     'controllerMap' => [
         'file' => 'mdm\\upload\\FileController', // use to show or download file
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\Controller',
+            'access' => ['@'], 
+            'disabledCommands' => ['netmount'], //disabling unnecessary commands https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#commands
+            'roots' => [
+                [
+                    'baseUrl'=>'@web',
+                    'basePath'=>'@webroot',
+                    'path' => 'media/upload/documents/article_files',
+                    'name' => 'Pliki'
+                ],
+            ],
+           
+        ]
     ],
     'modules' => [
         'docmgm' => [

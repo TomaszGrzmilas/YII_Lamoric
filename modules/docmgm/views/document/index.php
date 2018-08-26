@@ -28,7 +28,13 @@ Url::remember();
                 'filterModel' => $searchModel,
                 'columns' =>  [
                     'title',
-                    'text',
+                    [
+                        'attribute' => 'text',
+                        'value'=> function ($model) {
+                            return substr($model->text, 0, 50);
+                        },
+                        'format' => 'raw'
+                    ],
                     'tag',
                     [
                         'attribute' => 'file',
