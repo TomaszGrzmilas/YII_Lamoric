@@ -55,22 +55,6 @@ $toolbar = Html::ul(
                     ],
                     */
                     [
-                        'class' => 'kartik\grid\ExpandRowColumn',
-                        'width' => '50px',
-                        'value' => function ($model, $key, $index, $column) {
-                            return GridView::ROW_COLLAPSED;
-                        },
-                        'detail' => function ($model, $key, $index, $column) {
-                            return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model]);
-                        },
-                        'header' => '',
-                        'headerOptions' => ['class' => ''] ,
-                        'expandOneOnly' => true,
-                        'expandIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
-                        'collapseIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
-                        //'options'=> ['icon'=>'&nbsp', 'title' => 'Show', 'data-toggle' => 'tooltip', 'class' => 'pan-btn-show hvr-pop'],
-                    ],
-                    [
                         'class' => 'kartik\grid\CheckboxColumn',
                         'headerOptions' => ['class' => 'kartik-sheet-style skip-export'],
                         'contentOptions' => ['class' => 'skip-export'],
@@ -97,6 +81,22 @@ $toolbar = Html::ul(
                         'contentOptions' => ['class' => 'skip-export'],
                     ],
                     'contribution:currency',
+                    [
+                        'class' => 'kartik\grid\ExpandRowColumn',
+                        'width' => '50px',
+                        'value' => function ($model, $key, $index, $column) {
+                            return GridView::ROW_COLLAPSED;
+                        },
+                        'detail' => function ($model, $key, $index, $column) {
+                            return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model]);
+                        },
+                        'header' => '',
+                        'headerOptions' => ['class' => ''] ,
+                        'expandOneOnly' => true,
+                        'expandIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
+                        'collapseIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
+                        //'options'=> ['icon'=>'&nbsp', 'title' => 'Show', 'data-toggle' => 'tooltip', 'class' => 'pan-btn-show hvr-pop'],
+                    ],
                 ],
                 'containerOptions' => ['style' => 'overflow: auto;'], 
                 'headerRowOptions' => ['class' => 'kartik-sheet-style'],
