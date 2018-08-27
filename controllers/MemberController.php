@@ -125,8 +125,15 @@ class MemberController extends Controller
     {
         $model = new Member();
 
+        $addnext = Yii::$app->request->get('addnext');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($addnext == 'true') {
+                $model = new Member();
+            } 
+            else {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [

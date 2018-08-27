@@ -7,215 +7,263 @@ use yii\helpers\Url;
 ?>
 
 <div class="row">
-    <div class="col-xs-8">
-        <div class="member-form">
+    <div class="col-xs-12 col-md-8 member-form">
+        <?php $form = ActiveForm::begin([
+            'options'=> ['class'=>'dodajczlonka']
+            ]); 
+        ?>
 
-                <?php $form = ActiveForm::begin([
-                    'layout' => 'horizontal',
-                    'fieldConfig' => [
-                        'horizontalCssClasses' => [
-                            'label' => 'col-xs-3',
-                            'offset' => 'col-sm-offset-4',
-                            'wrapper' => 'col-xs-9 inputGroupContainer',
-                            'error' => '',
-                            'hint' => '',
-                        ],
-                    ],
-                    'options'=> ['class'=>'form-horizontal',
-                                'style' => 'padding-top:20px;']]); ?>
- <div class="col-xs-6">
-                <?= $form->field($model, 'name', [
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <?= $form->field($model, 'name',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('name'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
+                ])->textInput(['maxlength' => true]) 
+                ?>
+            </div>
 
+            <div class="col-xs-12 col-md-8">
                 <?= $form->field($model, 'surname',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('surname'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
+                ])->textInput(['maxlength' => true]) 
+                ?>
+            </div>
+        </div>
 
-                <?= $form->field($model, 'pesel',  [
-                    'inputOptions' => [
-                        'placeholder' => $model->getAttributeLabel('pesel'),
-                    ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
-                                    {endWrapper}",
-                ])->textInput() ?>
-
-                <?= $form->field($model, 'zip_code',  [
-                    'inputOptions' => [
-                        'placeholder' => $model->getAttributeLabel('zip_code'),
-                    ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
-                                    {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
-
-                <?= $form->field($model, 'city',  [
-                    'inputOptions' => [
-                        'placeholder' => $model->getAttributeLabel('city'),
-                    ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
-                                    {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
-
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
                 <?= $form->field($model, 'street',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('street'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
+                ])->textInput(['maxlength' => true]) 
+            ?>
+            </div>
 
+            <div class="col-xs-12 col-md-2">
                 <?= $form->field($model, 'building',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('building'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
+                ])->textInput(['maxlength' => true]) 
+                ?>
+            </div>
 
+            <div class="col-xs-12 col-md-2">
                 <?= $form->field($model, 'local',  [
-                    'inputOptions' => [
-                        'placeholder' => $model->getAttributeLabel('local'),
-                    ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-home\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
+                        'inputOptions' => [
+                            'placeholder' => $model->getAttributeLabel('local'),
+                            'class' => 'default-input',
+                        ],
+                        'options'=>['class'=>''],
+                        'template' => "{beginWrapper}\n
+                                        {input}\n{hint}\n
                                         {error}\n
-                                    {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
-    </div>
-  <div class="col-xs-6">
-                <?= $form->field($model, 'phone',  [
+                                        {endWrapper}",
+                    ])->textInput(['maxlength' => true]) 
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <?= $form->field($model, 'zip_code',  [
+                        'inputOptions' => [
+                            'placeholder' => $model->getAttributeLabel('zip_code'),
+                            'class' => 'default-input',
+                        ],
+                        'options'=>['class'=>''],
+                        'template' => "{beginWrapper}\n
+                                        {input}\n{hint}\n
+                                        {error}\n
+                                        {endWrapper}",
+                    ])->textInput(['maxlength' => true]) 
+                ?>
+            </div>
+
+            <div class="col-xs-12 col-md-8">
+                <?= $form->field($model, 'city',  [
+                        'inputOptions' => [
+                            'placeholder' => $model->getAttributeLabel('city'),
+                            'class' => 'default-input',
+                        ],
+                        'options'=>['class'=>''],
+                        'template' => "{beginWrapper}\n
+                                        {input}\n{hint}\n
+                                        {error}\n
+                                        {endWrapper}",
+                    ])->textInput(['maxlength' => true]) 
+                ?>
+            </div>
+        </div>
+            
+        <div class="row">
+            <br />
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <?= $form->field($model, 'pesel',  [
+                        'inputOptions' => [
+                            'placeholder' => $model->getAttributeLabel('pesel'),
+                            'class' => 'default-input',
+                        ],
+                        'options'=>['class'=>''],
+                        'template' => "{beginWrapper}\n
+                                        {input}\n{hint}\n
+                                        {error}\n
+                                        {endWrapper}",
+                    ])->textInput(['maxlength' => true]) 
+                ?>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <?= $form->field($model, 'phone',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('phone'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-earphone\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->textInput() ?>
+                ])->textInput(['maxlength' => true]) 
+            ?>
+        </div>
 
-                <?= $form->field($model, 'email',  [
+        <div class="col-xs-12 col-md-8">
+            <?= $form->field($model, 'email',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('email'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
+                ])->textInput(['maxlength' => true]) 
+            ?>
+        </div>
+    </div>
 
-                <?= $form->field($model, 'company_id',  [
+    <div class="row">
+        <br />
+    </div>
+            
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <?= $form->field($model, 'company_id',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('company_id'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-list\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->dropDownList($model->CompanyList, ['prompt' => Yii::t('db/company', 'Chose company')]) ?>
+                ])->dropDownList($model->CompanyList, ['prompt' => Yii::t('db/company', 'Chose company')])
+            ?>
+        </div>
 
-                <?= $form->field($model, 'workplace_id', [
+        <div class="col-xs-12 col-md-6">
+            <?= $form->field($model, 'workplace_id',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('workplace_id'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-list\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->dropDownList($model->WorkplaceList, ['prompt' => Yii::t('db/workplace', 'Chose workplace'),]) ?>
+                ])->dropDownList($model->WorkplaceList, ['prompt' => Yii::t('db/workplace', 'Chose workplace'),]) 
+            ?>
+        </div>
 
-                <?= $form->field($model, 'notes', [
-                    'inputOptions' => [
-                        'placeholder' => $model->getAttributeLabel('notes'),
-                    ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-pencil\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
-                                    {endWrapper}",
-                ])->textarea(['maxlength' => true, 'rows' => 7, 'style'=>'resize: none;']) ?>
-
-                <?= $form->field($model, 'contribution',  [
+        <div class="col-xs-12 col-md-2">
+            <?= $form->field($model, 'contribution',  [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('contribution'),
+                        'class' => 'default-input',
                     ],
-                    'template' => "{label}\n{beginWrapper}\n
-                                        <div class=\"input-group\">\n
-                                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-usd\"></i></span>
-                                            {input}\n{hint}\n
-                                        </div>\n
-                                        {error}\n
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
                                     {endWrapper}",
-                ])->textInput(['maxlength' => true]) ?>
-</div>
+                ])->textInput(['maxlength' => true]) 
+            ?>
+        </div>
+    </div>
 
-                <div class="form-group col-xs-12">
-                        <div class="col-xs-6">&nbsp;</div>
-                            <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info btn-lg']) ?>        
-                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success btn-lg']) ?>
-                        </div>
-                    </div>
-                </div>
-                <?php ActiveForm::end(); ?>
+    <div class="row">
+        <br />
+    </div>       
+
+    <div class="row">
+        <div class="col-xs-12">
+            <?= $form->field($model, 'notes',  [
+                    'inputOptions' => [
+                        'placeholder' => $model->getAttributeLabel('notes'),
+                        'class' => 'default-textarea',
+                    ],
+                    'options'=>['class'=>''],
+                    'template' => "{beginWrapper}\n
+                                    {input}\n{hint}\n
+                                    {error}\n
+                                    {endWrapper}",
+                ])->textarea(['maxlength' => true, 'rows' => 7, 'style'=>'resize: none;'])
+            ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <br />
+    </div>      
+
+    <div class="row">
+        <div class="col-xs-6">
+            <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn-gray hvr-push']) ?>        
+        </div>
+        <div class="col-xs-6 text-right">
+            <?= Html::a(Yii::t('app', 'Save and add next'), Url::toRoute(['/member/create', 'addnext' => 'value']), ['data-method' => 'post', 'class' => 'btn-unactive hvr-push']) ?> 
+            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn-red hvr-push']) ?>
+        </div>
+    </div>       
+    
+    <?php ActiveForm::end(); ?>
 
     </div>
 </div>
