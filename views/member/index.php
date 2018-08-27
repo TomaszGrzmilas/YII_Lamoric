@@ -83,7 +83,7 @@ $toolbar = Html::ul(
                     'contribution:currency',
                     [
                         'class' => 'kartik\grid\ExpandRowColumn',
-                        'width' => '50px',
+                   //     'width' => '50px',
                         'value' => function ($model, $key, $index, $column) {
                             return GridView::ROW_COLLAPSED;
                         },
@@ -91,7 +91,7 @@ $toolbar = Html::ul(
                             return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model]);
                         },
                         'header' => '',
-                        'headerOptions' => ['class' => ''] ,
+                       // 'headerOptions' => ['class' => ''] ,
                         'expandOneOnly' => true,
                         'expandIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
                         'collapseIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
@@ -111,7 +111,7 @@ $toolbar = Html::ul(
                     'showConfirmAlert' => false,
                     'header' => '',
                 ],
-                'responsive' => true,
+                'responsive' => false,
                 'panel' => [
                     'type' => GridView::TYPE_DANGER,
                     'heading' => $this->title,
