@@ -258,7 +258,7 @@ use yii\helpers\Url;
             <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn-gray hvr-push']) ?>        
         </div>
         <div class="col-xs-6 text-right">
-            <?= Html::a(Yii::t('app', 'Save and add next'), Url::toRoute(['/member/create', 'addnext' => 'value']), ['data-method' => 'post', 'class' => 'btn-unactive hvr-push']) ?> 
+            <?= Html::a(Yii::t('app', 'Save and add next'), Url::toRoute(['/member/create', 'addnext' => 'true']), ['data-method' => 'post', 'class' => 'btn-unactive hvr-push']) ?> 
             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn-red hvr-push']) ?>
         </div>
     </div>       
