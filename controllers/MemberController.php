@@ -116,7 +116,13 @@ class MemberController extends Controller
             ]);
         
             $pdf->render();
-            EventHandler::AfterPrint('trace\member\report', 'Lista Członków');
+
+            if ($type == 10) {
+                EventHandler::AfterPrint('trace\member\report', 'Pełna lista członków');
+            } else if ($type == 259) {
+                EventHandler::AfterPrint('trace\member\report', 'Skrócona lista członków');
+            } else 
+            
             return \yii\helpers\Url::home(true) . $file;
         }
     }

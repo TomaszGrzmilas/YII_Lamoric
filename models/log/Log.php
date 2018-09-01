@@ -16,30 +16,22 @@ use Yii;
  */
 class Log extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
-        return '{{%log}}';
+        return '{{%log_pub}}';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
-            [['level'], 'integer'],
-            [['log_time'], 'number'],
+            [['id'], 'integer'],
             [['prefix', 'message'], 'string'],
-            [['category'], 'string', 'max' => 255],
+            [['category','log_time'], 'string', 'max' => 255],
+            [['user'],'safe'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [

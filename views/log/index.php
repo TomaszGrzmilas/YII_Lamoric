@@ -23,14 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'tableOptions' => ['style' => 'margin-bottom: 0px'],
                 'columns' =>  [
-                    'category',
-                    [
-                        'attribute' => 'log_time',
-                        'format' => ['date', 'php:Y-m-d H:m:i'],
-                        //'filterType'=>GridView::FILTER_DATETIME,
-                    ],
-                    'prefix',
                     'message',
+                    'prefix',
+                    'log_time',
                 ],
                 'containerOptions' => ['style' => 'overflow: auto'], 
                 'headerRowOptions' => ['class' => 'kartik-sheet-style'],

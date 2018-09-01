@@ -17,10 +17,8 @@ class LogSearch extends Log
     public function rules()
     {
         return [
-            [['id', 'level'], 'integer'],
-            [['category', 'prefix', 'message'], 'safe'],
-            [['log_time'], 'date'],
-            
+            [['id'], 'integer'],
+            [['user', 'prefix', 'message','log_time'], 'safe'],
         ];
     }
 
@@ -30,13 +28,6 @@ class LogSearch extends Log
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = Log::find();
@@ -55,16 +46,9 @@ class LogSearch extends Log
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'level' => $this->level,
-            'log_time' => $this->log_time //DateTime::createFromFormat('dd.MM.yyyy', $this->log_time)->format('U.u'),
-        ]);
-        //17 cze 2018, 19:26:34
-        $query->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'prefix', $this->prefix])
-            ->andFilterWhere(['like', 'message', $this->message]);
+        $query->andFilterWhere(['like', 'prefix', $this->prefix])
+            ->andFilterWhere(['like', 'message', $this->message])
+            ->andFilterWhere(['like', 'log_time', $this->log_time]);
 
         $sort = $dataProvider->getSort();
 
