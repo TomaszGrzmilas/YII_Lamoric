@@ -10,6 +10,7 @@ use app\components\LogBehavior;
 use app\models\workplace\Workplace;
 use app\models\company\Company;
 use app\models\balance_account\BalanceAccount;
+use app\modules\docmgm\models\member_doc\MemberDoc;
 
 /**
  * This is the model class for table "{{%member}}".
@@ -181,7 +182,11 @@ class Member extends \yii\db\ActiveRecord
     {
         return $this->hasOne(BalanceAccount::className(), ['id' => 'account_id']);
     }
- 
+    public function getMemberDocs()
+    {
+        return MemberDoc::find()->asArray()->all();
+    }
+
     public static function find()
     {
         return new MemberQuery(get_called_class());

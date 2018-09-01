@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 
+
+$memberDocs = $model->memberdocs;
+
 ?>
 
 <div class="list-row-extended open">
@@ -95,15 +98,24 @@ use yii\helpers\Url;
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-6">
-                <div class="list-cell-more-box">
-                    <h3>Dokumenty</h3>
-                    <div class="list-cell-more-cont">
-                        <div class="list-cell-more-cont-label">[20/08/2018] [pdf]</div>
-                        <div class="list-cell-more-cont-value"><a href="#" title="Otwórz plik" class="hvr-pop">umowa_czlonkowstwa_skan.pdf</a></div>
+            <? if(is_array($memberDocs)) : ?>
+                <div class="col-xs-12 col-md-6">
+                    <div class="list-cell-more-box">
+                    
+                    <h3><?= Yii::t('app','Documents') ?></h3>
+                        <? foreach($memberDocs as $doc) : ?>
+                            <div class="list-cell-more-cont">
+                                <div class="list-cell-more-cont-value">
+                                    <?= Html::a($doc['title'], 
+                                        Url::to(['/docmgm/member-doc/create-pdf','id'=> $doc['member_doc_id']]), 
+                                        ['class'=> 'hvr-pop', 'title'=>'Otwórz plik']); 
+                                    ?>
+                                </div>
+                            </div>
+                        <? endforeach ?>
                     </div>
                 </div>
-            </div>
+            <? endif ?>
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-8">

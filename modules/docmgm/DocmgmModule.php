@@ -30,6 +30,7 @@ class DocmgmModule extends \yii\base\Module
             'fileMap' => [
                 'modules/docmgm/db/document' => 'document.php',
                 'modules/docmgm/db/doccategory' => 'doccategory.php',
+                'modules/docmgm/db/memberdoc' => 'memberdoc.php',
             ],
         ];
     }

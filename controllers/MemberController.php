@@ -19,9 +19,6 @@ use app\components\CustomUtil;
 use kartik\mpdf\Pdf;
 use app\components\EventHandler;
 
-/**
- * MemberController implements the CRUD actions for Member model.
- */
 class MemberController extends Controller
 {
     public function behaviors()

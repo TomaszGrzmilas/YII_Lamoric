@@ -2,22 +2,18 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\Url;
-use yii\web\View;
-use app\models\category\Category;
 ?>
 
-<div class="row">
-    <div class="col-xs-12">
-        <div class="document-form">
+<div class="member-doc-form">
 
-            <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true])  ?>
+    <?= $form->field($model, 'title')->textInput() ?>
 
-            <?= $form->field($model, 'text')->widget(\dominus77\tinymce\TinyMce::className(), [    
+    
+    <?= $form->field($model, 'text')->widget(\dominus77\tinymce\TinyMce::className(), [    
     'options' => [
-        'rows' => 20,
+        'rows' => 12,
         'placeholder' => true,
     ], 
     'language' => 'pl',
@@ -50,30 +46,13 @@ use app\models\category\Category;
     ], 
 ]);?>
 
-            <?= $form->field($model, 'tag')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'category_id')->widget(kartik\tree\TreeViewInput::classname(),
-            [
-            'name' => 'category_id',
-            'value' => 'true', 
-            'model' => $model,
-            'query' => Category::find()->addOrderBy('root, lft'),
-            'rootOptions' => ['label'=>'Start'],
-            'fontAwesome' => true,
-            'asDropdown' => false,
-            'multiple' => false,
-            'options' => ['disabled' => false]
-            ]);
-            ?>
 
-            <div class="form-group">
-                <?= Html::a(Yii::t('app', 'Cancel'), Url::previous(), ['class' => 'btn btn-info btn-lg']) ?>            
-                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success btn-lg']) ?>
-            </div>
-
-            <?php ActiveForm::end(); ?>
-        </div>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('db/memberdoc', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
+
+    <?php ActiveForm::end(); ?>
+
 </div>

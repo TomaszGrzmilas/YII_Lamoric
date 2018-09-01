@@ -9,11 +9,7 @@ use app\modules\docmgm\models\DocCategory;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
-/**
- * DocumentController implements the CRUD actions for Document model.
- */
 class DocumentController extends Controller
 {
 
@@ -32,13 +28,8 @@ class DocumentController extends Controller
                 ],
             ],
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
-                    [
-                        'actions' => ['login','error'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
                     [
                         'allow' => true,
                         'roles' => ['@'],
