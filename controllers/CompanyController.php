@@ -102,6 +102,8 @@ class CompanyController extends Controller
             return $this->redirect(['view', 'id' => $model->company_id]);
         }
 
+        $ala =  $model->errors;
+
         return $this->render('update', [
             'model' => $model,
         ]);

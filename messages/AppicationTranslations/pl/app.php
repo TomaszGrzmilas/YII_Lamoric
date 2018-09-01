@@ -47,6 +47,9 @@ return array(
 	'Documents' => 'Dokumenty',
 	'Details' => 'Szczegóły',
 	'Check outstanding contributions' => 'Sprawdź zaległe składki',
-	'Save and add next' => 'Zapisz i dodaj kolejnego'
+	'Save and add next' => 'Zapisz i dodaj kolejnego',
+	'Contact' => 'Kontakt',
+	'Personal data'=>'Dane personalne',
+	'Membership' => 'Członkostwo'
 );
 ?>

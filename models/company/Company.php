@@ -85,7 +85,7 @@ class Company extends \yii\db\ActiveRecord
             [['name'], 'unique'],
             [['name'], 'string', 'max' => 200],
             [['tax_id'], 'string', 'max' => 10],
-            [['account_id'], 'integer'],
+            [['account_id'], 'safe'],
             [['contribution'], 'match', 'pattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/', 'message' => 'Wartość musi być liczbą'],
             [['zip_code'], 'string', 'max' => 6], 
             [['city', 'street'], 'string', 'max' => 100], 
@@ -94,10 +94,7 @@ class Company extends \yii\db\ActiveRecord
             
             [['importfile'], 'file', 'skipOnEmpty' => true, 'extensions'=> 'csv'],
             [['logo'], 'exist', 'skipOnError' => true, 'skipOnEmpty'=>true, 'targetClass' => UploadedFile::className(), 'targetAttribute' => ['logo' => 'id']],
-            [['account_id'], 'exist', 'skipOnError' => true, 'targetClass' => BalanceAccount::className(), 'targetAttribute' => ['account_id' => 'id']],
-
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+         //   [['account_id'], 'exist', 'skipOnError' => true, 'skipOnEmpty'=>true, 'targetClass' => BalanceAccount::className(), 'targetAttribute' => ['account_id' => 'id']],
         ];
     }
 
@@ -148,6 +145,21 @@ class Company extends \yii\db\ActiveRecord
         $this->contribution = str_replace(',','.',$this->contribution);
         return parent::beforeSave($insert);
     }
+
+    public function getAddressLine1() 
+    { 
+        $return = $this->street . ' ' . $this->building;
+        if ($this->local != ''){
+            $return .= '/' .  $this->local;
+        }
+        return $return;
+    } 
+
+    public function getAddressLine2() 
+    { 
+        $return = $this->zip_code . ' ' . $this->city;
+        return $return;
+    } 
 
     public function getAuthUsers()
     {

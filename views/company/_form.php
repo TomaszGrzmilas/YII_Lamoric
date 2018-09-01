@@ -26,6 +26,7 @@ $img = isset($model->uploadedFile->img) ? $model->uploadedFile->img : '<img src=
                     'options'=> ['class'=>'form-horizontal',
                                 'style' => 'padding-top:20px;']]); ?>
  <div class="col-xs-6">
+
                 <?= $form->field($model, 'name', [
                     'inputOptions' => [
                         'placeholder' => $model->getAttributeLabel('name'),

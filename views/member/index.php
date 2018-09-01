@@ -74,12 +74,12 @@ $toolbar = Html::ul(
                 //    'phone',
                 //    'email:email',
                 //    'company.name',
-                    'workspace.name',
-                    [
-                        'attribute' => 'notes',
-                        'headerOptions' => ['class' => 'skip-export'],
-                        'contentOptions' => ['class' => 'skip-export'],
-                    ],
+               //     'workspace.name',
+              //      [
+               //         'attribute' => 'notes',
+              //          'headerOptions' => ['class' => 'skip-export'],
+              //          'contentOptions' => ['class' => 'skip-export'],
+              //      ],
                     'contribution:currency',
                     [
                         'class' => 'kartik\grid\ExpandRowColumn',

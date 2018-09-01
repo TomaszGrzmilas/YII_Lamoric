@@ -142,6 +142,21 @@ class Member extends \yii\db\ActiveRecord
         return $this->name .' '. $this->surname;
     } 
 
+    public function getAddressLine1() 
+    { 
+        $return = $this->street . ' ' . $this->building;
+        if ($this->local != ''){
+            $return .= '/' .  $this->local;
+        }
+        return $return;
+    } 
+
+    public function getAddressLine2() 
+    { 
+        $return = $this->zip_code . ' ' . $this->city;
+        return $return;
+    } 
+
     public function getWorkspace() 
     { 
         return $this->hasOne(Workplace::className(), ['company_id' => 'company_id', 'workplace_id' => 'workplace_id']); 

@@ -12,7 +12,7 @@ use yii\helpers\Url;
             <div class="col-xs-12 col-md-3">
                 <div class="list-cell-more-box">
 
-                    <h3>Dane personalne</h3>
+                    <h3><?= Yii::t('app','Personal data') ?> </h3>
 
                     <div class="list-cell-more-cont">
                         <div class="list-cell-more-cont-label"><?= $model->getAttributeLabel('name') ?></div>
@@ -34,7 +34,7 @@ use yii\helpers\Url;
             <div class="col-xs-12 col-md-3">
                 <div class="list-cell-more-box">
 
-                    <h3>Kontakt</h3>
+                    <h3><?= Yii::t('app','Contact') ?></h3>
 
                     <div class="list-cell-more-cont">
                         <div class="list-cell-more-cont-label"><?= $model->getAttributeLabel('phone') ?></div>
@@ -48,12 +48,12 @@ use yii\helpers\Url;
 
                     <div class="list-cell-more-cont">
                         <div class="list-cell-more-cont-label">Adres</div>
-                        <div class="list-cell-more-cont-value"><?= $model->street . ' ' . $model->building . $model->local ?></div>
+                        <div class="list-cell-more-cont-value"><?= $model->AddressLine1 ?></div>
                     </div>
 
                     <div class="list-cell-more-cont">
                         <div class="list-cell-more-cont-label">Poczta</div>
-                        <div class="list-cell-more-cont-value"><?= $model->zip_code . ' ' . $model->city ?></div>
+                        <div class="list-cell-more-cont-value"><?= $model->AddressLine2 ?></div>
                     </div>
                 </div>
             </div>
@@ -61,48 +61,43 @@ use yii\helpers\Url;
             <div class="col-xs-12 col-md-6">
                 <div class="list-cell-more-box">
 
-                    <h3>Członkostwo</h3>
+                    <h3><?= Yii::t('app','Membership') ?></h3>
 
                     <div class="list-cell-more-cont">
-                        <div class="list-cell-more-cont-label"><?= $model->getAttributeLabel('company') ?></div>
+                        <div class="list-cell-more-cont-label"><?= Yii::t('db/company','Company') ?></div>
                         <div class="list-cell-more-cont-value"><?= $model->company->name ?></div>
                     </div>
 
                     <div class="list-cell-more-cont">
-                        <div class="list-cell-more-cont-label">Miejsce pracy</div>
-                        <div class="list-cell-more-cont-value">TESCO Katowice, Chorzowska 107, 40-001 Katowice</div>
+                        <div class="list-cell-more-cont-label"><?= Yii::t('db/workplace','Workplace') ?></div>
+                        <div class="list-cell-more-cont-value"><?= $model->company->AddressLine1 . ', ' .  $model->company->AddressLine2 ?></div>
                     </div>
                     <div class="list-cell-more-cont">
-                        <div class="list-cell-more-cont-label">Składki</div>
-                        <div class="list-cell-more-cont-value">199,90zł <span class="more-cont-last-pay">(ost. wpłata 1/9/2018)</span></div>
+                        <div class="list-cell-more-cont-label"><?= $model->getAttributeLabel('contribution') ?></div>
+                        <div class="list-cell-more-cont-value"><?= $model->company->contribution . ' zł' ?> </div>
                     </div>
                     <div class="list-cell-more-cont">
                         <div class="list-cell-more-cont-label">Saldo</div>
-                        <div class="list-cell-more-cont-value">-15,34zł</div>
+                        <div class="list-cell-more-cont-value">----</div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
+
             <div class="col-xs-12 col-md-6">
                 <div class="list-cell-more-box">
-                    <h3>Uwagi</h3>
+                    <h3> <?= $model->getAttributeLabel('notes') ?></h3>
                     <div class="list-cell-more-cont">
-                        <div class="list-cell-more-cont-area">Organizacja</div>
+                        <div class="list-cell-more-cont-area"><?= $model->notes ?></div>
                     </div>
                 </div>
             </div>
+
             <div class="col-xs-12 col-md-6">
                 <div class="list-cell-more-box">
                     <h3>Dokumenty</h3>
-                    <div class="list-cell-more-cont">
-                        <div class="list-cell-more-cont-label">[20/08/2018] [pdf]</div>
-                        <div class="list-cell-more-cont-value"><a href="#" title="Otwórz plik" class="hvr-pop">umowa_czlonkowstwa_skan.pdf</a></div>
-                    </div>
-                    <div class="list-cell-more-cont">
-                        <div class="list-cell-more-cont-label">[20/08/2018] [pdf]</div>
-                        <div class="list-cell-more-cont-value"><a href="#" title="Otwórz plik" class="hvr-pop">umowa_czlonkowstwa_skan.pdf</a></div>
-                    </div>
                     <div class="list-cell-more-cont">
                         <div class="list-cell-more-cont-label">[20/08/2018] [pdf]</div>
                         <div class="list-cell-more-cont-value"><a href="#" title="Otwórz plik" class="hvr-pop">umowa_czlonkowstwa_skan.pdf</a></div>
