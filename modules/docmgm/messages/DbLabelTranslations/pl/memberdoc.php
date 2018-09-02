@@ -4,7 +4,8 @@ return array(
     'Create Document'=>'Dodaj nowy dokument',
     'Member Doc ID'=>'Id dok.',
     'Title'=>'Tytuł',
-    'Text'=>'Tekst dokumentu'
+    'Text'=>'Tekst dokumentu',
+    'Update' => 'Edycja'
 
 
 );

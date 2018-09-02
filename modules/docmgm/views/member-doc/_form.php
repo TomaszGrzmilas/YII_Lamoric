@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
+
 ?>
 
 <div class="member-doc-form">
@@ -11,7 +13,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput() ?>
 
     
-    <?= $form->field($model, 'text')->widget(\dominus77\tinymce\TinyMce::className(), [    
+    <?=
+   
+    
+    
+    
+    /* $form->field($model, 'text')->widget(\dominus77\tinymce\TinyMce::className(), [    
     'options' => [
         'rows' => 12,
         'placeholder' => true,
@@ -34,9 +41,9 @@ use yii\widgets\ActiveForm;
         'toolbar2' => "preview media | forecolor backcolor emoticons fontawesome",
         'image_advtab' => true,   
         'content_css' => [
-            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-            '//www.tinymce.com/css/codepen.min.css',
-            '//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+          //  '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+         //   '//www.tinymce.com/css/codepen.min.css',
+          //  '//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
         ]
         ],
     'fileManager' => [
@@ -44,7 +51,9 @@ use yii\widgets\ActiveForm;
       //  'language' => '',
    //     'filter'   => 'image', 
     ], 
-]);?>
+]);
+*/
+?>
 
 
 

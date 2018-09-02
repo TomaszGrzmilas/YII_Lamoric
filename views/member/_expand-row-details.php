@@ -107,8 +107,8 @@ $memberDocs = $model->memberdocs;
                             <div class="list-cell-more-cont">
                                 <div class="list-cell-more-cont-value">
                                     <?= Html::a($doc['title'], 
-                                        Url::to(['/docmgm/member-doc/create-pdf','id'=> $doc['member_doc_id']]), 
-                                        ['class'=> 'hvr-pop', 'title'=>'Otwórz plik']); 
+                                        '#', 
+                                        ['class'=> 'hvr-pop', 'title'=>'Otwórz plik', 'onclick'=>'printMemberDoc('.$doc['member_doc_id'].','.  $model->id .')']); 
                                     ?>
                                 </div>
                             </div>

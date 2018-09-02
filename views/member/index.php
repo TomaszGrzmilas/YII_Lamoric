@@ -236,5 +236,50 @@ JS;
        \yii\web\View::POS_BEGIN,
 	  'printList');
 
+
+$script = <<<JS
+    function printMemberDoc(member_doc_id, member_id){
+        function showPopup(url) {
+            var width  = 600;
+            var height = 800;
+            var left   = - screen.width;
+            var top    = - screen.height;
+            var params = 'width='+width+', height='+height;
+            params += ', top='+top+', left='+left;
+            params += ', directories=no';
+            params += ', location=no';
+            params += ', menubar=no';
+            params += ', resizable=no';
+            params += ', scrollbars=no';
+            params += ', status=no';
+            params += ', toolbar=no';
+            newwin=window.open(url,'_blank', params);
+            try {
+                newwin.focus();   
+            } catch (e) {
+                alert("{$popupErr}");
+            }
+        }
+
+        $("body").css("cursor", "progress");
+
+        var ajax = new XMLHttpRequest();
+        $.ajax({
+            type: "GET",
+            url: '/docmgm/member-doc/create-pdf', 
+            data: {memberDocId: member_doc_id, memberId: member_id},
+            success: function(result){
+                showPopup(result);
+                $("body").css("cursor", "default");
+            }
+        });
+    }
+JS;
+  
+    $this->registerJs($script,
+        \yii\web\View::POS_BEGIN,
+    'printMemberDoc');
+ 
+
 ?>
 

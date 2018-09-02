@@ -8,8 +8,10 @@ use app\modules\docmgm\models\member_doc\MemberDocSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use kartik\mpdf\Pdf;
+//use kartik\mpdf\Pdf;
 use app\components\EventHandler;
+
+use app\vendor\Gears\Pdf;
 
 
 class MemberDocController extends Controller
@@ -86,39 +88,45 @@ class MemberDocController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionCreatePdf($id)
+    public function actionCreatePdf($memberDocId, $memberId)
     {
-      //  if (Yii::$app->request->isAjax) {
-            $file = 'media/download/member_do_'.time().'.pdf';
-            $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
+   //     if (Yii::$app->request->isAjax) {
+            if ($memberDocId != null && $memberId != null)
+            {
+                $file = 'media/download/member_do_'.time().'.pdf';
+                $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
 
-            $model = new MemberDoc();
+                $model = new MemberDoc();
 
-            $doc = $model->find()->where(['member_doc_id'=>$id] )->asArray()->all();
-            $content = $doc[0]['text'];
-            
-            $pdf = new Pdf([
-                'mode' => Pdf::MODE_UTF8, 
-                'format' => Pdf::FORMAT_A4, 
-                'orientation' => Pdf::ORIENT_LANDSCAPE, 
-                'destination' => Pdf::DEST_FILE, 
-                'filename' => $filePath,
-                'content' => $content,  
-                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
-                'cssInline' => '.kv-heading-1{font-size:18px}', 
-                'options' => ['title' => null],
-                'methods' => [ 
-                    'SetHeader'=>[null], 
-                 //   'SetHTMLFooter'=>['Wydrukował  '. Yii::$app->user->identity->username . ' w dniu: {DATE j-m-Y} <br> Strona: {PAGENO}'],
-                ]
-            ]);
-        
-            return $pdf->render();
+                $doc = $model->find()->where(['member_doc_id'=>$memberDocId] )->asArray()->all();
+                $content = $doc[0]['text'];
+               /* 
+                $pdf = new Pdf([
+                    'mode' => Pdf::MODE_UTF8, 
+                    'format' => Pdf::FORMAT_A4, 
+                  //  'orientation' => Pdf::ORIENT_LANDSCAPE, 
+                    'destination' => Pdf::DEST_FILE, 
+                    'filename' => $filePath,
+                    'content' => $content,  
+                    'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                    'cssInline' => '.kv-heading-1{font-size:18px}', 
+                    'options' => ['title' => null],
+                    'methods' => [ 
+                        'SetHeader'=>[null], 
+                    //   'SetHTMLFooter'=>['Wydrukował  '. Yii::$app->user->identity->username . ' w dniu: {DATE j-m-Y} <br> Strona: {PAGENO}'],
+                    ]
+                ]);
+            */
+                $file = 'media/download/umowa.docx';
+                $filePath = $_SERVER['DOCUMENT_ROOT'];
 
+                Pdf::convert($filePath .'/'.$file, $filePath . '/ala.pdf' );
 
-           // return \yii\helpers\Url::home(true) . $file;
-          // return 'ok';
-      //  }
+                $pdf->render();
+
+                return \yii\helpers\Url::home(true) . $file;
+            }
+    //    }
     }
 
     protected function findModel($id)

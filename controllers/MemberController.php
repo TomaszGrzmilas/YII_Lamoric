@@ -118,7 +118,7 @@ class MemberController extends Controller
                 EventHandler::AfterPrint('trace\member\report', 'Pełna lista członków');
             } else if ($type == 259) {
                 EventHandler::AfterPrint('trace\member\report', 'Skrócona lista członków');
-            } else 
+            }
             
             return \yii\helpers\Url::home(true) . $file;
         }
