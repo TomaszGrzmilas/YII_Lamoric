@@ -142,6 +142,14 @@ class Company extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
+        if ($insert === false) 
+        {
+            if ($this->logo == null)
+            {
+                $this->logo = $this->oldAttributes['logo'];
+            }
+        }
+
         $this->contribution = str_replace(',','.',$this->contribution);
         return parent::beforeSave($insert);
     }
