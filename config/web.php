@@ -156,6 +156,9 @@ $config = [
         'docmgm' => [
             'class' => 'app\modules\docmgm\DocmgmModule',
         ],
+        'phpword' => [
+            'class' => '@vendor\phpoffice\phpword\src\PhpWord',
+        ],
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ],

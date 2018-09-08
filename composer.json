@@ -31,7 +31,8 @@
         "kartik-v/yii2-widget-colorinput": "*",
         "kartik-v/yii2-mpdf": "*",
         "dominus77/yii2-tinymce-widget": "~2.0.2",
-        "mihaildev/yii2-elfinder": "~1.2"
+        "mihaildev/yii2-elfinder": "~1.2",
+        "phpoffice/phpword": "v0.14.*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -31,7 +31,6 @@ Url::remember();
         'model' => $model,
         'attributes' => [
             'title',
-            'text:raw',
         ],
     ]) ?>
 
