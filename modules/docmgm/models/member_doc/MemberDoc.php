@@ -7,17 +7,8 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 use app\components\LogBehavior;
 use app\modules\docmgm\DocmgmModule;
+use app\modules\docmgm\models\UploadedFile;
 
-/**
- * This is the model class for table "{{%member_doc}}".
- *
- * @property int $member_doc_id
- * @property resource $text
- * @property int $created_by
- * @property int $created_at
- * @property int $updated_by
- * @property int $updated_at
- */
 class MemberDoc extends \yii\db\ActiveRecord
 {
 
@@ -38,11 +29,11 @@ class MemberDoc extends \yii\db\ActiveRecord
             ],
             [
                 'class' => 'mdm\upload\UploadBehavior',
-                'attribute' => 'file', // required, use to receive input file
-                'savedAttribute' => 'file', // optional, use to link model with saved file.
+                'attribute' => 'file_id', // required, use to receive input file
+                'savedAttribute' => 'file_id', // optional, use to link model with saved file.
                 'uploadPath' => '@app/web/media/upload/member_doc', // saved directory. default to '@runtime/upload'
                 'autoSave' => true, // when true then uploaded file will be save before ActiveRecord::save()
-                'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
+                //'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
             ],
         ];
     }
@@ -50,7 +41,8 @@ class MemberDoc extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['file','title'], 'string'],
+            [['title'], 'string'],
+            [['file_id'], 'safe'],
         ];
     }
 
@@ -59,20 +51,27 @@ class MemberDoc extends \yii\db\ActiveRecord
         return [
             'member_doc_id' => DocmgmModule::t('db/memberdoc', 'Member Doc ID'),
             'title' => DocmgmModule::t('db/memberdoc', 'Title'),
-            'file' => DocmgmModule::t('db/memberdoc', 'File'),
+            'file_id' => DocmgmModule::t('db/memberdoc', 'File'),
         ];
     }
 
     public function beforeSave($insert)
     {
+        $ret = parent::beforeSave($insert);
+
         if ($insert === false) 
         {
-            if ($this->file == null)
+            if ($this->file_id == null)
             {
-                $this->file = $this->oldAttributes['file'];
+                $this->file_id = $this->oldAttributes['file_id'];
             }
         }
-        return parent::beforeSave($insert);
+        return $ret;
+    }
+
+    public function getUploadedFile()
+    {
+        return $this->hasOne(UploadedFile::className(), ['id' => 'file_id']);
     }
 
     public static function find()

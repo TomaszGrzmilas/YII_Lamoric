@@ -93,38 +93,32 @@ class MemberDocController extends Controller
    //     if (Yii::$app->request->isAjax) {
             if ($memberDocId != null && $memberId != null)
             {
-                $file = 'media/download/member_do_'.time().'.pdf';
+                $file = 'media/download/member_doc_print/'.time().'.docx';
                 $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
 
                 $model = new MemberDoc();
 
-                $doc = $model->find()->where(['member_doc_id'=>$memberDocId] )->asArray()->all();
-                $content = $doc[0]['text'];
-               /* 
-                $pdf = new Pdf([
-                    'mode' => Pdf::MODE_UTF8, 
-                    'format' => Pdf::FORMAT_A4, 
-                  //  'orientation' => Pdf::ORIENT_LANDSCAPE, 
-                    'destination' => Pdf::DEST_FILE, 
-                    'filename' => $filePath,
-                    'content' => $content,  
-                    'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
-                    'cssInline' => '.kv-heading-1{font-size:18px}', 
-                    'options' => ['title' => null],
-                    'methods' => [ 
-                        'SetHeader'=>[null], 
-                    //   'SetHTMLFooter'=>['Wydrukował  '. Yii::$app->user->identity->username . ' w dniu: {DATE j-m-Y} <br> Strona: {PAGENO}'],
-                    ]
-                ]);
-            */
-                $file = 'media/download/umowa.docx';
-                $filePath = $_SERVER['DOCUMENT_ROOT'];
+                $doc = $model->find()->where(['member_doc_id'=>$memberDocId] )->all();
 
-                Pdf::convert($filePath .'/'.$file, $filePath . '/ala.pdf' );
+                $templateFilePath = $_SERVER['DOCUMENT_ROOT']. $doc[0]->uploadedFile->getFilePath();
 
-                $pdf->render();
+                $phpWord = new \PhpOffice\PhpWord\PhpWord();        
+                $template = $phpWord->loadTemplate($templateFilePath);
+                $template->setValue('name', 'John Doe');
+
+                $template->saveAs($filePath);
+
+             //   $phpWord2 = \PhpOffice\PhpWord\IOFactory::load('temp.docx'); 
+            //    $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord2 , 'PDF');
+            //    $xmlWriter->save('result.pdf');  
+
+            //    $file = 'media/download/member_doc_print/'.time().'.pdf';
+             //   $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
+
+                $template->saveAs($filePath);
 
                 return \yii\helpers\Url::home(true) . $file;
+ 
             }
     //    }
     }
@@ -135,6 +129,6 @@ class MemberDocController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('db/memberdoc', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(DocmgmModule::t('db/memberdoc', 'The requested page does not exist.'));
     }
 }

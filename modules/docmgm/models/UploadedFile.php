@@ -20,17 +20,12 @@ use yii\helpers\Url;
  */
 class UploadedFile extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return '{{%uploaded_file}}';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -40,9 +35,6 @@ class UploadedFile extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -54,23 +46,30 @@ class UploadedFile extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getDocuments()
     {
         return $this->hasMany(Document::className(), ['file' => 'id']);
     }
 
+    public function getMemberDoc()
+    {
+        return $this->hasOne(MemberDoc::className(), ['file' => 'id']);
+    }
+
+    public function getFilePath()
+    {
+        return FileHelper::normalizePath(substr($this->filename, strlen(Yii::getAlias('@app').'\web')));
+    }
+
     public function getFileLink()
     {
-        return Html::a($this->name, FileHelper::normalizePath(substr($this->filename, strlen(Yii::getAlias('@app').'\web'))), ['target' => '_blank', 'data-pjax'=>'0']);
+        return Html::a($this->name, $this->getFilePath(), ['target' => '_blank', 'data-pjax'=>'0']);
     }
 
     public function getImg($width = '175px', $height = '100%')
     {
         if(stripos($this->type,'image') !== false){
-            return Html::img(FileHelper::normalizePath(substr($this->filename, strlen(Yii::getAlias('@app').'\web'))), ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
+            return Html::img($this->getFilePath(), ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
         }
         return false; 
     }

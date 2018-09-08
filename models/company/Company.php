@@ -142,6 +142,10 @@ class Company extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
+        $this->contribution = str_replace(',','.',$this->contribution);
+
+        $ret = parent::beforeSave($insert);
+
         if ($insert === false) 
         {
             if ($this->logo == null)
@@ -149,9 +153,7 @@ class Company extends \yii\db\ActiveRecord
                 $this->logo = $this->oldAttributes['logo'];
             }
         }
-
-        $this->contribution = str_replace(',','.',$this->contribution);
-        return parent::beforeSave($insert);
+        return $ret;
     }
 
     public function getAddressLine1() 

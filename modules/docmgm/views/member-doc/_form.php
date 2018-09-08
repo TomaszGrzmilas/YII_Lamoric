@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput() ?>
 
-    <?= $form->field($model, 'file')->fileInput(['maxlength' => true, 'accept'=>'.doc, .docx']) ?>
+    <?= $form->field($model, 'file_id')->fileInput(['maxlength' => true, 'accept'=>'.doc, .docx']) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('db/memberdoc', 'Save'), ['class' => 'btn btn-success']) ?>
