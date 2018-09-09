@@ -3,17 +3,18 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
+use app\modules\docmgm\DocmgmModule;
 
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('db/memberdoc', 'Member Docs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/memberdoc', 'Member Docs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 Url::remember();
 ?>
 <div class="member-doc-view">
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-6">
 
             <p>
                 <?= Html::a(Yii::t('app', 'Back'), ['/docmgm/member-doc/index'], ['class' => 'btn btn-info']) ?>            

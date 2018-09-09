@@ -17,7 +17,7 @@ class MenuBuilder
                     ['label' => Yii::t('db/company', 'Companies'), 'icon' => 'building', 'url' => Url::toRoute('/company/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-company*'] ,$item ))],
                     ['label' => Yii::t('db/workplace', 'Workplaces'), 'icon' => 'briefcase', 'url' => Url::toRoute('/workplace/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-workplace*'] ,$item ))],
                     ['label' => Yii::t('db/document', 'Documents'), 'icon' => 'book', 'url' => Url::toRoute('/docmgm/document/index'), 'active' => (Yii::$app->CustomUtil->in_array(['docmgm-document-index', 'docmgm-document-create', 'docmgm-document-view*','docmgm-document-update*'] ,$item ))],
-                    ['label' => Yii::t('db/memberdoc', 'Member Documents'), 'icon' => 'book', 'url' => Url::toRoute('/docmgm/member-doc/index')],
+                    ['label' => \app\modules\docmgm\DocmgmModule::t('db/memberdoc', 'Member Documents'), 'icon' => 'book', 'url' => Url::toRoute('/docmgm/member-doc/index')],
                     ['label' => Yii::t('db/category', 'Categories'), 'icon' => 'tags', 'url' => Url::toRoute('/category/admin'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-category*'] ,$item ))],                
                     ['label' => Yii::t('db/log', 'Logs'), 'icon' => 'list', 'url' =>  Url::toRoute('/log/index'), 'active' => (Yii::$app->CustomUtil->in_array([$appId.'-log-index'] ,$item ))],
             ]]);
