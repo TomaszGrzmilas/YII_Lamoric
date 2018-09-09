@@ -8,8 +8,8 @@ use app\modules\docmgm\models\member_doc\MemberDocSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//use kartik\mpdf\Pdf;
 use app\components\EventHandler;
+use app\models\member\Member;
 
 use app\vendor\Gears\Pdf;
 
@@ -90,45 +90,66 @@ class MemberDocController extends Controller
 
     public function actionCreatePdf($memberDocId, $memberId)
     {
-   //     if (Yii::$app->request->isAjax) {
+        if (Yii::$app->request->isAjax) {
             if ($memberDocId != null && $memberId != null)
             {
-                $file = 'media/download/member_doc_print/'.time().'.docx';
+                $member = new Member();
+                $member = $member->find()->where(['id'=>$memberId])->one();
+
+                $memberDoc = new MemberDoc();
+                $memberDoc = $memberDoc->find()->where(['member_doc_id'=>$memberDocId] )->one();
+
+                $filename = str_replace(' ','_', $member->name .' '.$member->surname);
+                $filename = $filename .'_'. str_replace(' ','_', $memberDoc->title);
+
+                $file = 'media/download/member_doc_print/'.strtolower($filename).'.docx';
                 $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
 
-                $model = new MemberDoc();
+                $templateFilePath = $memberDoc->uploadedFile->getFilePath();
 
-                $doc = $model->find()->where(['member_doc_id'=>$memberDocId] )->all();
+                if($templateFilePath != '')
+                {
+                    $phpWord = new \PhpOffice\PhpWord\PhpWord();     
+                    $template = $phpWord->loadTemplate( $_SERVER['DOCUMENT_ROOT']. $templateFilePath);
+                    
+                    $template->setValue('nazwafirmy',   $member->company->name);
 
-                $templateFilePath = $_SERVER['DOCUMENT_ROOT']. $doc[0]->uploadedFile->getFilePath();
+                    $template->setValue('imie',         $member->name);
+                    $template->setValue('nazwisko',     $member->surname);
+                    $template->setValue('pesel',        $member->pesel);
+                    $template->setValue('kodpocztowy',  $member->zip_code);
+                    $template->setValue('miasto',       $member->city);
+                    $template->setValue('ulica',        $member->street);
+                    $template->setValue('budybek',      $member->building);
+                    $template->setValue('lokal',        $member->local);
+                    $template->setValue('telefon',      $member->phone);
+                    $template->setValue('email',        $member->email);
+                    $template->setValue('datawydruku',  date('d-m-Y'));
 
-                $phpWord = new \PhpOffice\PhpWord\PhpWord();     
-                $template = $phpWord->loadTemplate( $_SERVER['DOCUMENT_ROOT']. '/media/download/helloWorld2.docx'); //$templateFilePath);
-                $template->setValue('name', 'John Doe');
+                    $template->saveAs($filePath);
 
-                $template->saveAs($filePath);
+                    //$rendererName = \PhpOffice\PhpWord\Settings::PDF_RENDERER_MPDF;
+                    //$rendererLibraryPat = Yii::getAlias('@app').'/vendor/mpdf/mpdf/src/Mpdf.php';
 
-                //$rendererName = \PhpOffice\PhpWord\Settings::PDF_RENDERER_MPDF;
-                //$rendererLibraryPat = Yii::getAlias('@app').'/vendor/mpdf/mpdf/src/Mpdf.php';
-
-                //\PhpOffice\PhpWord\Settings::setPdfRenderer($rendererName, $rendererLibraryPat);
+                    //\PhpOffice\PhpWord\Settings::setPdfRenderer($rendererName, $rendererLibraryPat);
 
 
-                //$phpWord2 = \PhpOffice\PhpWord\IOFactory::load($filePath);    
-                //$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord2 , 'PDF');
+                    //$phpWord2 = \PhpOffice\PhpWord\IOFactory::load($filePath);    
+                    //$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord2 , 'PDF');
 
-                //$file = 'media/download/member_doc_print/'.time().'.pdf';
-                //$filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
+                    //$file = 'media/download/member_doc_print/'.time().'.pdf';
+                    //$filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
 
-                //$xmlWriter->save($filePath);  
+                    //$xmlWriter->save($filePath);  
 
-            //    $file = 'media/download/member_doc_print/'.time().'.pdf';
-             //   $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
+                //    $file = 'media/download/member_doc_print/'.time().'.pdf';
+                //   $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
 
-                return \yii\helpers\Url::home(true) . $file;
- 
+                    return \yii\helpers\Url::home(true) . $file;
+                }
+                return null;
             }
-    //    }
+        }
     }
 
     protected function findModel($id)
