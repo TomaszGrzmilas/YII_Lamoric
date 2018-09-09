@@ -9,6 +9,7 @@ return array(
 	'Loged as:'=>'Zalogowany jako:',
 	'My profile'=>'Mój profil',
 	'Home'=>'Start',
+	'Member Documents'=>'Dokumenty członków',
 	'Members'=>'Członkowie',
 	'Add Member'=>'Dodaj członka',
 	'Show list'=>'Wyświetl listę',
