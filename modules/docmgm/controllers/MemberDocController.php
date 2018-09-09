@@ -102,20 +102,28 @@ class MemberDocController extends Controller
 
                 $templateFilePath = $_SERVER['DOCUMENT_ROOT']. $doc[0]->uploadedFile->getFilePath();
 
-                $phpWord = new \PhpOffice\PhpWord\PhpWord();        
-                $template = $phpWord->loadTemplate($templateFilePath);
+                $phpWord = new \PhpOffice\PhpWord\PhpWord();     
+                $template = $phpWord->loadTemplate( $_SERVER['DOCUMENT_ROOT']. '/media/download/helloWorld2.docx'); //$templateFilePath);
                 $template->setValue('name', 'John Doe');
 
                 $template->saveAs($filePath);
 
-             //   $phpWord2 = \PhpOffice\PhpWord\IOFactory::load('temp.docx'); 
-            //    $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord2 , 'PDF');
-            //    $xmlWriter->save('result.pdf');  
+                //$rendererName = \PhpOffice\PhpWord\Settings::PDF_RENDERER_MPDF;
+                //$rendererLibraryPat = Yii::getAlias('@app').'/vendor/mpdf/mpdf/src/Mpdf.php';
+
+                //\PhpOffice\PhpWord\Settings::setPdfRenderer($rendererName, $rendererLibraryPat);
+
+
+                //$phpWord2 = \PhpOffice\PhpWord\IOFactory::load($filePath);    
+                //$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord2 , 'PDF');
+
+                //$file = 'media/download/member_doc_print/'.time().'.pdf';
+                //$filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
+
+                //$xmlWriter->save($filePath);  
 
             //    $file = 'media/download/member_doc_print/'.time().'.pdf';
              //   $filePath = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
-
-                $template->saveAs($filePath);
 
                 return \yii\helpers\Url::home(true) . $file;
  

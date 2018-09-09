@@ -25,7 +25,6 @@
         "dektrium/yii2-rbac": "*",
         "ruskid/yii2-csv-importer": "dev-master",
         "yii2tech/balance": "*",
-        "mikehaertl/php-pdftk": "*",
         "omnilight/yii2-scheduling": "*",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-colorinput": "*",
