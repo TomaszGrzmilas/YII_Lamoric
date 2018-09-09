@@ -8,6 +8,7 @@ use app\modules\docmgm\models\Document;
 use app\modules\docmgm\models\DocCategorySearch;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 
 
 class ArticleOvwController extends Controller
