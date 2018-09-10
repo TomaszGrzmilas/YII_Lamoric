@@ -3,9 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
+use app\modules\docmgm\DocmgmModule;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('db/docmgm', 'Documents'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/docmgm', 'Documents'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 Url::remember();

@@ -15,39 +15,37 @@ class DocumentOvwController extends Controller
     public function actionIndex($id = null)
     {
         $model = new Document();
-
+        $cat   = new Category();
+        $cat = $cat->find()->where(['id' => $model->docRootCategoryId])->one();
+        
         if(is_null($id)){
             $category_id = $model->docRootCategoryId;
         } else {
             $category_id = $id;
         }
-        
-        $documents = $model->find()->where(['category_id' => $category_id])->all();
-
-        $categories = new Category();
-        $categories = $categories->getSubCategories($category_id);
+    
+        $categories = $cat->getSubCategories($category_id);
    
         return $this->render('index', [
-            'documents' => $documents,
+            'documents' => $cat->documents,
             'categories' => $categories,
             'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);
     }
 
-    public function actionShowCategory($category_id)
+    public function actionView($id)
     {
-        $model = new Document();
-        
-        $documents = new ActiveDataProvider([
-            'query' => $model->find(),
-        ]);
-
-        $categories = DocCategory::getMainCategories();
-   
-        return $this->render('index', [
-            'documents' => $documents,
-            'categories' => $categories,
+        return $this->render('view', [
+            'model' => $this->findModel($id),
         ]);
     }
-   
+
+    protected function findModel($id)
+    {
+        if (($model = Document::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
 }
