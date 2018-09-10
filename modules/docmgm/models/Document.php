@@ -59,24 +59,23 @@ class Document extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'text'], 'required'],
-            [['text'], 'string'],
+            [['title', 'text','short_text'], 'required'],
+            [['text','short_text'], 'string'],
             [['title'], 'unique'],
         //    [['category_id'], 'integer'],
             [['title'], 'string', 'max' => 150],
+            [['short_text'], 'string', 'max' =>800],
             [['tag'], 'string', 'max' => 200],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'doc_id' => DocmgmModule::t('db/document', 'Doc ID'),
             'title' => DocmgmModule::t('db/document', 'Title'),
+            'short_text' => DocmgmModule::t('db/document', 'Short Text'),
             'text' => DocmgmModule::t('db/document', 'Text'),
             'tag' => DocmgmModule::t('db/document', 'Tag'),
             'file' => DocmgmModule::t('db/document', 'File'),

@@ -129,11 +129,8 @@ class Category extends \kartik\tree\models\Tree
         foreach ($subcat as $key => $value) {
             array_push($search,$key);
         }
-
         array_push($search,$this->id);
 
         return $doc->find()->where(['in','category_id' , $search])->all();
-    
     }
-
 }

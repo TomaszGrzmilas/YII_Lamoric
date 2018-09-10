@@ -15,6 +15,8 @@ use app\models\category\Category;
 
             <?= $form->field($model, 'title')->textInput(['maxlength' => true])  ?>
 
+            <?= $form->field($model, 'short_text')->textInput(['maxlength' => true])  ?>
+
             <?= $form->field($model, 'text')->widget(\dominus77\tinymce\TinyMce::className(), [    
     'options' => [
         'rows' => 20,

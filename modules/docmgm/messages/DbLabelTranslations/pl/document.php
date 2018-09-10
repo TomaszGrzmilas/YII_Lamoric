@@ -4,6 +4,7 @@ return array(
     'Create Document' => 'Dodaj dokument',
     'Doc ID'=>'Id dokumentu',
     'Title'=>'Tytuł',
+    'Short Text'=>'Krótki opis',
     'Text'=>'Opis',
     'Tag'=>'Słowa kluczowe',
     'File'=>'Plik',

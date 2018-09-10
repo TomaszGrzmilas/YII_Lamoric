@@ -30,6 +30,7 @@ Url::remember();
                 'attributes' => [
                     'doc_id',
                     'title',
+                    'short_text',
                     'text:raw',
                     'tag',
                     [

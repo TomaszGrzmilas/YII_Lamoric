@@ -62,12 +62,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Document model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -75,11 +69,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Document model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Document();
@@ -93,13 +82,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Document model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -113,13 +95,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Document model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -134,13 +109,6 @@ class DocumentController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Document model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Document the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Document::findOne($id)) !== null) {

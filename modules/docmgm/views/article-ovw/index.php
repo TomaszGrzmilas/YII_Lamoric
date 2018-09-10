@@ -9,37 +9,16 @@ $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->con
 $this->title = $category->name;
 $this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/document', 'Articles'), 'url' => ['/docmgm/article-ovw/index']];
 $this->params['breadcrumbs'][] = $this->title;
-/*
-echo '<pre>';
-print_r($categories);
-echo '</pre>';
-
-foreach ($documents as $key =>$doc) {
-    echo $key .'-';
-    echo $doc;
-    echo '<br>';
-
-}
-
-
-$ala = $documents;
-
-foreach ($documents as $key =>$doc) {
-    foreach ($doc as $k =>$d) {
-    echo $k .'-';
-    echo $d;
-    echo '<br>';
-    }
-
-}
-*/
 ?>
+
 <form action="#" class="article-search">
     <div class="row">
         <div class="col-xs-12">
             <div class="article-search-box">
-                <input type="text" class="prawo-search-input" placeholder="Szukaj">
-                <button type="submit" class="prawo-search-submit"><img src="template/default/images/icn-search-gray.png" alt="Szukaj"></button>
+                <input type="text" class="prawo-search-input" placeholder="<?= Yii::t('app', 'Search') ?>">
+                <button type="submit" class="prawo-search-submit">
+                    <?= HTML::img('@web/layout.main\images\icn-search-gray.png', ['alt' => Yii::t('app', 'Search')]) ?>
+                </button>
             </div>
         </div>
     </div>
@@ -48,7 +27,9 @@ foreach ($documents as $key =>$doc) {
             <div class="article-search-box">
                 <select name="wgkategorii">
                     <option value="0">Szukaj wg kategorii</option>
-                    <option value="1">Kategoria 1</option>
+                    <? foreach ($categories as $key => $cat) : ?>
+                        <option value="<?= $key ?>"><?= $cat ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -76,7 +57,6 @@ foreach ($documents as $key =>$doc) {
     </div>
 </form>
 
-
 <div class="row" id="<?= $item ?>">
     <? foreach ($documents as $key =>$doc) : ?>   
         <div class="col-xs-12 col-md-6">
@@ -93,8 +73,9 @@ foreach ($documents as $key =>$doc) {
                                 ]);
                             ?>
                         </h3>
+                        <p class="article-date"><?= Yii::$app->formatter->asDate($doc->created_at, 'php:d M'); ?></p>
                         <p class="article-short">
-                            <?= $doc->text ?>
+                            <?= $doc->short_text ?>
                         </p>
                     </div>
                     <div class="col-xs-12">
@@ -111,19 +92,4 @@ foreach ($documents as $key =>$doc) {
             </div>
         </div>
     <? endforeach; ?>
-</div>
-
-
-
-<div class="col-sm-6">
-    <div class="text-left">
-        <div class="col-sm-12">
-            <? foreach ($categories as $key => $cat) : ?>
-                <div class="btn-group" style="margin: 20px;">
-                <?= Html::a($cat, ['/docmgm/article-ovw/index', 'id' => $key], ['class' => 'btn btn-danger']) ?>
-            </div>
-
-            <?php endforeach; ?>
-        </div><!-- /.col -->
-    </div>
 </div>
