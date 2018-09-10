@@ -120,4 +120,20 @@ class Category extends \kartik\tree\models\Tree
         return ArrayHelper::map($Categories, 'id', 'name');
     }
 
+    public function getDocuments()
+    {
+        $doc = new \app\modules\docmgm\models\Document();
+        $search = array();
+        $subcat = $this->getSubCategories($this->id);
+
+        foreach ($subcat as $key => $value) {
+            array_push($search,$key);
+        }
+
+        array_push($search,$this->id);
+
+        return $doc->find()->where(['in','category_id' , $search])->all();
+    
+    }
+
 }

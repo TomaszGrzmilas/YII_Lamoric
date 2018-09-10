@@ -23,6 +23,7 @@ return array(
 	'Dues'=>'Składki',
 	'Obligation'=>'Zaległości',
 	'View more'=>'Pokaż więcej',
+	'More'=>'Więcej',
 	'Administration'=>'Administracja',
 	'Add Company'=>'Dodaj firmę',
 	'Add Workplace'=>'Dodaj miejsce pracy',

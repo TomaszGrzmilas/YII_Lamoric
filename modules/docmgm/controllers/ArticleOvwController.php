@@ -37,21 +37,19 @@ class ArticleOvwController extends Controller
     public function actionIndex($id = null)
     {
         $model = new Document();
-
+        $cat   = new Category();
+        $cat = $cat->find()->where(['id' => $model->articleRootCategoryId])->one();
+        
         if(is_null($id)){
             $category_id = $model->articleRootCategoryId;
         } else {
             $category_id = $id;
         }
-        
-        $documents = new ActiveDataProvider([
-            'query' => $model->find()->where(['category_id' => $category_id])->all(),
-        ]);
-
-        $categories = Category::getSubCategories($category_id);
+    
+        $categories = $cat->getSubCategories($category_id);
    
         return $this->render('index', [
-            'documents' => $documents->query,
+            'documents' => $cat->documents,//$model->find()->where(['category_id' => $category_id])->all(),
             'categories' => $categories,
             'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);

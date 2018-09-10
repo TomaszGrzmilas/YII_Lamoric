@@ -201,6 +201,12 @@ a:hover
     color: #6f6f6f;
     font-weight: 400;
 }
+.title-page .subtitle
+{
+    font-weight: 300;
+    font-size: 30px;
+}
+
 @media(max-width:767px)
 {
     .panel-client .logo
@@ -359,14 +365,12 @@ a:hover
 .log-in-form
 {
     padding: 15px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 .log-in-form h2
 {
-    margin: 0 0 25px;
+    margin: 0 0 0px;
     padding: 10px 0 25px;
-    border-bottom: 1px solid #bbb;
+    color: #fff;
 }
 .log-in-form input
 {
@@ -385,13 +389,13 @@ a:hover
 }
 .log-in-form button
 {
-    background: #820101;
+    background: #fff;
     display: block;
     margin: 10px auto 20px;
     padding: 10px 15px;
     border: 0;
     outline: 0;
-    color: #fff;
+    color: #820101;
     cursor: pointer;
 }
 .log-in-form button img
@@ -429,6 +433,41 @@ a:hover
 .btns-start:hover .btn-start-info
 {
     color: #905050;
+}
+
+.btns-start-prawo
+{
+    margin: 15px 0;
+    background-image: url(../images/box-bg-gold.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    display: block;
+    box-shadow: 0 0 1px rgba(0,0,0,0.05);
+    transition: all ease-in 0.4s;
+}
+.btns-start-prawo img
+{
+    max-height: 110px;
+    padding: 15px;
+}
+.btns-start-prawo .btn-start-info
+{
+    color: #fff;
+    margin: 15px;
+    font-size: 15px;
+    line-height: 20px;
+    height: 45px;
+    transition: all ease-in 0.4s;
+}
+.btns-start-prawo:hover
+{
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+.btns-start-prawo:hover .btn-start-info
+{
+    color: #000;
 }
 
 .title-page-nav
@@ -678,4 +717,146 @@ a:hover
 .page-view
 {
     margin: 0 0 30px;
+}
+
+.kodeks-view
+{
+    text-align: center;
+}
+.kodeks-view p strong
+{
+    display: block;
+}
+
+.prawo-search
+{
+    display: block;
+    margin: 15px 0;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+.prawo-search .prawo-search-input
+{
+    width:85%;
+    border: 0px;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 16px;
+    outline: 0 !important;
+}
+.prawo-search .prawo-search-submit
+{
+    background: none;
+    border: 0;
+    float: right;
+    padding: 10px 0;
+}
+
+.article-box
+{
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+    margin: 15px 0;
+}
+.article-box img
+{
+    margin-bottom: 15px;
+}
+.article-box h3.article-title
+{
+    margin: 0;
+    padding: 0 0 5px;
+    font-size: 18px;
+    font-weight: 400;
+}
+.article-box p.article-date
+{
+    margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.article-box p.article-short
+{
+    font-size: 14px;
+    line-height: 16px;
+    margin: 10px 0;
+}
+.article-box a.btn-red
+{
+    float: right;
+}
+
+.pagintation
+{
+    display: block;
+    margin: 20px 0 30px;
+    padding: 0;
+    list-style: none outside;
+    text-align: center;
+}
+.pagintation .item
+{
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.article-search
+{
+    margin: 15px 0 15px;
+}
+.article-search .article-search-box
+{
+    padding: 10px;
+    background: #fff;
+    margin: 0 0 10px 0;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+.article-search .article-search-box input
+{
+     width:85%;
+    border: 0px;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 16px;
+    outline: 0 !important;
+}
+.article-search .prawo-search-submit
+{
+    background: none;
+    border: 0;
+    float: right;
+    padding: 10px 0;
+}
+.article-search .article-search-box select
+{
+    display: block;
+    width: 100%;
+    padding: 10px 5px;
+    border: 0;
+}
+.article-open-date
+{
+    position: absolute;
+    top: 0;
+    padding: 15px;
+    background: #820101;
+    color: #fff;
+    font-size: 28px;
+    line-height: 20px;
+    font-weight: 300;
+    text-align: center;
+}
+.article-open-date strong
+{
+    display: block;
+    font-size: 12px;
+}
+
+.article-open
+{
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+    padding: 0 15px 30px 0;
 }

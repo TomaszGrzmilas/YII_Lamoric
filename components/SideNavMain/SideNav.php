@@ -26,11 +26,15 @@ class SideNav extends Widget
         $localBody ='';
 
         foreach($items as $item){
-            
+            if (isset( $item['active']))
+            {
+                $active = $item['active'] ? 'active' : '';
+            }
+
             if ($type == 'submenu') {
-                $localBody .= '<li class="subitem">';
+                $localBody .= '<li class="subitem ' . $active .'">';
             } else {
-                $localBody .= '<li class="item">';
+                $localBody .= '<li class="item ' . $active . '">';
             }
 
             if (isset($item['items'])) {
