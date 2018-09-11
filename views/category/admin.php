@@ -14,8 +14,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'query'             => $model::find()->addOrderBy('root, lft'), 
             'headingOptions'    => ['label' => Yii::t('db/category', 'Categories')],
             'fontAwesome' => true,     
-            'isAdmin'           => true,                       // optional (toggle to enable admin mode)
+            'isAdmin'           => true,     // optional (toggle to enable admin mode)
             'showFormButtons' => true,
+            'nodeView' => '@app/views/category/_node_form',
+            'nodeAddlViews' => [
+               4 => '@app/views/category/_node_form_4', // Module::VIEW_PART_4
+            ],
             'iconEditSettings'=> [
                 'show' => 'list',
                 'type' => TreeView::ICON_CSS,
@@ -38,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
         //                      {header}
         //                      {tree}',
         //  'toolbarOptions'=> ['class'=>'hide'],
-            'displayValue'      => 1,                           // initial display value
+            'displayValue'      => 1,     // initial display value
             'softDelete'      => true,                        // normally not needed to change
             //'cacheSettings'   => ['enableCache' => true]      // normally not needed to change
         ]);
