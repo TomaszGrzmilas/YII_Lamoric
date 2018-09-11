@@ -417,6 +417,10 @@ a:hover
     max-height: 110px;
     padding: 15px;
 }
+.btns-start.rodo img
+{
+    max-height: 90px;
+}
 .btns-start .btn-start-info
 {
     color: #666;
@@ -426,6 +430,13 @@ a:hover
     height: 45px;
     transition: all ease-in 0.4s;
 }
+.btns-start.rodo .btn-start-info
+{
+    font-size: 14px;
+    line-height: 18px;
+    height: 60px;
+}
+
 .btns-start:hover
 {
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -815,9 +826,9 @@ a:hover
 }
 .article-search .article-search-box input
 {
-     width:85%;
+     width:80%;
     border: 0px;
-    padding: 10px;
+    padding: 10px 0;
     font-weight: 400;
     font-size: 16px;
     outline: 0 !important;
@@ -859,4 +870,251 @@ a:hover
     background: #fff;
     box-shadow: 0 0 1px rgba(0,0,0,0.1);
     padding: 0 15px 30px 0;
+}
+
+.rights-lists
+{
+    margin: 0 0 15px;
+    padding: 10px 0;
+    list-style: none outside;
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+    display: block;
+}
+.rights-lists li.item
+{
+    display: inline-block;
+    width: 49%;
+    padding: 5px 15px;
+}
+.rights-lists li.item a
+{
+    display: inline-block;
+    background-image: url(../images/icn-list-plus.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 0 0 0 20px;
+    color: #666;
+    transition: all ease-in 0.4s;
+}
+.rights-lists li.item a:hover
+{
+    color: #820101;
+}
+.default-bg
+{
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+.rights-boxb
+{
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+    padding: 10px;
+    margin: 0 0 15px;
+}
+.rights-boxb .rights-boxb-head
+{
+    display: block;
+    float: none;
+    clear: both;
+    border-bottom: 1px solid #bbb;
+    padding: 0 0 15px 0;
+    margin: 0 0 15px 0;
+}
+.rights-boxb .rights-boxb-title
+{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 21px;
+}
+.rights-boxb .rights-boxb-title img
+{
+    max-height: 32px;
+    vertical-align: bottom;
+}
+.rights-boxb .rights-boxb-head .btn-red
+{
+    padding: 5px 10px;
+    font-size: 13px;
+    float: right;
+}
+.rights-boxb-lists
+{
+    display: block;
+    list-style: none outside;
+    padding: 0;
+    margin: 0 0 15px;
+}
+.rights-boxb-lists li.item
+{
+    display: block;
+    padding: 5px 0;
+}
+.rights-boxb-lists li.item a
+{
+    display: inline-block;
+    background-image: url(../images/icn-list-plus.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 0 0 0 20px;
+    color: #666;
+    transition: all ease-in 0.4s;
+}
+.rights-boxb-lists li.item a:hover
+{
+    color: #820101;
+}
+
+.btns-szkolenia
+{
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin: 0 0 15px;
+    clear: both;
+    float: none;
+}
+.btns-szkolenia .btns-szkolenia-thumb
+{
+    width: 100%;
+    height: 240px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btns-szkolenia .btns-szkolenia-thumb.type1
+{
+    background-image: url(../images/bg-szkolenia-type1.jpg);
+}
+.btns-szkolenia .btns-szkolenia-thumb.type2
+{
+    background-image: url(../images/bg-szkolenia-type2.jpg);
+}
+.btns-szkolenia .btns-szkolenia-thumb.type3
+{
+    background-image: url(../images/bg-szkolenia-type3.jpg);
+}
+.btns-szkolenia .btns-szkolenia-thumb.type4
+{
+    background-image: url(../images/bg-szkolenia-type4.jpg);
+}
+.btns-szkolenia .btns-szkolenia-thumb .btns-szkolenia-type1
+{
+    display: inline-block;
+    padding: 5px 10px 5px 35px;
+    position: absolute;
+    margin-top: 15px;
+    background-color: #fff;
+    background-image: url(../images/icn-szkolenia-online.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.btns-szkolenia .btns-szkolenia-thumb .btns-szkolenia-type2
+{
+    display: inline-block;
+    padding: 5px 10px 5px 35px;
+    position: absolute;
+    margin-top: 55px;
+    background-color: #fff;
+    background-image: url(../images/icn-szkolenia-bestseller.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.btns-szkolenia .btns-szkolenia-thumb .btns-szkolenia-type3
+{
+    display: inline-block;
+    padding: 5px 10px 5px 35px;
+    position: absolute;
+    margin-top: 95px;
+    background-color: #fff;
+    background-image: url(../images/icn-szkolenia-polecamy.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.btns-szkolenia h3
+{
+    font-size: 18px;
+    font-weight: 400;
+    text-align: justify;
+    color: #820101;
+    margin: 15px 0;
+    padding: 0;
+ }
+.btns-szkolenia .btn-red
+{
+    float: right;
+}
+
+.btns-szkolenia-more
+{
+    background: #aaa;
+    text-align: center;
+    padding: 15px;
+    color: #fff;
+}
+.btns-szkolenia-more h4
+{
+    font-weight: bold;
+    font-size: 21px;
+    margin: 30px 0;
+    padding: 0;
+}
+.btns-szkolenia-more img
+{
+    display: block;
+    margin: 0 auto;
+}
+.btns-szkolenia-more p
+{
+    margin: 30px 0 20px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.payment-table
+{
+    width: 100%;
+    table-layout: fixed;
+    border: 1px solid #ddd;
+    margin: 0 0 15px;
+}
+.payment-table th
+{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 5px;
+    border-width:0 1px 1px 1px;
+    border-color: #ddd;
+    border-style: solid;
+}
+.payment-table td
+{
+    padding: 8px 5px;
+    text-align: center;
+    vertical-align: middle;
+    border-width:0 1px 1px 1px;
+    border-color: #ddd #ddd #e8e8e8 #ddd;
+    border-style: solid solid dotted solid;
+    font-weight: bold;
+}
+.payment-table td span
+{
+    font-size: 11px;
+    text-transform: uppercase;
+    display: block;
+    font-weight: 300;
 }
