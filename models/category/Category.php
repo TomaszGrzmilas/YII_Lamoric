@@ -115,16 +115,20 @@ class Category extends \kartik\tree\models\Tree
 
     public function isReadonly()
     {
-      //  if (Yii::$app->user->identity !== 'rootd') {
-      //      return true;
-      //  }
         return parent::isReadonly();
     }
 
-    public function getSubCategories($id)
+    public function getSubCategories($id, $showAll = false)
     {
-        $Categories = Category::find()->select(['id','name'])->where(['root' => $id])->andWhere(['!=','id', $id])->addOrderBy('root, lft')->asArray()->all();
-        return ArrayHelper::map($Categories, 'id', 'name');
+        if ($showAll) 
+        {
+            return Category::find()->where(['root' => $id])->andWhere(['!=','id', $id])->addOrderBy('root, lft')->all();
+        }
+        else
+        {
+            return Category::find()->where(['root' => $id])->andWhere(['visible' => 1])->andWhere(['!=','id', $id])->addOrderBy('root, lft')->all();
+        }
+        return null;
     }
 
     public function getDocuments()
