@@ -31,4 +31,25 @@ class LawOvwController extends Controller
             'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);
     }
+
+    public function actionView($id = null, $lvl = 1)
+    {
+        $model = new Document();
+        $cat   = new Category();
+        $cat   = $cat->find()->where(['id' => $model->lawRootCategoryId])->one();
+        
+        if(is_null($id)){
+            $category_id = $model->lawRootCategoryId;
+        } else {
+            $category_id = $id;
+        }
+    
+        $categories = $cat->getSubCategories($model->lawRootCategoryId, $lvl);
+   
+        return $this->render('view', [
+            'documents' => $cat->documents,
+            'categories' => $categories,
+            'category' => Category::find()->where(['id' => $category_id])->one(),
+        ]);
+    }
 }

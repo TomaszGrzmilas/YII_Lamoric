@@ -118,15 +118,17 @@ class Category extends \kartik\tree\models\Tree
         return parent::isReadonly();
     }
 
-    public function getSubCategories($id, $showAll = false)
+    public function getSubCategories($id, $lvl = 1, $showAll = false)
     {
+        $mainCat = new Category();
+        $mainCatLvl = $mainCat->find()->select('lvl')->where(['id'=>$id])->asArray()->one();
         if ($showAll) 
         {
-            return Category::find()->where(['root' => $id])->andWhere(['!=','id', $id])->addOrderBy('root, lft')->all();
+            return Category::find()->where(['root' => $id])->andWhere(['!=','id', $id])->andWhere(['lvl' => $mainCatLvl['lvl'] + $lvl ])->addOrderBy('root, lft')->all();
         }
         else
         {
-            return Category::find()->where(['root' => $id])->andWhere(['visible' => 1])->andWhere(['!=','id', $id])->addOrderBy('root, lft')->all();
+            return Category::find()->where(['root' => $id])->andWhere(['visible' => 1])->andWhere(['!=','id', $id])->andWhere(['lvl' => $mainCatLvl['lvl'] + $lvl ])->addOrderBy('root, lft')->all();
         }
         return null;
     }
