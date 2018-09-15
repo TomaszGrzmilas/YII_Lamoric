@@ -92,7 +92,6 @@ $config = [
                        'db/balanceaccount' => 'balanceaccount.php',
                        'db/balancetransaction' => 'balancetransaction.php',
                        'db/event' => 'event.php',
-                       'db/articlemgm' => 'articlemgm.php',
                    ],
                ],
             ],

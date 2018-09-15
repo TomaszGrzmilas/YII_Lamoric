@@ -332,8 +332,11 @@ echo Html::hiddenInput('treeMoveHash', $security->hashData($dataToHash, $module-
          */
         ?>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <?= $form->field($node, 'visible')->checkbox() ?>
+            </div>
+            <div class="col-sm-2">
+                <?= $form->field($node, 'child_allowed')->checkbox() ?>
             </div>
             <? /*
             <div class="col-sm-4">

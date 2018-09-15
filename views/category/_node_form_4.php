@@ -1,3 +1,37 @@
 <?php
-echo "adasdad";
+use kartik\file\FileInput;
+use yii\helpers\Url;
+
+
+$img = $node->getFilePath() == null ? null : "<img src='". $node->getFilePath() ."' class='file-preview-image'>";
+
+echo $form->field($node, 'image')->widget(FileInput::classname(), [
+    'options' => ['accept' => 'image/*'],
+    'pluginOptions' => [
+        'autoOrientImage' => false,
+        'allowedFileTypes' => 'image',
+        'language'=>'pl',
+      //  'uploadUrl' => Url::to(['/category/upload-file']),
+        'maxFileCount' => 1,
+        'showClose' => false,
+        'showUpload' => false,
+        'showCancel' => false,
+     //   'showPreview' => false,
+        'showCaption' => false,
+        'deleteUrl' => Url::to(['/category/delete-file', 'id'=>$node->id]),
+        'initialPreviewConfig' => [
+            'key' => $node->id,
+        ],
+        'fileActionSettings' => [
+            'showUpload' => false,
+            'showZoom' => false,
+            'showDrag'=>false,
+        ],
+        'initialPreview' => [
+            $img
+        ],
+    ]
+]);
+
+
 ?>

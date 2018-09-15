@@ -7,6 +7,7 @@ use yii\behaviors\TimestampBehavior;
 use creocoder\nestedsets\NestedSetsBehavior;
 use yii\helpers\ArrayHelper;
 use app\components\LogBehavior;
+use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "{{%category}}".
@@ -62,35 +63,41 @@ class Category extends \kartik\tree\models\Tree
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function rules()
+    {
+        $rules = [
+            [['image'], 'safe'], 
+        ];
+        return array_merge(parent::rules(), $rules);
+    }
+
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('db/articlemgm', 'ID'),
-            'root' => Yii::t('db/articlemgm', 'Root'),
-            'lft' => Yii::t('db/articlemgm', 'Lft'),
-            'rgt' => Yii::t('db/articlemgm', 'Rgt'),
-            'lvl' => Yii::t('db/articlemgm', 'Lvl'),
-            'name' => Yii::t('db/articlemgm', 'Name'),
-            'icon' => Yii::t('db/articlemgm', 'Icon'),
-            'icon_type' => Yii::t('db/articlemgm', 'Icon Type'),
-            'active' => Yii::t('db/articlemgm', 'Active'),
-            'selected' => Yii::t('db/articlemgm', 'Selected'),
-            'disabled' => Yii::t('db/articlemgm', 'Disabled'),
-            'readonly' => Yii::t('db/articlemgm', 'Readonly'),
-            'visible' => Yii::t('db/articlemgm', 'Visible'),
-            'collapsed' => Yii::t('db/articlemgm', 'Collapsed'),
-            'movable_u' => Yii::t('db/articlemgm', 'Movable U'),
-            'movable_d' => Yii::t('db/articlemgm', 'Movable D'),
-            'movable_l' => Yii::t('db/articlemgm', 'Movable L'),
-            'movable_r' => Yii::t('db/articlemgm', 'Movable R'),
-            'removable' => Yii::t('db/articlemgm', 'Removable'),
-            'removable_all' => Yii::t('db/articlemgm', 'Removable All'),
-            'created_at' => Yii::t('db/articlemgm', 'Created At'),
-            'updated_at' => Yii::t('db/articlemgm', 'Updated At'),
-            'child_allowed' => Yii::t('db/articlemgm', 'Child allowed'),
+            'id' => Yii::t('db/category', 'ID'),
+            'root' => Yii::t('db/category', 'Root'),
+            'lft' => Yii::t('db/category', 'Lft'),
+            'rgt' => Yii::t('db/category', 'Rgt'),
+            'lvl' => Yii::t('db/category', 'Lvl'),
+            'name' => Yii::t('db/category', 'Name'),
+            'icon' => Yii::t('db/category', 'Icon'),
+            'icon_type' => Yii::t('db/category', 'Icon Type'),
+            'active' => Yii::t('db/category', 'Active'),
+            'selected' => Yii::t('db/category', 'Selected'),
+            'disabled' => Yii::t('db/category', 'Disabled'),
+            'readonly' => Yii::t('db/category', 'Readonly'),
+            'visible' => Yii::t('db/category', 'Visible'),
+            'collapsed' => Yii::t('db/category', 'Collapsed'),
+            'movable_u' => Yii::t('db/category', 'Movable U'),
+            'movable_d' => Yii::t('db/category', 'Movable D'),
+            'movable_l' => Yii::t('db/category', 'Movable L'),
+            'movable_r' => Yii::t('db/category', 'Movable R'),
+            'removable' => Yii::t('db/category', 'Removable'),
+            'removable_all' => Yii::t('db/category', 'Removable All'),
+            'created_at' => Yii::t('db/category', 'Created At'),
+            'updated_at' => Yii::t('db/category', 'Updated At'),
+            'child_allowed' => Yii::t('db/category', 'Child allowed'),
+            'image' => Yii::t('db/category', 'Image'),
         ];
     }
 
@@ -132,5 +139,27 @@ class Category extends \kartik\tree\models\Tree
         array_push($search,$this->id);
 
         return $doc->find()->where(['in','category_id' , $search])->all();
+    }
+
+    public function beforeSave($insert)
+    {
+        $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
+
+        if (!empty($uploadFile)) {
+            $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
+            $uploadFile->saveAs($file);
+            $this->image = $file;
+        } 
+        return parent::beforeSave($insert);
+    }
+
+    public function getFilePath()
+    {
+        return FileHelper::normalizePath(substr($this->image, strlen(Yii::getAlias('@app').'\web')));
+    }
+
+    public function getImg($width = '175px', $height = '100%')
+    {
+        return Html::img($this->getFilePath(), ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
     }
 }
