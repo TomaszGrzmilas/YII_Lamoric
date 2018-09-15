@@ -143,6 +143,7 @@ class Category extends \kartik\tree\models\Tree
 
     public function beforeSave($insert)
     {
+        $ola = $this->image;
         $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
 
         if (!empty($uploadFile)) {
@@ -150,6 +151,24 @@ class Category extends \kartik\tree\models\Tree
             $uploadFile->saveAs($file);
             $this->image = $file;
         } 
+        if ($insert === false) 
+        {
+            $oldfile = \yii\helpers\FileHelper::normalizePath($this->oldAttributes['image']);
+            if ($this->image == null)
+            {
+                if (file_exists($oldfile))
+                {
+                    $this->image = $this->oldAttributes['image'];
+                }
+            }
+            else if ($this->image != $this->oldAttributes['image'])
+            {
+                if (file_exists($oldfile))
+                {
+                    unlink($oldfile);
+                }
+            }
+        }
         return parent::beforeSave($insert);
     }
 
