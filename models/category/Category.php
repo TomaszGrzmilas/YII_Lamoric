@@ -141,18 +141,34 @@ class Category extends \kartik\tree\models\Tree
         return $doc->find()->where(['in','category_id' , $search])->all();
     }
 
+    public function beforeDelete()
+    {
+        $file = \yii\helpers\FileHelper::normalizePath($this->image);
+
+        if (!parent::beforeDelete()) {
+            return false;
+        }
+
+        if (file_exists($file))
+        {
+            unlink($file);
+        }
+    
+        return true;
+    }
+    
     public function beforeSave($insert)
     {
-        $ola = $this->image;
-        $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
-
-        if (!empty($uploadFile)) {
-            $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
-            $uploadFile->saveAs($file);
-            $this->image = $file;
-        } 
         if ($insert === false) 
         {
+            $ola = $this->image;
+            $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
+
+            if (!empty($uploadFile)) {
+                $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
+                $uploadFile->saveAs($file);
+                $this->image = $file;
+            } 
             $oldfile = \yii\helpers\FileHelper::normalizePath($this->oldAttributes['image']);
             if ($this->image == null)
             {

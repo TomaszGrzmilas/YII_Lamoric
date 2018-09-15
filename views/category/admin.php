@@ -43,7 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
         //                      {tree}',
         //  'toolbarOptions'=> ['class'=>'hide'],
             'displayValue'      => 1,     // initial display value
-            'softDelete'      => true,                        // normally not needed to change
+            'softDelete'      => false,  
+            'showInactive' => true,                      // normally not needed to change
             //'cacheSettings'   => ['enableCache' => true]      // normally not needed to change
         ]);
     }
