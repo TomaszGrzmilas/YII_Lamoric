@@ -3,10 +3,13 @@ use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\web\View;
 use app\modules\docmgm\DocmgmModule;
+use yii\helpers\Url;
 
 $this->title = $category->name;
 $this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/document', 'Law'), 'url' => ['/docmgm/law-ovw/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+Url::remember();
 ?>
 
 <div class="row">
@@ -16,13 +19,32 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="rights-boxb">
             
                 <div class="rights-boxb-head">
-                    <h3 title="<?= $category->name ?>" class="rights-boxb-title"><img src="template/default/images/icn-rights-subtitle-aktyprawne.png" alt=""> Akty prawne</h3>
-                    <a href="#" class="hvr-pop btn-red" title="zobacz więcej">więcej <span class="glyphicon glyphicon-menu-right"></span></a>
+                    <h3 title="<?= $category->name ?>" class="rights-boxb-title">
+                        <? //HTML::img('@web/layout.main\images\icn-rights-subtitle-aktyprawne.png') ?>
+                        <?= $category->name ?>
+                    </h3>
+                    <?=
+                        Html::a(Yii::t('app', 'More') . '<span class="glyphicon glyphicon-menu-right"></span>', 
+                        ['view-all-articles', 'id' => $category->id],
+                        [
+                            'class' => 'hvr-pop btn-red', 
+                            'title' => Yii::t('app', 'More')
+                        ]);
+                    ?>
                 </div>
                 
                 <ul class="rights-boxb-lists">
                     <? foreach($category->documents as $document) : ?>
-                    <li class="item"><a href="#" class="hvr-pop" title="#"><?= $document->title ?></a></li>
+                    <li class="item">
+                        <?=
+                            Html::a($document->title, 
+                            ['view-single-article', 'category_id'=> $category->id, 'doc_id' => $document->doc_id],
+                            [
+                                'class' => 'hvr-pop', 
+                                'title' => $document->title
+                            ]);
+                        ?>
+                    </li>
                     <? endforeach; ?>
                 </ul>
             </div>

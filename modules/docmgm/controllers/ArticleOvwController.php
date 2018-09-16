@@ -10,7 +10,6 @@ use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 
-
 class ArticleOvwController extends Controller
 {
     public function behaviors()
@@ -37,20 +36,18 @@ class ArticleOvwController extends Controller
     public function actionIndex($id = null)
     {
         $model = new Document();
-        $cat   = new Category();
-        $cat = $cat->find()->where(['id' => $model->articleRootCategoryId])->one();
+        $category = new Category();
         
         if(is_null($id)){
             $category_id = $model->articleRootCategoryId;
         } else {
             $category_id = $id;
         }
-    
-        $categories = $cat->getSubCategories($category_id);
-   
+        $category = $category->find()->where(['id' => $category_id])->one();
+
         return $this->render('index', [
-            'documents' => $cat->documents,
-            'categories' => $categories,
+            'documents' => $category->documents,
+            'categories' => $category->getSubCategories(),
             'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);
     }

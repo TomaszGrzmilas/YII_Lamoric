@@ -69,6 +69,13 @@ class DocumentController extends Controller
         ]);
     }
 
+    public function actionViewArticle($doc_id)
+    {
+        return $this->render('_single_article', [
+            'model' => $this->findModel($doc_id),
+        ]);
+    }
+
     public function actionCreate()
     {
         $model = new Document();
