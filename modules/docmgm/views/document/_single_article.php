@@ -22,7 +22,8 @@ $doc_year = date("Y",$model->created_at);
 
 <div class="article-open">
     <div class="row">
-        <div class="col-xs-4 col-md-2">
+        <div class="col-xs-12 col-md-4">
+            <?= HTML::img($model->getThumbnailPath(), ['class' => 'img-responsive']) ?>
             <div class="article-open-date">
                 <?= $doc_day ?> 
                 <strong>
@@ -31,7 +32,7 @@ $doc_year = date("Y",$model->created_at);
                 <?= $doc_year ?> 
             </div>
         </div>
-        <div class="col-xs-12 col-md-10">
+        <div class="col-xs-12 col-md-8">
             <h3 class="article-open-title">
                 <?= $model->title ?>
             </h3>

@@ -17,6 +17,9 @@ Url::remember();
                 case 'LAW':
                     $link = ['/docmgm/law-ovw/view-single-article', 'category_id'=> $category->id, 'doc_id' => $doc->doc_id];
                     break;
+                case 'ARTICLE':
+                    $link = ['/docmgm/article-ovw/view', 'id' => $doc->doc_id];
+                    break;
                 default:
                 $link = null;
                     break;
@@ -25,6 +28,9 @@ Url::remember();
         <div class="col-xs-12 col-md-6">
             <div class="article-box">
                 <div class="row">
+                    <div class="col-xs-12 col-sm-4 hidden-xs">
+                        <?= HTML::img($doc->getThumbnailPath(), ['class' => 'img-responsive']) ?>
+                    </div>
                     <div class="col-xs-12 col-sm-8">
                         <h3 class="article-title">
                             <?=

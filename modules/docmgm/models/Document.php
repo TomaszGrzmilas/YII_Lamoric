@@ -7,6 +7,7 @@ use yii\behaviors\TimestampBehavior;
 use app\modules\docmgm\DocmgmModule;
 use app\models\category\Category;
 use app\components\LogBehavior;
+use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "{{%document}}".
@@ -60,11 +61,12 @@ class Document extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'text','short_text'], 'required'],
-            [['text','short_text'], 'string'],
+            [['text','short_text','thumbnail'], 'string'],
             [['title'], 'unique'],
         //    [['category_id'], 'integer'],
             [['title'], 'string', 'max' => 150],
             [['short_text'], 'string', 'max' =>800],
+            [['thumbnail'], 'string', 'max' =>200],
             [['tag'], 'string', 'max' => 200],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -80,9 +82,9 @@ class Document extends \yii\db\ActiveRecord
             'tag' => DocmgmModule::t('db/document', 'Tag'),
             'file' => DocmgmModule::t('db/document', 'File'),
             'category_id' => DocmgmModule::t('db/document', 'Category ID'),
+            'thumbnail' => DocmgmModule::t('db/document', 'Thumbnail'),
         ];
     }
-
 
     public function getCategory()
     {
@@ -97,5 +99,52 @@ class Document extends \yii\db\ActiveRecord
     public function getUploadedFile()
     {
         return $this->hasOne(UploadedFile::className(), ['id' => 'file']);
+    }
+
+    public function getFilePath()
+    {
+        return FileHelper::normalizePath(substr($this->file, strlen(Yii::getAlias('@app').'\web')));
+    }
+
+    public function getThumbnailPath()
+    {
+        if ($this->thumbnail == null){
+            return FileHelper::normalizePath('/media/upload/document_thumbnail/default.jpg');
+        } 
+        else
+        {
+            return FileHelper::normalizePath(substr($this->thumbnail, strlen(Yii::getAlias('@app').'\web')));
+        }
+    }
+
+    public function beforeSave($insert)
+    {
+        if ($insert === false) 
+        {
+            $ola = $this->thumbnail;
+            $uploadFile = \yii\web\UploadedFile::getInstance($this, 'thumbnail');
+
+            if (!empty($uploadFile)) {
+                $file =  Yii::getAlias('@app') . '/web/media/upload/document_thumbnail/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
+                $uploadFile->saveAs($file);
+                $this->thumbnail = $file;
+            } 
+            $oldfile = \yii\helpers\FileHelper::normalizePath($this->oldAttributes['thumbnail']);
+            if ($this->thumbnail == null)
+            {
+                if (file_exists($oldfile))
+                {
+                    $this->image = $this->oldAttributes['image'];
+                }
+            }
+            else if ($this->image != $this->oldAttributes['image'])
+            {
+                if (file_exists($oldfile))
+                {
+                    unlink($oldfile);
+                }
+            }
+        }
+        return parent::beforeSave($insert);
     }
 }

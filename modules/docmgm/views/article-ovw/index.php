@@ -57,39 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </form>
 
-<div class="row" id="<?= $item ?>">
-    <? foreach ($documents as $key =>$doc) : ?>   
-        <div class="col-xs-12 col-md-6">
-            <div class="article-box">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8">
-                        <h3 class="article-title">
-                            <?=
-                                Html::a($doc->title, 
-                                ['view', 'id' => $doc->doc_id],
-                                [
-                                    'class' => 'hvr-push', 
-                                    'title' => Yii::t('app', 'More')
-                                ]);
-                            ?>
-                        </h3>
-                        <p class="article-date"><?= Yii::$app->formatter->asDate($doc->created_at, 'php:d M'); ?></p>
-                        <p class="article-short">
-                            <?= $doc->short_text ?>
-                        </p>
-                    </div>
-                    <div class="col-xs-12">
-                        <?=
-                            Html::a(Yii::t('app', 'More') . '<span class="glyphicon glyphicon-menu-right"></span>', 
-                            ['view', 'id' => $doc->doc_id],
-                            [
-                                'class' => 'btn-red hvr-push', 
-                                'title' => Yii::t('app', 'More')
-                            ]);
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <? endforeach; ?>
-</div>
+<?
+echo $this->render('/document/_all_articles', [
+        'sender' => 'ARTICLE',
+        'category' => $category,
+        'documents' => $documents,
+    ]);
+?>

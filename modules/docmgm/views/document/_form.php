@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\web\View;
 use app\models\category\Category;
+use kartik\file\FileInput;
 ?>
 
 <div class="row">
@@ -55,6 +56,36 @@ use app\models\category\Category;
             <?= $form->field($model, 'tag')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
+
+            <?
+            $img = $model->getFilePath() == null ? null : "<img src='". $model->getFilePath() ."' class='file-preview-image'>";
+
+            echo $form->field($model, 'thumbnail')->widget(FileInput::classname(), [
+                'options' => ['accept' => 'image/*'],
+                'pluginOptions' => [
+                    'autoOrientImage' => false,
+                    'allowedFileTypes' => 'image',
+                    'language'=>'pl',
+                    'maxFileCount' => 1,
+                    'showClose' => false,
+                    'showUpload' => false,
+                    'showCancel' => false,
+                    'showCaption' => false,
+                    'deleteUrl' => Url::to(['/document/delete-file', 'id'=>$model->doc_id]),
+                    'initialPreviewConfig' => [
+                        'key' => $model->doc_id,
+                    ],
+                    'fileActionSettings' => [
+                        'showUpload' => false,
+                        'showZoom' => false,
+                        'showDrag'=>false,
+                    ],
+                    'initialPreview' => [
+                        $img
+                    ],
+                ]
+            ]);
+            ?>
 
             <?= $form->field($model, 'category_id')->widget(kartik\tree\TreeViewInput::classname(),
             [

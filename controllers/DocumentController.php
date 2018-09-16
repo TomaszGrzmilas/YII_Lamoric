@@ -9,14 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * DocumentController implements the CRUD actions for Document model.
- */
 class DocumentController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
@@ -29,10 +23,6 @@ class DocumentController extends Controller
         ];
     }
 
-    /**
-     * Lists all Document models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new DocumentSearch();
@@ -44,12 +34,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Document model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -57,11 +41,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Document model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Document();
@@ -75,13 +54,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Document model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -95,13 +67,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Document model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -109,13 +74,6 @@ class DocumentController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Document model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Document the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Document::findOne($id)) !== null) {
@@ -123,5 +81,27 @@ class DocumentController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionDeleteFile($id)
+    {
+        if (Yii::$app->request->isAjax && $id != null) 
+        {
+            $model = new Document();
+
+            $model = $model->findOne($id);
+
+            $file = \yii\helpers\FileHelper::normalizePath($model->thumbnail);
+
+            if(file_exists($file))
+            {
+                unlink($model->thumbnail);
+            }
+
+            $model->thumbnail = null;
+            $model->save();
+            return '{}';
+      }
+    return null;
     }
 }
