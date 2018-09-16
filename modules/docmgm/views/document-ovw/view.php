@@ -192,7 +192,7 @@ Url::remember();
 
 <? // ################################################################################# ?>
 
-<? if(isset($documents)) : ?>
+<? if(isset($documents) && count($documents) > 0) : ?>
     <div class="row">
         <div class="col-xs-12">
             <ul class="rights-lists">
