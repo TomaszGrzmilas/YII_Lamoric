@@ -20,8 +20,11 @@ Url::remember();
                 case 'ARTICLE':
                     $link = ['/docmgm/article-ovw/view', 'id' => $doc->doc_id];
                     break;
+                case 'DOCUMENT':
+                    $link = ['/docmgm/document-ovw/view-single-article', 'category_id'=> $category->id, 'id' => $doc->doc_id];
+                    break;
                 default:
-                $link = null;
+                    $link = null;
                     break;
             }
         ?>

@@ -15,7 +15,7 @@ $doc_year = date("Y",$model->created_at);
 <ul class="title-page-nav">
     <li>
         <?= Html::a(Yii::t('app', 'Back') . HTML::img('@web/layout.main\images\icn-big-powrot.png', ['alt' => Yii::t('app', 'Back')]), 
-            ['/docmgm/article-ovw/index'], ['class' => 'title-page-btns hvr-pop']) 
+             Url::previous(), ['class' => 'title-page-btns hvr-pop']) 
         ?> 
     </li>
 </ul>

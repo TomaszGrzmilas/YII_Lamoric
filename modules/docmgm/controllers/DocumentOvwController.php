@@ -33,8 +33,41 @@ class DocumentOvwController extends Controller
 
     public function actionView($id)
     {
+        $category = new Category();
+        
+        if(is_null($id)){
+            $model = new Document();
+            $category_id = $model->docRootCategoryId;
+        } else {
+            $category_id = $id;
+        }
+
+        $category = $category->findOne($category_id);
+   
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'documents' => $category->documents,
+            'categories' => $category->getSubCategories(),
+            'category' => Category::findOne( $category_id),
+        ]);
+    }
+
+    public function actionViewSingleArticle($category_id, $doc_id)
+    {
+        $category = new Category();
+        $category = $category->findOne($category_id);
+        return $this->render('view_single_article', [
+            'category' => $category,
+            'document' => $this->findModel($doc_id),
+        ]);
+    }
+
+    public function actionViewAllArticles($id)
+    {
+        $category = new Category();
+        $category = $category->findOne($id);
+        return $this->render('view_all_articles', [
+            'category' => $category,
+            'documents' => $category->documents,
         ]);
     }
 
@@ -44,6 +77,6 @@ class DocumentOvwController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        return new Document();
     }
 }
