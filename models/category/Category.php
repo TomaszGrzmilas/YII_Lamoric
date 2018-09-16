@@ -166,16 +166,16 @@ class Category extends \kartik\tree\models\Tree
     
     public function beforeSave($insert)
     {
+        $ola = $this->image;
+        $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
+
+        if (!empty($uploadFile)) {
+            $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
+            $uploadFile->saveAs($file);
+            $this->image = $file;
+        } 
         if ($insert === false) 
         {
-            $ola = $this->image;
-            $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
-
-            if (!empty($uploadFile)) {
-                $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
-                $uploadFile->saveAs($file);
-                $this->image = $file;
-            } 
             $oldfile = \yii\helpers\FileHelper::normalizePath($this->oldAttributes['image']);
             if ($this->image == null)
             {
