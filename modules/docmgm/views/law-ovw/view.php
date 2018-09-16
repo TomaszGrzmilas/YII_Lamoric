@@ -141,50 +141,51 @@ Url::remember();
                 </div>
             <? endif ?>
         </div>
+    </div>
 
-        <? if (isset($categories[3])) : ?>
-        <? $category = $categories[3]; ?>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="rights-boxb">
-                    <div class="rights-boxb-head">
-                        <h3 title="<?= $category->name ?>" class="rights-boxb-title">
-                            <?
-                                $catImg = $category->getFilePath();
-                                if (isset($catImg) && $catImg != null)
-                                {
-                                    echo  HTML::img($catImg);
-                                }
-                            ?>
-                            <?= $category->name ?>
-                        </h3>
-                        <?=
-                            Html::a(Yii::t('app', 'More') . '<span class="glyphicon glyphicon-menu-right"></span>', 
-                            ['view-all-articles', 'id' => $category->id],
-                            [
-                                'class' => 'hvr-pop btn-red', 
-                                'title' => Yii::t('app', 'More')
-                            ]);
+    <? if (isset($categories[3])) : ?>
+    <? $category = $categories[3]; ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="rights-boxb">
+                <div class="rights-boxb-head">
+                    <h3 title="<?= $category->name ?>" class="rights-boxb-title">
+                        <?
+                            $catImg = $category->getFilePath();
+                            if (isset($catImg) && $catImg != null)
+                            {
+                                echo  HTML::img($catImg);
+                            }
                         ?>
-                    </div>
-                    <ul class="rights-boxb-lists">
-                        <? foreach($category->documents as $document) : ?>
-                            <li class="item">
-                                <?=
-                                    Html::a($document->title, 
-                                    ['view-single-article', 'category_id'=> $category->id, 'doc_id' => $document->doc_id],
-                                    [
-                                        'class' => 'hvr-pop', 
-                                        'title' => $document->title
-                                    ]);
-                                ?>
-                            </li>
-                        <? endforeach; ?>
-                    </ul>
+                        <?= $category->name ?>
+                    </h3>
+                    <?=
+                        Html::a(Yii::t('app', 'More') . '<span class="glyphicon glyphicon-menu-right"></span>', 
+                        ['view-all-articles', 'id' => $category->id],
+                        [
+                            'class' => 'hvr-pop btn-red', 
+                            'title' => Yii::t('app', 'More')
+                        ]);
+                    ?>
                 </div>
+                <ul class="rights-boxb-lists">
+                    <? foreach($category->documents as $document) : ?>
+                        <li class="item">
+                            <?=
+                                Html::a($document->title, 
+                                ['view-single-article', 'category_id'=> $category->id, 'doc_id' => $document->doc_id],
+                                [
+                                    'class' => 'hvr-pop', 
+                                    'title' => $document->title
+                                ]);
+                            ?>
+                        </li>
+                    <? endforeach; ?>
+                </ul>
             </div>
         </div>
-        <? endif ?>
+    </div>
+    <? endif ?>
     <? endif ?>
 </div>
 
