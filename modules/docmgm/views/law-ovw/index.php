@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <a href="#" class="btns-start-prawo hvr-pop">
             <?=
                 Html::a($a,
-                ['view', 'id' => $category->id, 'lvl' => $category->lvl + 1],
+                ['view', 'id' => $category->id],
                 [
                     'class' => 'btns-start-prawo hvr-pop',
                 ]);

@@ -14,41 +14,38 @@ class LawOvwController extends Controller
     public function actionIndex($id = null)
     {
         $model = new Document();
-        $cat   = new Category();
-        $cat   = $cat->find()->where(['id' => $model->lawRootCategoryId])->one();
+        $category = new Category();
         
         if(is_null($id)){
             $category_id = $model->lawRootCategoryId;
         } else {
             $category_id = $id;
         }
-    
-        $categories = $cat->getSubCategories($category_id);
-   
+        $category = $category->find()->where(['id' => $category_id])->one();
+
         return $this->render('index', [
-            'documents' => $cat->documents,
-            'categories' => $categories,
+            'documents' => $category->documents,
+            'categories' => $category->getSubCategories(),
             'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);
     }
 
-    public function actionView($id = null, $lvl = 1)
+    public function actionView($id = null)
     {
         $model = new Document();
-        $cat   = new Category();
-        $cat   = $cat->find()->where(['id' => $model->lawRootCategoryId])->one();
+        $category = new Category();
         
         if(is_null($id)){
             $category_id = $model->lawRootCategoryId;
         } else {
             $category_id = $id;
         }
-    
-        $categories = $cat->getSubCategories($model->lawRootCategoryId, $lvl);
+
+        $category = $category->find()->where(['id' => $category_id])->one();
    
         return $this->render('view', [
-            'documents' => $cat->documents,
-            'categories' => $categories,
+            'documents' => $category->documents,
+            'categories' => $category->getSubCategories(),
             'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);
     }
