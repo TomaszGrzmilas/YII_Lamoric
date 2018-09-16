@@ -141,10 +141,10 @@ class Document extends \yii\db\ActiveRecord
             {
                 if (file_exists($oldfile))
                 {
-                    $this->image = $this->oldAttributes['image'];
+                    $this->thumbnail = $this->oldAttributes['thumbnail'];
                 }
             }
-            else if ($this->image != $this->oldAttributes['image'])
+            else if ($this->thumbnail != $this->oldAttributes['thumbnail'])
             {
                 if (file_exists($oldfile))
                 {
