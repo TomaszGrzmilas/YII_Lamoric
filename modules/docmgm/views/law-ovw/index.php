@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
            $a .= '<div class="btn-start-info">' . $category->name . '</div>';
         ?>
         <div class="col-xs-12 col-md-2">
-            <a href="#" class="btns-start-prawo hvr-pop">
             <?=
                 Html::a($a,
                 ['view', 'id' => $category->id],
