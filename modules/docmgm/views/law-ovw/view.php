@@ -7,7 +7,7 @@ use yii\helpers\Url;
 $this->title = $category->name;
 $this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/document', 'Law'), 'url' => ['/docmgm/law-ovw/index']];
 $this->params['breadcrumbs'][] = $this->title;
-
+$currentCategory = $category;
 Url::remember();
 ?>
 
@@ -187,3 +187,26 @@ Url::remember();
         <? endif ?>
     <? endif ?>
 </div>
+
+<? // ################################################################################# ?>
+
+<? if(isset($documents)) : ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="rights-lists">
+                <? foreach($documents as $document) : ?>
+                <li class="item">
+                    <?=
+                        Html::a($document->title, 
+                        ['view-single-article', 'category_id'=> $currentCategory->id, 'doc_id' => $document->doc_id],
+                        [
+                            'class' => 'hvr-pop', 
+                            'title' => $document->title
+                        ]);
+                    ?>
+                </li>
+                <? endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<? endif ?>
