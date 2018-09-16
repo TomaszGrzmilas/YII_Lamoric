@@ -20,7 +20,13 @@ Url::remember();
             
                 <div class="rights-boxb-head">
                     <h3 title="<?= $category->name ?>" class="rights-boxb-title">
-                        <? //HTML::img('@web/layout.main\images\icn-rights-subtitle-aktyprawne.png') ?>
+                        <?
+                            $catImg = $category->getFilePath();
+                            if (isset($catImg) && $catImg != null)
+                            {
+                                echo  HTML::img($catImg);
+                            }
+                        ?>
                         <?= $category->name ?>
                     </h3>
                     <?=

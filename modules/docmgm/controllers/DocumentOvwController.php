@@ -14,22 +14,20 @@ class DocumentOvwController extends Controller
 {
     public function actionIndex($id = null)
     {
-        $model = new Document();
         $cat   = new Category();
-        $cat = $cat->find()->where(['id' => $model->docRootCategoryId])->one();
         
         if(is_null($id)){
+            $model = new Document();
             $category_id = $model->docRootCategoryId;
         } else {
             $category_id = $id;
         }
-    
-        $categories = $cat->getSubCategories($category_id);
-   
+        $cat = $cat->findOne($category_id);
+
         return $this->render('index', [
             'documents' => $cat->documents,
-            'categories' => $categories,
-            'category' => Category::find()->where(['id' => $category_id])->one(),
+            'categories' => $cat->getSubCategories($category_id),
+            'category' => $cat,
         ]);
     }
 

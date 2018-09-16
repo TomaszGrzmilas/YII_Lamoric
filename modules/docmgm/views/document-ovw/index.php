@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="article-search-box">
                 <select name="wgkategorii">
                     <option value="0">Szukaj wg kategorii</option>
-                    <? foreach ($categories as $key => $cat) : ?>
-                        <option value="<?= $key ?>"><?= $cat ?></option>
+                    <? foreach ($categories as $category) : ?>
+                        <option value="<?= $category->id ?>"><?= $category->name ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </form>
 
 <div class="row" id="<?= $item ?>">
-    <? foreach ($documents as $key =>$doc) : ?>   
+    <? foreach ($documents as $key => $doc) : ?>   
         <div class="col-xs-12 col-md-6">
             <div class="article-box">
                 <div class="row">
