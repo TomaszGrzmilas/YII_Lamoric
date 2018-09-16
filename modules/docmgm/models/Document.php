@@ -60,7 +60,7 @@ class Document extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'text','short_text'], 'required'],
+            [['title', 'text'], 'required'],
             [['text','short_text','thumbnail'], 'string'],
             [['title'], 'unique'],
         //    [['category_id'], 'integer'],
@@ -119,6 +119,13 @@ class Document extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
+        if ($insert === true) 
+        {
+            if($this->short_text == null)
+            {
+                $this->short_text = substr(strip_tags($this->text), 0, 190) . '...';
+            }
+        }
         if ($insert === false) 
         {
             $ola = $this->thumbnail;
