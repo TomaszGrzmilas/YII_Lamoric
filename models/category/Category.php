@@ -67,6 +67,8 @@ class Category extends \kartik\tree\models\Tree
     {
         $rules = [
             [['image'], 'safe'], 
+            [['text1','text2','text3'], 'string', 'max' => 200],
+            [['description'], 'string', 'max' => 1000],
         ];
         return array_merge(parent::rules(), $rules);
     }
@@ -98,6 +100,10 @@ class Category extends \kartik\tree\models\Tree
             'updated_at' => Yii::t('db/category', 'Updated At'),
             'child_allowed' => Yii::t('db/category', 'Child allowed'),
             'image' => Yii::t('db/category', 'Image'),
+            'text1' => Yii::t('db/category', 'Text 1'),
+            'text2' => Yii::t('db/category', 'Text 2'),
+            'text3' => Yii::t('db/category', 'Text 3'),
+            'description' => Yii::t('db/category', 'Description'),
         ];
     }
 
@@ -166,32 +172,35 @@ class Category extends \kartik\tree\models\Tree
     
     public function beforeSave($insert)
     {
-        $ola = $this->image;
-        $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
-
-        if (!empty($uploadFile)) {
-            $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
-            $uploadFile->saveAs($file);
-            $this->image = $file;
-        } 
-        if ($insert === false) 
+        if ($this->id != null)
         {
-            $oldfile = \yii\helpers\FileHelper::normalizePath($this->oldAttributes['image']);
-            if ($this->image == null)
+            $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
+    
+            if (!empty($uploadFile)) {
+                $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
+                $uploadFile->saveAs($file);
+                $this->image = $file;
+            } 
+            if ($insert === false) 
             {
-                if (file_exists($oldfile))
+                $oldfile = \yii\helpers\FileHelper::normalizePath($this->oldAttributes['image']);
+                if ($this->image == null)
                 {
-                    $this->image = $this->oldAttributes['image'];
+                    if (file_exists($oldfile))
+                    {
+                        $this->image = $this->oldAttributes['image'];
+                    }
                 }
-            }
-            else if ($this->image != $this->oldAttributes['image'])
-            {
-                if (file_exists($oldfile))
+                else if ($this->image != $this->oldAttributes['image'])
                 {
-                    unlink($oldfile);
+                    if (file_exists($oldfile))
+                    {
+                        unlink($oldfile);
+                    }
                 }
             }
         }
+       
         return parent::beforeSave($insert);
     }
 

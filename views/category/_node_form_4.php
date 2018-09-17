@@ -2,8 +2,15 @@
 use kartik\file\FileInput;
 use yii\helpers\Url;
 
-
 $img = $node->getFilePath() == null ? null : "<img src='". $node->getFilePath() ."' class='file-preview-image'>";
+
+echo $form->field($node, 'text1')->textInput(['maxlength' => true]);
+
+echo $form->field($node, 'text2')->textInput(['maxlength' => true]);
+
+echo $form->field($node, 'text3')->textInput(['maxlength' => true]);
+
+echo $form->field($node, 'description')->textArea(['maxlength' => true]);
 
 echo $form->field($node, 'image')->widget(FileInput::classname(), [
     'options' => ['accept' => 'image/*'],
@@ -19,9 +26,9 @@ echo $form->field($node, 'image')->widget(FileInput::classname(), [
      //   'showPreview' => false,
         'showCaption' => false,
         'deleteUrl' => Url::to(['/category/delete-file', 'id'=>$node->id]),
-        'initialPreviewConfig' => [
-            'key' => $node->id,
-        ],
+       // 'initialPreviewConfig' => [
+        //    'key' => $node->id,
+       // ],
         'fileActionSettings' => [
             'showUpload' => false,
             'showZoom' => false,

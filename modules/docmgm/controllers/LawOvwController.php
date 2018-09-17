@@ -48,7 +48,7 @@ class LawOvwController extends Controller
         return $this->render('index', [
             'documents' => $category->documents,
             'categories' => $category->getSubCategories(),
-            'category' => Category::find()->where(['id' => $category_id])->one(),
+            'category' => Category::findOne($category_id),
         ]);
     }
 

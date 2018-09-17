@@ -14,6 +14,7 @@ class TrainingsOvwController extends Controller
 {
     public function actionIndex($id = null)
     {
+        $category = new Category();
         $model = new Document();
 
         if(is_null($id)){
@@ -21,17 +22,13 @@ class TrainingsOvwController extends Controller
         } else {
             $category_id = $id;
         }
-        
-        $documents = new ActiveDataProvider([
-            'query' => $model->find()->where(['category_id' => $category_id])->all(),
-        ]);
 
-        $categories = Category::getSubCategories($category_id);
-   
+        $category = $category->findOne($category_id);
+
         return $this->render('index', [
-            'documents' => $documents->query,
-            'categories' => $categories,
-            'category' => Category::find()->where(['id' => $category_id])->one(),
+            'documents' => $category->documents,
+            'categories' => $category->getSubCategories(),
+            'category' => $category,
         ]);
     }
 }
