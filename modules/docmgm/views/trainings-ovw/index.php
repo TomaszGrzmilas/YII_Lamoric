@@ -5,7 +5,7 @@ use yii\web\View;
 use app\modules\docmgm\DocmgmModule;
 
 $this->title = $category->name;
-$this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/document', 'Rodo'), 'url' => ['/docmgm/rodo-ovw/index']];
+//$this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/document', 'Trainings'), 'url' => ['/docmgm/rodo-ovw/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
