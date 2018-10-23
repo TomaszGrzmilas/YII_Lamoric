@@ -6,6 +6,7 @@ use Yii;
 use app\models\category\Category;
 use app\modules\docmgm\models\Document;
 use app\modules\docmgm\models\DocCategorySearch;
+use yii\web\NotFoundHttpException;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 
