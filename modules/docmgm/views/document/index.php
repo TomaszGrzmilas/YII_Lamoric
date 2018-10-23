@@ -29,9 +29,9 @@ Url::remember();
                 'columns' =>  [
                     'title',
                     [
-                        'attribute' => 'text',
+                        'attribute' => 'short_text',
                         'value'=> function ($model) {
-                            return substr($model->text, 0, 50);
+                            return substr($model->short_text, 0, 50);
                         },
                         'format' => 'raw'
                     ],

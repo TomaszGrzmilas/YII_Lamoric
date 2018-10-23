@@ -19,7 +19,7 @@ class DocumentSearch extends Document
     {
         return [
             [['doc_id'], 'integer'],
-            [['title', 'text', 'tag', 'file', 'category_id'], 'safe'],
+            [['title', 'text', 'short_text', 'tag', 'file', 'category_id'], 'safe'],
         ];
     }
 
@@ -64,6 +64,7 @@ class DocumentSearch extends Document
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'text', $this->text])
+            ->andFilterWhere(['like', 'short_text', $this->short_text])
             ->andFilterWhere(['like', 'tag', $this->tag])
             ->andFilterWhere(['like', 'file', $this->file])
             ->andFilterWhere(['like', 'category.name', $this->category_id]);

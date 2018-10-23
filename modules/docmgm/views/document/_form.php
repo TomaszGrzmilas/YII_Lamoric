@@ -58,7 +58,7 @@ use kartik\file\FileInput;
             <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
 
             <?
-            $img = $model->getThumbnailPath() == null ? null : "<img src='". $model->getThumbnailPath() ."' class='file-preview-image'>";
+            $img = $model->getThumbnailPath() == null ? null : "<img src='". $model->getThumbnailPath() ."' class=\"file-preview-image\" style=\"width: 210px; \">";
 
             echo $form->field($model, 'thumbnail')->widget(FileInput::classname(), [
                 'options' => ['accept' => 'image/*'],

@@ -12,6 +12,7 @@ return array(
     'Category ID'=>'Kategoria',
     'Articles' => 'Artykuły',
     'Law' => 'Prawo',
-    'Update' => 'Edycja'
+    'Update' => 'Edycja',
+    'Thumbnail' => 'Miniaturka'
 );
 ?>
