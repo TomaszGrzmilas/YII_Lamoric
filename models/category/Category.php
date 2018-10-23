@@ -140,6 +140,17 @@ class Category extends \kartik\tree\models\Tree
         return null;
     }
 
+    public function Documents($searchParams)
+    {
+        $docSearch = new \app\modules\docmgm\models\DocumentSearch();
+        if(isset($searchParams['DocumentSearch']))
+        {
+            $docSearch->search($searchParams);
+            
+        }
+        return $this->documents;
+    }
+
     public function getDocuments()
     {
         $doc = new \app\modules\docmgm\models\Document();

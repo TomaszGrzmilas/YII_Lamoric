@@ -1,32 +1,50 @@
 <?php
 use yii\helpers\Html;
-use yii\helpers\HtmlPurifier;
 use yii\web\View;
 use app\modules\docmgm\DocmgmModule;
+use yii\widgets\Pjax;
+use yii\bootstrap\ActiveForm;
 
 $item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
 
 $this->title = $category->name;
 //$this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/document', 'Articles'), 'url' => ['/docmgm/article-ovw/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+Pjax::begin(['id' => $item, 'timeout' => 30000]);
+$form = ActiveForm::begin(['action' => ['index'],
+                           'method' => 'get',
+                           'options' => [
+                                'data-pjax' => true,
+                                'class'=>"article-search"
+                                ]
+                            ]); 
+                            
 ?>
 
-<form action="#" class="article-search">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="article-search-box">
-                <input type="text" class="prawo-search-input" placeholder="<?= Yii::t('app', 'Search') ?>">
-                <button type="submit" class="prawo-search-submit">
-                    <?= HTML::img('@web/layout.main\images\icn-search-gray.png', ['alt' => Yii::t('app', 'Search')]) ?>
-                </button>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-xs-12">
+        <?= $form->field($searchModel, 'text',  [
+                'inputOptions' => [
+                    'placeholder' => Yii::t('app', 'Search'),
+                    'class' => 'prawo-search-input',
+                ],
+                'options'=>['class'=>'article-search-box'],
+                'template' => ' {input} 
+                <button type="submit" class="prawo-search-submit">'.
+                    HTML::img('@web/layout.main\images\icn-search-gray.png', ['alt' => Yii::t('app', 'Search')]) .
+                '</button>',
+            ])->textInput(['maxlength' => true]) 
+        ?>
     </div>
+</div>
+
+
     <div class="row">
         <div class="col-xs-12 col-md-4">
             <div class="article-search-box">
                 <select name="wgkategorii">
-                    <option value="0">Szukaj wg kategorii</option>
+                    <option value=""  disabled selected hidden><?= Yii::t('app', 'Search by category') ?></option>
                     <? foreach ($categories as $category) : ?>
                         <option value="<?= $category->id ?>"><?= $category->name ?></option>
                     <?php endforeach; ?>
@@ -35,8 +53,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-12 col-md-4">
             <div class="article-search-box">
-                <select name="wgdaty">
-                    <option value="0">Szukaj wg daty</option>
+                <select name="wgdaty" placeholder="sdsdsd">
+                    <option value="" disabled selected hidden><?= Yii::t('app', 'Search by date') ?></option>
                     <option value="1">W tym tygodniu</option>
                     <option value="2">W tym miesiacu</option>
                     <option value="3">W tym roku</option>
@@ -46,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-xs-12 col-md-4">
             <div class="article-search-box">
                 <select name="sortuj">
-                    <option value="0">Szukaj wg</option>
+                    <option value="" disabled selected hidden><?= Yii::t('app', 'Sort by') ?></option>
                     <option value="1">daty od najnowszej</option>
                     <option value="2">daty od najstarszej</option>
                     <option value="3">alfabetycznie [a-z]</option>
@@ -55,12 +73,14 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-</form>
-
 <?
+ActiveForm::end();
+
 echo $this->render('/document/_all_articles', [
         'sender' => 'ARTICLE',
         'category' => $category,
         'documents' => $documents,
     ]);
+
+Pjax::end();
 ?>

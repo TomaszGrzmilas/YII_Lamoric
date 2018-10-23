@@ -53,6 +53,10 @@ return array(
 	'Save and add next' => 'Zapisz i dodaj kolejnego',
 	'Contact' => 'Kontakt',
 	'Personal data'=>'Dane personalne',
-	'Membership' => 'Członkostwo'
+	'Membership' => 'Członkostwo',
+	'Search by category' => 'Szukaj wg kategorii',
+	'Search by date' => 'Szukaj wg daty',
+	'Sort by' => 'Sortuj wg'
+
 );
 ?>

@@ -94,7 +94,7 @@ $toolbar = Html::ul(
                        // 'headerOptions' => ['class' => ''] ,
                         'expandOneOnly' => true,
                         'expandIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
-                        'collapseIcon' => '<i class="pan-btn-show hvr-pop">&nbsp</i>',
+                        'collapseIcon' => '<i class="pan-btn-hide hvr-pop">&nbsp</i>',
                         //'options'=> ['icon'=>'&nbsp', 'title' => 'Show', 'data-toggle' => 'tooltip', 'class' => 'pan-btn-show hvr-pop'],
                     ],
                 ],
