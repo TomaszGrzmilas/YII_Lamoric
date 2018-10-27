@@ -1,0 +1,7 @@
+- wyszukiwanie
+	: po wyborze kat wyszukiwania nie wraca do 'Szukaj wg."
+	: szukanie po wszystkim
+	: sort po ilosci wystapien
+	
+- rej czynności w rodo filtrownaie do firmy
+- lista członków - jasny szary kolor wszedzie
