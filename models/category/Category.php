@@ -66,7 +66,7 @@ class Category extends \kartik\tree\models\Tree
     public function rules()
     {
         $rules = [
-            [['image'], 'safe'], 
+            [['image'], 'safe'],
             [['text1','text2','text3'], 'string', 'max' => 200],
             [['description'], 'string', 'max' => 1000],
         ];
@@ -127,7 +127,7 @@ class Category extends \kartik\tree\models\Tree
     public function getSubCategories($showAll = false)
     {
         $children = $this->children(1)->all();
-        if ($showAll) 
+        if ($showAll)
         {
             return $children;
         }
@@ -140,19 +140,23 @@ class Category extends \kartik\tree\models\Tree
         return null;
     }
 
+    /*
     public function Documents($searchParams)
     {
         $docSearch = new \app\modules\docmgm\models\DocumentSearch();
-        if(isset($searchParams['DocumentSearch']))
-        {
-            $docSearch->search($searchParams);
-            
-        }
-        return $this->documents;
+     //   if(isset($searchParams['DocumentSearch']))
+    //    {
+            $docSearch->search($searchParams, $this->id);
+            return $docSearch->search($searchParams, $this->id);
+     //   }
+     //   return $this->documents;
     }
-
+*/
     public function getDocuments()
     {
+        $docSearch = new \app\modules\docmgm\models\DocumentSearch();
+        return $docSearch->search(null, $this->id)->query->all();
+/*
         $doc = new \app\modules\docmgm\models\Document();
         $search = array();
         $subcat = $this->getSubCategories($this->id);
@@ -163,6 +167,7 @@ class Category extends \kartik\tree\models\Tree
         array_push($search,$this->id);
 
         return $doc->find()->where(['in','category_id' , $search])->all();
+        */
     }
 
     public function beforeDelete()
@@ -177,22 +182,22 @@ class Category extends \kartik\tree\models\Tree
         {
             unlink($file);
         }
-    
+
         return true;
     }
-    
+
     public function beforeSave($insert)
     {
         if ($this->id != null)
         {
             $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
-    
+
             if (!empty($uploadFile)) {
                 $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
                 $uploadFile->saveAs($file);
                 $this->image = $file;
-            } 
-            if ($insert === false) 
+            }
+            if ($insert === false)
             {
                 $oldfile = \yii\helpers\FileHelper::normalizePath($this->oldAttributes['image']);
                 if ($this->image == null)
@@ -211,7 +216,7 @@ class Category extends \kartik\tree\models\Tree
                 }
             }
         }
-       
+
         return parent::beforeSave($insert);
     }
 

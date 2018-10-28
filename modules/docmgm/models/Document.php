@@ -30,8 +30,12 @@ class Document extends \yii\db\ActiveRecord
     public $articleRootCategoryId = 11;
     public $rodoRootCategoryId = 9;
     public $lawRootCategoryId = 1;
-    public $traningRootCategoryId = 21; // pa prod 44 !!
-    
+    public $traningRootCategoryId = 21; // na prod 44 !!
+
+    public $text_all;
+    public $date_filter;
+    public $sort_filter;
+
     public static function tableName()
     {
         return '{{%document}}';
@@ -63,6 +67,8 @@ class Document extends \yii\db\ActiveRecord
             [['title', 'text'], 'required'],
             [['text','short_text','thumbnail'], 'string'],
             [['title'], 'unique'],
+            [['text_all'], 'safe'],
+
         //    [['category_id'], 'integer'],
             [['title'], 'string', 'max' => 150],
             [['short_text'], 'string', 'max' =>800],
@@ -91,8 +97,8 @@ class Document extends \yii\db\ActiveRecord
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 
-    public static function getCategoryList() 
-    { 
+    public static function getCategoryList()
+    {
         return null; //Category::getCategoryList();
     }
 
@@ -110,7 +116,7 @@ class Document extends \yii\db\ActiveRecord
     {
         if ($this->thumbnail == null){
             return FileHelper::normalizePath('/media/upload/document_thumbnail/default.jpg');
-        } 
+        }
         else
         {
             return FileHelper::normalizePath(substr($this->thumbnail, strlen(Yii::getAlias('@app').'\web')));
@@ -119,14 +125,14 @@ class Document extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
-        if ($insert === true) 
+        if ($insert === true)
         {
             if($this->short_text == null)
             {
                 $this->short_text = substr(strip_tags($this->text), 0, 190) . '...';
             }
         }
-        if ($insert === false) 
+        if ($insert === false)
         {
             $ola = $this->thumbnail;
             $uploadFile = \yii\web\UploadedFile::getInstance($this, 'thumbnail');
@@ -135,7 +141,7 @@ class Document extends \yii\db\ActiveRecord
                 $file =  Yii::getAlias('@app') . '/web/media/upload/document_thumbnail/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
                 $uploadFile->saveAs($file);
                 $this->thumbnail = $file;
-            } 
+            }
             $oldfile = \yii\helpers\FileHelper::normalizePath($this->oldAttributes['thumbnail']);
             if ($this->thumbnail == null)
             {
@@ -153,5 +159,24 @@ class Document extends \yii\db\ActiveRecord
             }
         }
         return parent::beforeSave($insert);
+    }
+
+    public static function getDateFilter()
+    {
+        return [
+            '1' => Yii::t('app', 'w tym tygodniu'),
+            '2' => Yii::t('app', 'w tym miesiacu'),
+            '3' => Yii::t('app', 'w tym roku'),
+        ];
+    }
+
+    public static function getSortFilter()
+    {
+        return [
+            '1' => Yii::t('app', 'daty od najnowszej'),
+            '2' => Yii::t('app', 'daty od najstarszej'),
+            '3' => Yii::t('app', 'alfabetycznie [a-z]'),
+            '4' => Yii::t('app', 'alfabetycznie [z-a]'),
+        ];
     }
 }
