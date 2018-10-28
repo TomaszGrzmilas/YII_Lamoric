@@ -2,24 +2,47 @@
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\web\View;
+use yii\widgets\Pjax;
+use yii\bootstrap\ActiveForm;
 use app\modules\docmgm\DocmgmModule;
 
 $this->title = $category->name;
 //$this->params['breadcrumbs'][] = ['label' => DocmgmModule::t('db/document', 'Law'), 'url' => ['/docmgm/law-ovw/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$item = $this->context->module->id . '-' . $this->context->id . '-' . $this->context->action->id;
+
+Pjax::begin(['id' => $item /*, 'timeout' => 3000 */]);
+$form = ActiveForm::begin(['action' => ['index'],
+                           'method' => 'get',
+                           'options' => [
+                                'data-pjax' => true,
+                                'class'=>"article-search"
+                                ]
+                            ]);
 ?>
 
 <div class="row">
     <div class="col-xs-12">
-        <form action="#" class="prawo-search">
-            <input type="text" class="prawo-search-input" placeholder="<?= Yii::t('app', 'Search') ?>">
-            <button type="submit" class="prawo-search-submit">
-            <?= HTML::img('@web/layout.main\images\icn-search-gray.png', ['alt' => Yii::t('app', 'Search')]) ?>
-            </button>
-        </form>
+        <?= $form->field($searchModel, 'text_all',  [
+                'inputOptions' => [
+                    'placeholder' => Yii::t('app', 'Search'),
+                    'class' => 'prawo-search-input',
+                ],
+                'options'=>[
+                    'class'=>'article-search-box'],
+                    'template' => ' {input}
+                    <button type="submit" class="prawo-search-submit">'.
+                        HTML::img('@web/layout.main\images\icn-search-gray.png', ['alt' => Yii::t('app', 'Search')]) .
+                    '</button>',
+            ])->textInput(['maxlength' => true])
+        ?>
     </div>
 </div>
 
+<? ActiveForm::end(); ?>
+
+<? if( $searchModel->text_all == null) : ?>
 <div class="row">
     <? foreach ($categories as $key => $category) : ?>
         <? $a = $category->image == null ? '' : HTML::img($category->getFilePath(), ['alt' => $category->name]);
@@ -33,6 +56,33 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'btns-start-prawo hvr-pop',
                 ]);
             ?>
-        </div>      
+        </div>
     <?php endforeach; ?>
 </div>
+
+<? else : ?>
+
+    <? if(isset($documents) && count($documents) > 0) : ?>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="rights-lists">
+                    <? foreach($documents as $document) : ?>
+                    <li class="item">
+                        <?=
+                            Html::a($document->title,
+                            ['view-single-article', 'category_id'=> $category->id, 'doc_id' => $document->doc_id],
+                            [
+                                'class' => 'hvr-pop',
+                                'title' => $document->title
+                            ]);
+                        ?>
+                    </li>
+                    <? endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    <? endif ?>
+
+<? endif; ?>
+
+<? Pjax::end(); ?>

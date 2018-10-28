@@ -36,17 +36,16 @@ class ArticleOvwController extends Controller
 
     public function actionIndex($id = null)
     {
-        $model = new Document();
         $category = new Category();
         $docSearch = new \app\modules\docmgm\models\DocumentSearch();
 
         if(is_null($id)){
+            $model = new Document();
             $category_id = $model->articleRootCategoryId;
         } else {
             $category_id = $id;
         }
         $category = $category->findOne($category_id);
-
         $documents = $docSearch->search(Yii::$app->request->queryParams, $category_id);
 
         return $this->render('index', [

@@ -36,17 +36,21 @@ class LawOvwController extends Controller
     public function actionIndex($id = null)
     {
         $category = new Category();
-        
+        $docSearch = new \app\modules\docmgm\models\DocumentSearch();
+
         if(is_null($id)){
             $model = new Document();
             $category_id = $model->lawRootCategoryId;
         } else {
             $category_id = $id;
         }
+
         $category = $category->findOne($category_id);
+        $documents = $docSearch->search(Yii::$app->request->queryParams, $category_id);
 
         return $this->render('index', [
-            'documents' => $category->documents,
+            'searchModel' => $docSearch,
+            'documents' => $documents->query->all(),
             'categories' => $category->getSubCategories(),
             'category' => Category::findOne($category_id),
         ]);
@@ -55,7 +59,8 @@ class LawOvwController extends Controller
     public function actionView($id = null)
     {
         $category = new Category();
-        
+        $docSearch = new \app\modules\docmgm\models\DocumentSearch();
+
         if(is_null($id)){
             $model = new Document();
             $category_id = $model->lawRootCategoryId;
@@ -64,9 +69,11 @@ class LawOvwController extends Controller
         }
 
         $category = $category->findOne($category_id);
-   
+        $documents = $docSearch->search(Yii::$app->request->queryParams, $category_id);
+
         return $this->render('view', [
-            'documents' => $category->documents,
+            'searchModel' => $docSearch,
+            'documents' => $documents->query->all(),
             'categories' => $category->getSubCategories(),
             'category' => Category::find()->where(['id' => $category_id])->one(),
         ]);
@@ -94,7 +101,7 @@ class LawOvwController extends Controller
 
     protected function findModel($id)
     {
-        
+
         if (($model = Document::findOne($id)) !== null) {
             return $model;
         }
