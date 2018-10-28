@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'responsive' => false,
                 'panel' => [
-                    'type' => GridView::TYPE_DANGER,
+                    'type' => GridView::TYPE_DEFAULT,
                     'heading' => $this->title,
                 ],
                 'showFooter'=>false,

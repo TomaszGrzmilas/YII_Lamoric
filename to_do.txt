@@ -4,4 +4,3 @@
 	: sort po ilosci wystapien
 	
 - rej czynności w rodo filtrownaie do firmy
-- lista członków - jasny szary kolor wszedzie

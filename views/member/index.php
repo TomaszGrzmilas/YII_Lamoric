@@ -20,11 +20,11 @@ $toolbar = Html::ul(
                     Html::a($addButtonTitle . HTML::img('@web/layout.main\images\icn-big-dodajczlonka.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), ['member/create'], ['data-pjax' => 0, 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' => $addButtonTitle]),
                     Html::a(Yii::t('app', 'Print short list') . HTML::img('@web/layout.main\images\icn-big-drukuj.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), '#', ['data-pjax' => 0, 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' => Yii::t('app', 'Print short list'), 'onclick'=>'printList(259)']),
                     Html::a(Yii::t('app', 'Import') . HTML::img('@web/layout.main\images\icn-big-eksportuj.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), '#', ['data-pjax' => 0, 'data-toggle'=>'modal', 'data-target' => '#modal-table', 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' =>Yii::t('app', 'Import')]),
-                    Yii::$app->user->can('Company Admin') ? 
-                        Html::a(Yii::t('app', 'Print full list') . HTML::img('@web/layout.main\images\icn-big-drukuj.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), '#', ['data-pjax' => 0, 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' => Yii::t('app', 'Print full list'), 'onclick'=>'printList(10)']) 
-                    : null 
+                    Yii::$app->user->can('Company Admin') ?
+                        Html::a(Yii::t('app', 'Print full list') . HTML::img('@web/layout.main\images\icn-big-drukuj.png', ['style' => 'height: 32px; padding: 0 0 0 8px; vertical-align: baseline;']), '#', ['data-pjax' => 0, 'class' => 'title-page-btns hvr-pop', 'style'=>'box-shadow: none;', 'title' => Yii::t('app', 'Print full list'), 'onclick'=>'printList(10)'])
+                    : null
                 ],
-                ['class'=> 'title-page-nav', 'encode'=> false]);     
+                ['class'=> 'title-page-nav', 'encode'=> false]);
 ?>
 
  <?= Yii::$app->session->getFlash('error'); ?>
@@ -34,7 +34,7 @@ $toolbar = Html::ul(
 <div class="<?=$item?>">
 
         <?
-            Pjax::begin(['id' => $item.'-pjax-table']); 
+            Pjax::begin(['id' => $item.'-pjax-table']);
 
             echo GridView::widget([
                 'id' => $item.'-table',
@@ -98,10 +98,10 @@ $toolbar = Html::ul(
                         //'options'=> ['icon'=>'&nbsp', 'title' => 'Show', 'data-toggle' => 'tooltip', 'class' => 'pan-btn-show hvr-pop'],
                     ],
                 ],
-                'containerOptions' => ['style' => 'overflow: auto;'], 
+                'containerOptions' => ['style' => 'overflow: auto;'],
                 'headerRowOptions' => ['class' => 'kartik-sheet-style'],
                 'filterRowOptions' => ['class' => 'kartik-sheet-style'],
-                'pjax' => true, 
+                'pjax' => true,
                 'toolbar' =>  [
                     ['content' => $toolbar],
                 ],
@@ -113,7 +113,7 @@ $toolbar = Html::ul(
                 ],
                 'responsive' => false,
                 'panel' => [
-                    'type' => GridView::TYPE_DANGER,
+                    'type' => GridView::TYPE_DEFAULT,
                     'heading' => $this->title,
                 ],
                 'showFooter'=>false,
@@ -130,7 +130,7 @@ $toolbar = Html::ul(
                                     'config' => [
                                         'mode' => 'utf-8',
                                         'format' => 'A4-L',
-                                        'destination' => 'D', 
+                                        'destination' => 'D',
                                         'marginTop' => 20,
                                         'marginBottom' => 20,
                                         'methods' => [
@@ -157,9 +157,9 @@ $toolbar = Html::ul(
                                         'contentAfter'=>''
                                     ]
                                 ],
-                         
+
             ]);
-            Pjax::end(); 
+            Pjax::end();
         ?>
 
 </div>
@@ -193,7 +193,7 @@ $script = <<<JS
             params += ', toolbar=no';
             newwin=window.open(url,'_blank', params);
             try {
-                newwin.focus();   
+                newwin.focus();
             } catch (e) {
                 alert("{$popupErr}");
             }
@@ -201,13 +201,13 @@ $script = <<<JS
         $("body").css("cursor", "progress");
 
         var keys = $('#{$item}-table').yiiGridView('getSelectedRows');
-        if(keys.length <= 0){   
+        if(keys.length <= 0){
             var dialog = confirm("Nie wybrano wierszy do wydruku. Wydrukować całą listę ? ");
             if (dialog == true) {
                 var ajax = new XMLHttpRequest();
                 $.ajax({
                     type: "GET",
-                    url: '/member/print-list', 
+                    url: '/member/print-list',
                     data: {keylist: 'ALL', type: type},
                     success: function(result){
                         showPopup(result);
@@ -220,7 +220,7 @@ $script = <<<JS
             var ajax = new XMLHttpRequest();
             $.ajax({
                 type: "GET",
-                url: '/member/print-list', 
+                url: '/member/print-list',
                 data: {keylist: keys, type: type},
                 success: function(result){
                 //  console.log(result);
@@ -244,7 +244,7 @@ $script = <<<JS
         var ajax = new XMLHttpRequest();
         $.ajax({
             type: "GET",
-            url: '/docmgm/member-doc/create-pdf', 
+            url: '/docmgm/member-doc/create-pdf',
             data: {memberDocId: member_doc_id, memberId: member_id},
             success: function(result){
                 window.location=result;
@@ -253,11 +253,11 @@ $script = <<<JS
         });
     }
 JS;
-  
+
     $this->registerJs($script,
         \yii\web\View::POS_BEGIN,
     'printMemberDoc');
- 
+
 
 ?>
 
