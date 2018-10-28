@@ -43,22 +43,22 @@ $form = ActiveForm::begin(['action' => ['index'],
 <? ActiveForm::end(); ?>
 
 <? if( $searchModel->text_all == null) : ?>
-<div class="row">
-    <? foreach ($categories as $key => $category) : ?>
-        <? $a = $category->image == null ? '' : HTML::img($category->getFilePath(), ['alt' => $category->name]);
-           $a .= '<div class="btn-start-info">' . $category->name . '</div>';
-        ?>
-        <div class="col-xs-12 col-md-2">
-            <?=
-                Html::a($a,
-                ['view', 'id' => $category->id],
-                [
-                    'class' => 'btns-start-prawo hvr-pop',
-                ]);
+    <div class="row">
+        <? foreach ($categories as $key => $category) : ?>
+            <? $a = $category->image == null ? '' : HTML::img($category->getFilePath(), ['alt' => $category->name]);
+            $a .= '<div class="btn-start-info">' . $category->name . '</div>';
             ?>
-        </div>
-    <?php endforeach; ?>
-</div>
+            <div class="col-xs-12 col-md-2">
+                <?=
+                    Html::a($a,
+                    ['view', 'id' => $category->id],
+                    [
+                        'class' => 'btns-start-prawo hvr-pop',
+                    ]);
+                ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
 <? else : ?>
 

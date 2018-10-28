@@ -14,27 +14,9 @@ class DocumentOvwController extends Controller
 {
     public function actionIndex($id = null)
     {
-        $cat   = new Category();
-        
-        if(is_null($id)){
-            $model = new Document();
-            $category_id = $model->docRootCategoryId;
-        } else {
-            $category_id = $id;
-        }
-        $cat = $cat->findOne($category_id);
-
-        return $this->render('index', [
-            'documents' => $cat->documents,
-            'categories' => $cat->getSubCategories($category_id),
-            'category' => $cat,
-        ]);
-    }
-
-    public function actionView($id)
-    {
         $category = new Category();
-        
+        $docSearch = new \app\modules\docmgm\models\DocumentSearch();
+
         if(is_null($id)){
             $model = new Document();
             $category_id = $model->docRootCategoryId;
@@ -43,7 +25,29 @@ class DocumentOvwController extends Controller
         }
 
         $category = $category->findOne($category_id);
-   
+        $documents = $docSearch->search(Yii::$app->request->queryParams, $category_id);
+
+        return $this->render('index', [
+            'searchModel' => $docSearch,
+            'documents' => $documents->query->all(),
+            'categories' => $category->getSubCategories(),
+            'category' => Category::findOne($category_id),
+        ]);
+    }
+
+    public function actionView($id)
+    {
+        $category = new Category();
+
+        if(is_null($id)){
+            $model = new Document();
+            $category_id = $model->docRootCategoryId;
+        } else {
+            $category_id = $id;
+        }
+
+        $category = $category->findOne($category_id);
+
         return $this->render('view', [
             'documents' => $category->documents,
             'categories' => $category->getSubCategories(),

@@ -45,6 +45,7 @@ class ArticleOvwController extends Controller
         } else {
             $category_id = $id;
         }
+
         $category = $category->findOne($category_id);
         $documents = $docSearch->search(Yii::$app->request->queryParams, $category_id);
 
@@ -52,7 +53,7 @@ class ArticleOvwController extends Controller
             'searchModel' => $docSearch,
             'documents' => $documents->query->all(),
             'categories' => $category->getSubCategories(),
-            'category' => Category::find()->where(['id' => $category_id])->one(),
+            'category' => Category::findOne($category_id),
         ]);
     }
 
