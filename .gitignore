@@ -34,10 +34,10 @@ tests/_support/_generated
 /.vagrant
 
 
-#web/index.php
-web/media/*
-web/images
-#config/db.php
+web/index.php
+#web/media/*
+#web/images
+config/db.php
 
 composer.lock
 null
