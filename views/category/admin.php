@@ -11,9 +11,9 @@ $this->params['breadcrumbs'][] = $this->title;
     if (Yii::$app->user->can('Application Admin'))
     {
         echo TreeView::widget([
-            'query'             => $model::find()->addOrderBy('root, lft'), 
+            'query'             => $model::find()->addOrderBy('root, lft'),
             'headingOptions'    => ['label' => Yii::t('db/category', 'Categories')],
-            'fontAwesome' => true,     
+            'fontAwesome' => true,
             'isAdmin'           => true,     // optional (toggle to enable admin mode)
             'showFormButtons' => true,
             'nodeView' => '@app/views/category/_node_form',
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         //                      {tree}',
         //  'toolbarOptions'=> ['class'=>'hide'],
             'displayValue'      => 1,     // initial display value
-            'softDelete'      => false,  
+            'softDelete'      => false,
             'showInactive' => true,                      // normally not needed to change
             //'cacheSettings'   => ['enableCache' => true]      // normally not needed to change
         ]);
