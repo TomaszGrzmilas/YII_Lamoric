@@ -18,7 +18,7 @@ use yii\helpers\Url;
  *
  * @property Document[] $documents
  */
-class UploadedFile extends \yii\db\ActiveRecord
+class UploadedFile extends \mdm\upload\FileModel
 {
 
     public static function tableName()
@@ -46,6 +46,19 @@ class UploadedFile extends \yii\db\ActiveRecord
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->filename = FileHelper::normalizePath(substr($this->filename, strlen(Yii::getAlias('@app').'\web')));
+        }
+        return false;
+    }
+
+    public function getFilename()
+    {
+        return Yii::getAlias('@app'). '\web\\' . $this->filename;
+    }
+
     public function getDocuments()
     {
         return $this->hasMany(Document::className(), ['file' => 'id']);
@@ -71,12 +84,12 @@ class UploadedFile extends \yii\db\ActiveRecord
         if(stripos($this->type,'image') !== false){
             return Html::img($this->getFilePath(), ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
         }
-        return false; 
+        return false;
     }
 
     public function Img($width = '175px', $height = '100%')
     {
-        return $this->getImg($width, $height); 
+        return $this->getImg($width, $height);
     }
 
     public function getImg2($width = '175px', $height = '100%')
@@ -84,7 +97,7 @@ class UploadedFile extends \yii\db\ActiveRecord
         if(stripos($this->type,'image') !== false){
             return Html::img(['/file','id'=>$this->id], ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
         }
-        return false; 
+        return false;
     }
 
 }

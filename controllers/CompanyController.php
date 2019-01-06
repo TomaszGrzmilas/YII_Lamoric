@@ -48,7 +48,7 @@ class CompanyController extends Controller
 
         $searchModel = new CompanySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -60,7 +60,7 @@ class CompanyController extends Controller
     public function actionCreateAccounts()
     {
         $dataProvider = Company::findAll(['account_id' => null]);
-                
+
         foreach ($dataProvider as $company) {
             $transaction = Yii::$app->db->beginTransaction();
                 $account = new \app\models\balance_account\BalanceAccount();
@@ -82,7 +82,7 @@ class CompanyController extends Controller
         return '<pre>' . json_encode($dataProvider) . "</pre>";
     }
     */
-    
+
     public function actionView($id)
     {
         return $this->render('view', [
@@ -132,7 +132,7 @@ class CompanyController extends Controller
         if (Yii::$app->request->isPost) {
 
             $model->importfile = UploadedFile::getInstance($model, 'importfile');
-            
+
                 $importer = new CSVImporter;
 
                 $importer->setData(new CSVReader([
@@ -150,14 +150,14 @@ class CompanyController extends Controller
                             'value' => function($line) {
                                 return $line[0];
                             },
-                           'unique' => true, 
+                           'unique' => true,
                         ]
                     ],
                 ]));
-                
+
                 return $this->redirect(['index']);
         }
-        
+
         return $this->render('_import_form', [
             'model' => $model,
         ]);
