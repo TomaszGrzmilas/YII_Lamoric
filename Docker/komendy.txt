@@ -1,0 +1,1 @@
+docker build -t yii2-server -f "Dockerfile-server"

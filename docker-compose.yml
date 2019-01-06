@@ -1,9 +1,28 @@
-version: '2'
+version: '3.1'
 services:
-  php:
-    image: yiisoftware/yii2-php:7.1-apache
+#  php:
+#    image: yii2-server
+#    container_name: lamoric_server
+#    depends_on:
+#      - db
+#    volumes:
+#      - ./:/www:delegated
+#      - ./Docker/apache-configure:/opt/lampp/apache2/conf.d
+#    ports:
+#      - '80:80'
+#      - '8080:8080'
+      
+  db:
+    image: mysql
+    container_name: lamoric_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lamoric_db
+      MYSQL_USER: app_root
+      MYSQL_PASSWORD: CHFKbdOh6FtEnCgl
     volumes:
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/app:delegated
+      - ./Docker/mysql-database:/var/lib/mysql
+      - ./Docker/mysql-configure:/etc/mysql/conf.d
     ports:
-      - '8000:80'
+      - "3306:3306"
+  
