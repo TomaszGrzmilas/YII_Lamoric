@@ -41,3 +41,5 @@ config/db.php
 
 composer.lock
 null
+
+Docker/mysql-database/temp*
