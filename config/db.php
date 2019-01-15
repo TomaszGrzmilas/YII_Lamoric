@@ -8,9 +8,9 @@ return [
     'charset' => 'utf8',
 
  //   'class' => 'yii\db\Connection',
- //   'dsn' => 'mysql:host=localhost;dbname=lamoric_1',
- //   'username' => 'app_root_usr',
- //   'password' => 'Opbd31*5@*()SDW',
+ //   'dsn' => 'mysql:host=localhost;dbname=lamoric-db',
+ //   'username' => 'lamoric_app_root',
+ //   'password' => 'CHFKbdOh6FtEnCgl',
  //   'charset' => 'utf8',
 
     // Schema cache options (for production environment)
