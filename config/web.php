@@ -133,13 +133,13 @@ $config = [
             'amountAttribute' => 'amount',
             'dataAttribute' => 'data',
         ],
-        
+
     ],
     'controllerMap' => [
         'file' => 'mdm\\upload\\FileController', // use to show or download file
         'elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
-            'access' => ['@'], 
+            'access' => ['@'],
             'disabledCommands' => ['netmount'], //disabling unnecessary commands https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#commands
             'roots' => [
                 [
@@ -149,7 +149,7 @@ $config = [
                     'name' => 'Pliki'
                 ],
             ],
-           
+
         ]
     ],
     'modules' => [
@@ -173,7 +173,7 @@ $config = [
             'adminPermission' => 'Application Admin',
             //'admins' => ['root'],
             'controllerMap' => [
-                'security' => 'app\controllers\user\SecurityController',
+             //   'security' => 'app\controllers\user\SecurityController',
                 'recovery' => 'app\controllers\user\RecoveryController',
             ],
             'modelMap' => [
@@ -200,7 +200,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1', 'localhost'],
     ];
 }
 

@@ -2,7 +2,7 @@
 namespace app\components;
 use Yii;
 
-class EventHandler 
+class EventHandler
 {
     public static $skipAttr =  ['updated_by', 'updated_at', 'created_at', 'created_by'];
 
@@ -23,7 +23,6 @@ class EventHandler
             if (!(in_array($key , self::$skipAttr))) {
                 $newAttr[$key] = is_null($newAttr[$key]) ? '<empty>' : $newAttr[$key];
                 $changedMsg .= $key .'{'.$newAttr[$key] . '} ';
-                
             }
         }
         Yii::info('USER['.Yii::$app->user->identity->username.'] FROM COMPANY['.Yii::$app->user->identity->profile->company_id.'] INSERT NEW ID ['. $newAttr[$indexColumn] .'] IS ['. $changedMsg .']' ,$traceMsg);
@@ -54,7 +53,7 @@ class EventHandler
             if (!(in_array($key , self::$skipAttr))) {
                 $newAttr[$key] = is_null($newAttr[$key]) ? '<empty>' : $newAttr[$key];
                 $changedMsg .= $key .'{'.$newAttr[$key] . '} ';
-                
+
             }
         }
         Yii::info('USER['.Yii::$app->user->identity->username.'] FROM COMPANY['.Yii::$app->user->identity->profile->company_id.'] DELETE ID['. $newAttr[$indexColumn] .'] WAS ['. $changedMsg .']' ,$traceMsg);
@@ -64,10 +63,5 @@ class EventHandler
     {
         Yii::info('USER['.Yii::$app->user->identity->username.'] FROM COMPANY['.Yii::$app->user->identity->profile->company_id.'] PRINT REPORT ['. $reportId .']', $traceMsg);
     }
-
-    
-            
-}?>
-
-
-
+}
+?>

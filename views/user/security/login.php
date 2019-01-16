@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->title = 'Login';
-
+$this->context->layout = '@app/views/layouts/login';
 ?>
 
 <? // = $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
@@ -40,9 +40,9 @@ $this->title = 'Login';
                             <?= $form->field($model, 'login',
                                 [
                                 'inputOptions' => [
-                                    'autofocus' => 'autofocus', 
-                                    'class' => 'form-control', 
-                                    'tabindex' => '1', 
+                                    'autofocus' => 'autofocus',
+                                    'class' => 'form-control',
+                                    'tabindex' => '1',
                                     'placeholder'=>"Login",
                                     'style' => 'padding: 20px; border-radius:0;',
                                 ],
@@ -52,7 +52,7 @@ $this->title = 'Login';
                                 ]
                             );
                             ?>
-                       
+
                             <?= $form->field($model, 'password',
                                 [
                                     'inputOptions' => [
@@ -73,7 +73,7 @@ $this->title = 'Login';
                         <?= Html::submitButton(
                             Yii::t('user', 'Sign in') . HTML::img('@web/layout.main\images\login-icn-log.png'),
                             [
-                                'class' => 'hvr-pop', 
+                                'class' => 'hvr-pop',
                                 'tabindex' => '4'
                             ]
                             );
@@ -103,4 +103,4 @@ $this->title = 'Login';
                 </div>
             </div>
     </div>
-</div>    
+</div>

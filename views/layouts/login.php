@@ -19,9 +19,9 @@ LoginAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-   
+
         <?= $content ?>
-    
+
 </div>
 <?php $this->endBody() ?>
 </body>

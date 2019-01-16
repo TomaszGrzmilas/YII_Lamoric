@@ -51,7 +51,7 @@ class Document extends \yii\db\ActiveRecord
                 'savedAttribute' => 'file', // optional, use to link model with saved file.
                 'uploadPath' => '@app/web/media/upload/documents', // saved directory. default to '@runtime/upload'
                 'autoSave' => true, // when true then uploaded file will be save before ActiveRecord::save()
-                'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
+                'autoDelete' => false, // when true then uploaded file will deleted before ActiveRecord::delete()
             ],
             [
                 'class' => LogBehavior::className(),
