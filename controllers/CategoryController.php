@@ -40,24 +40,22 @@ class CategoryController extends \yii\web\Controller
 
     public function actionDeleteFile($id)
     {
-        if (Yii::$app->request->isAjax && $id != null) 
+        if (Yii::$app->request->isAjax && $id != null)
         {
-            $model = new Category();
+            $model = Category::findone($id);
 
-            $model = $model->find()->where(['id'=>$id])->one();
-
-            $file = \yii\helpers\FileHelper::normalizePath($model->image);
+            $file = $model->getFullFilePath();
 
             if(file_exists($file))
             {
-                unlink($model->image);
+                unlink($file);
             }
 
             $model->image = null;
             $model->save();
             return '{}';
-      }
-    return null;
+        }
+        return null;
     }
 
 }

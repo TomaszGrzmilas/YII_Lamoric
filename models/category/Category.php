@@ -38,6 +38,7 @@ use yii\helpers\FileHelper;
  */
 class Category extends \kartik\tree\models\Tree
 {
+    public static $imagePath = '/media/upload/category_images/';
 
     public static function tableName()
     {
@@ -193,8 +194,8 @@ class Category extends \kartik\tree\models\Tree
             $uploadFile = \yii\web\UploadedFile::getInstance($this, 'image');
 
             if (!empty($uploadFile)) {
-                $file =  Yii::getAlias('@app') . '/web/media/upload/category_images/' . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
-                $uploadFile->saveAs($file);
+                $file =  Category::$imagePath . Yii::$app->security->generateRandomString() . '.' . $uploadFile->extension;
+                $uploadFile->saveAs(Yii::getAlias('@webroot') . $file);
                 $this->image = $file;
             }
             if ($insert === false)
@@ -222,11 +223,28 @@ class Category extends \kartik\tree\models\Tree
 
     public function getFilePath()
     {
-        return FileHelper::normalizePath(substr($this->image, strlen(Yii::getAlias('@app').'\web')));
+        if ($this->image != null) {
+            return FileHelper::normalizePath($this->image);
+        }
+    }
+
+    public function getFullFilePath()
+    {
+        if ($this->image != null) {
+            return FileHelper::normalizePath(Yii::getAlias('@webroot') . $this->image);
+        }
     }
 
     public function getImg($width = '175px', $height = '100%')
     {
-        return Html::img($this->getFilePath(), ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
+        $file = $this->getFilePath();
+        return $file == null ? null : Html::img($this->getFilePath(), ['alt' => 'company_logo', 'style'=>'max-width: '. $width .'; max-height: '. $height .';']);
     }
+
+    public function getThumbnail()
+    {
+        $file = $this->getFilePath();
+        return $file == null ? null : "<img src='". $file ."' class='file-preview-image'>";
+    }
+
 }

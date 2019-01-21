@@ -2,8 +2,6 @@
 use kartik\file\FileInput;
 use yii\helpers\Url;
 
-$img = $node->getFilePath() == null ? null : "<img src='". $node->getFilePath() ."' class='file-preview-image'>";
-
 echo $form->field($node, 'text1')->textInput(['maxlength' => true]);
 
 echo $form->field($node, 'text2')->textInput(['maxlength' => true]);
@@ -35,7 +33,7 @@ echo $form->field($node, 'image')->widget(FileInput::classname(), [
             'showDrag'=>false,
         ],
         'initialPreview' => [
-            $img
+            $node->thumbnail
         ],
     ]
 ]);
